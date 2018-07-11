@@ -1,0 +1,32 @@
+<style lang="less">
+</style>
+<template>
+  <view>个人中心</view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Profile extends wepy.page {
+    config = {
+      navigationBarTitleText: '个人中心'
+    }
+    components = {
+    }
+
+    data = {
+    }
+
+    computed = {
+    }
+
+    methods = {
+    }
+
+    events = {
+    }
+
+    onLoad() {
+    }
+  }
+</script>
