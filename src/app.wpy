@@ -22,9 +22,9 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/scan',
-      'pages/hotGoods',
-      'pages/profile'
+      'pages/profile/index',
+      'pages/scan/index',
+      'pages/hotGoods/index',
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -32,28 +32,28 @@ export default class extends wepy.app {
       navigationBarTitleText: 'WeChat',
       navigationBarTextStyle: 'black'
     },
-    "tabBar": {
-      'selectedColor': '#78f30b',
-      'backgroundColor': '#fff',
-      "list": [
+    tabBar: {
+      selectedColor: '#78f30b',
+      backgroundColor: '#fff',
+      list: [
         {
-          "pagePath": "pages/hotGoods",
-          "text": "爆款商品",
+          pagePath: 'pages/hotGoods/index',
+          text: '爆款商品',
           'selectedIconPath': './images/select_hot.png',
           'iconPath': './images/hot.png'
         }, {
-          "pagePath": "pages/scan",
-          "text": "扫货架码",
+          'pagePath': 'pages/scan/index',
+          'text': '扫货架码',
           'selectedIconPath': './images/select_qr.png',
           'iconPath': './images/qr.png'
         }, {
-          "pagePath": "pages/profile",
-          "text": "我的",
+          'pagePath': 'pages/profile/index',
+          'text': '我的',
           'selectedIconPath': './images/select_profile.png',
           'iconPath': './images/profile.png'
         }
       ]
-    },
+    }
   }
 
   globalData = {

@@ -1,0 +1,58 @@
+<template>
+  <view class="user_bar">
+    <view class="me_wrapper">
+      <image class="me_icon" src="{{iconPath}}" />
+      <text>{{ message }}</text>
+    </view>
+    <image class="right_icon" src="../../images/right.png" />
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  // TODO: 可以父组件传递事件处理函数给子组件吗
+  // 可以传递的props参数有哪些
+// 无法使用模板字符串
+// 无法传递src给image标签
+// 修改template内容自动编译失败
+  export default class UserBar extends wepy.component {
+    props = {
+      message: String,
+      iconPath: String
+      // navPath: String
+    }
+
+    data = {
+    }
+
+    methods = {
+      nav() {
+        wepy.navigateTo({
+          url: this.navPath,
+          success() {
+            console.log(this.navPath)
+          },
+          fail() {
+            console.log(this.navPath)
+          }
+        })
+      }
+    }
+  }
+</script>
+
+<style lang='less'>
+  .user_bar {
+    display: flex;
+    align-items: center;
+    padding: 8px 20px 8px 0;
+    border-top: 1px solid rgba(0, 0, 0, .2);
+    justify-content: space-between;
+    color: rgba(0, 0, 0, .8);
+
+    .me_wrapper {
+      display: flex;
+      align-items: center;
+    }
+  }
+</style>

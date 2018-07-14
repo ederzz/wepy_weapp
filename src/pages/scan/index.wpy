@@ -1,5 +1,6 @@
 <style lang="less">
 </style>
+
 <template>
   <view>二维码扫描</view>
 </template>
@@ -11,6 +12,7 @@
     config = {
       navigationBarTitleText: '办公室货架'
     }
+
     components = {
     }
 

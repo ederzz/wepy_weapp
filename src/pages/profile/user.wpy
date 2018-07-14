@@ -1,0 +1,42 @@
+<template>
+  <view class="user_info">
+    <view class="userinfo_avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <open-data type="userNickName"></open-data>
+    <view class="user_account">
+      账号：<text>{{ account }}</text>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class User extends wepy.component {
+    data = {
+      account: 582027692
+    }
+  }
+</script>
+
+<style lang='less'>
+  .user_info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40rpx;
+
+    .userinfo_avatar {
+      width: 150rpx;
+      height: 150rpx;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .user_account {
+      font-size: 12px;
+      color: rgba(0, 0, 0, .3)
+    }
+  }
+</style>

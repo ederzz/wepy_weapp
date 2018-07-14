@@ -1,15 +1,16 @@
 <style lang="less">
 </style>
+
 <template>
-  <view>个人中心</view>
+  <view>热门商品</view>
 </template>
 
 <script>
   import wepy from 'wepy'
 
-  export default class Profile extends wepy.page {
+  export default class HotGoods extends wepy.page {
     config = {
-      navigationBarTitleText: '个人中心'
+      navigationBarTitleText: '爆款商品'
     }
     components = {
     }
