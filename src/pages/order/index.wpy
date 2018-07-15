@@ -1,0 +1,16 @@
+<template>
+  <view>
+    这里是订单中心
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Order extends wepy.component {
+
+  }
+</script>
+
+<style lang='less'>
+</style>

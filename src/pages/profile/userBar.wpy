@@ -1,11 +1,11 @@
 <template>
-  <view class="user_bar">
+  <navigator class="user_bar" url="{{navPath}}">
     <view class="me_wrapper">
       <image class="me_icon" src="{{iconPath}}" />
       <text>{{ message }}</text>
     </view>
     <image class="right_icon" src="../../images/right.png" />
-  </view>
+  </navigator>
 </template>
 
 <script>
@@ -14,29 +14,20 @@
   // 可以传递的props参数有哪些
 // 无法使用模板字符串
 // 无法传递src给image标签
-// 修改template内容自动编译失败
+// 修改template内容自动编译失败x
+// component里面的methods方法不能访问props数据吗
+// 哪些组件使用变量可以直接使用，哪种需要加上双括号{{}}
   export default class UserBar extends wepy.component {
     props = {
       message: String,
-      iconPath: String
-      // navPath: String
+      iconPath: String,
+      navPath: String
     }
 
     data = {
     }
 
     methods = {
-      nav() {
-        wepy.navigateTo({
-          url: this.navPath,
-          success() {
-            console.log(this.navPath)
-          },
-          fail() {
-            console.log(this.navPath)
-          }
-        })
-      }
     }
   }
 </script>
