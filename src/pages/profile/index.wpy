@@ -2,9 +2,19 @@
   @import '../../common/common.less';
 
   .profile_container {
+    background: #fff;
+    border-top: 1px solid #fff;
+
     .bar_container {
-      padding: 0 0 0 20px;
-      margin-top: 20px;
+      padding: 20px 0 0 20px;
+    }
+
+    .author {
+      text-align: center;
+      padding-top: 10px;
+      font-size: 12px;
+      color: rgba(0, 0, 0, .4);
+      background: rgba(0, 0, 0, .06);
     }
   }
 </style>
@@ -17,6 +27,7 @@
         <userBar :message.sync="item.message" :iconPath.sync="item.iconPath" :navPath.sync="item.navPath"></userBar>
       </repeat>
     </view>
+    <view class="author">design by shenyiling</view>
   </view>
 </template>
 
