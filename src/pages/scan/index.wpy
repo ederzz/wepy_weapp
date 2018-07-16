@@ -1,12 +1,55 @@
 <style lang="less">
+  @import '../../common/common.less';
+
+  .scan_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+
+    .wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-top: 1px solid transparent;
+      background: #fff;
+      height: 865rpx;
+
+      .scan_btn {
+        background: rgba(0, 255, 0, 0.6);
+        color: #fff;
+        width: 530rpx;
+        height: 100rpx;
+        border-radius: 50rpx;
+        border: none;
+        margin-top: 80rpx;
+      }
+
+      .scan_img {
+        width: 400rpx;
+        height: 400rpx;
+        margin-top: 80rpx;
+      }
+    }
+  }
 </style>
 
 <template>
-  <view>二维码扫描</view>
+  <view class="scan_container">
+    <entry></entry>
+    <view class="wrapper">
+      <image class="scan_img" src="../../images/qr_image.png" />
+      <button class="scan_btn">
+        <text class="">扫一扫</text>
+        <text>货架二维码</text>
+      </button>
+    </view>
+  </view>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import Entry from './entry'
 
   export default class Scan extends wepy.page {
     config = {
@@ -14,6 +57,7 @@
     }
 
     components = {
+      entry: Entry
     }
 
     data = {
