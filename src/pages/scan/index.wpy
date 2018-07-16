@@ -73,6 +73,15 @@
     }
 
     onLoad() {
+      wepy.showLoading({
+        mask: true
+      })
+      /**
+       * TODO: fetch data(也许不应该放到onLoad中，如果每次进入页面都需要抓取数据)
+       */
+      setTimeout(() => {
+        wepy.hideLoading()
+      }, 1000 * Math.random())
     }
   }
 </script>

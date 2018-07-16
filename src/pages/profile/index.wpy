@@ -88,6 +88,17 @@
     }
 
     onLoad() {
+      wepy.showLoading({
+        mask: true
+      })
+
+      /**
+       * TODO: fetch data
+       */
+
+      setTimeout(() => {
+        wepy.hideLoading();
+      }, 1000 * Math.random());
     }
   }
 </script>
