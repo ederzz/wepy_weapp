@@ -12,8 +12,6 @@
 <template>
   <view class="profile_container">
     <user></user>
-    <zz :a="a2"></zz>
-    <zzz :a="a1"></zzz>
     <view class="bar_container">
       <repeat for="{{barInfo}}" key="index" index="index" item="item">
         <userBar :message.sync="item.message" :iconPath.sync="item.iconPath" :navPath.sync="item.navPath"></userBar>
@@ -26,7 +24,6 @@
   import wepy from 'wepy'
   import User from './user'
   import UserBar from './userBar'
-  import Zz from './zz'
 
   export default class Profile extends wepy.page {
     config = {
@@ -35,9 +32,7 @@
 
     components = {
       user: User,
-      userBar: UserBar,
-      zz: Zz,
-      zzz: Zz
+      userBar: UserBar
     }
 
     data = {
