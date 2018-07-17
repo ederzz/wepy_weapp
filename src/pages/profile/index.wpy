@@ -97,8 +97,8 @@
        */
 
       setTimeout(() => {
-        wepy.hideLoading();
-      }, 1000 * Math.random());
+        wepy.hideLoading()
+      }, 1000 * Math.random())
     }
   }
 </script>

@@ -1,0 +1,52 @@
+<template>
+  <view class="shop_container">
+    <view class="btn">
+      <image class="shop_icon" src="../../images/food.png"></image>
+      <text>超值外卖</text>
+    </view>
+    <view class="btn">
+      <image class="shop_icon" src="../../images/recharge.png"></image>
+      <text>充值领分红</text>
+    </view>
+    <view class="btn">
+      <image class="shop_icon" src="../../images/fire.png"></image>
+      <text>爆款商品</text>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  /**
+   * TODO: 增加其他小程序入口
+   */
+
+  export default class TopBar extends wepy.component {
+
+  }
+</script>
+
+<style lang='less'>
+  .shop_container {
+    display: flex;
+    padding: 0 12px;
+    justify-content: space-between;
+
+    .btn {
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      height: 30px;
+      border: .1px solid transparent;
+      border-radius: 15px;
+      background: rgba(0, 0, 0, .05);
+      padding: 0 7px;
+    }
+
+    .shop_icon {
+      width: 20px;
+      height: 20px;
+    }
+  }
+</style>

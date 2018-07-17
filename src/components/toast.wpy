@@ -1,0 +1,46 @@
+<template>
+  <view class="toast_wrapper" wx:if="{{ isShow }}">
+    <view class="toast_content">
+      <text class="toast_text">{{ text }}</text>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Toast extends wepy.component {
+    props = {
+      text: String,
+      isShow: Boolean
+      /**
+       * TODO: 添加icon选项
+       */
+    }
+  }
+</script>
+
+<style lang='less'>
+  .toast_wrapper {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    background: rgba(0, 0, 0, .6);
+    color: #fff;
+    font-size: 28rpx;
+    text-align: center;
+    z-index: 999;
+    border-radius: 8px;
+    height: 28px;
+    line-height: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    justify-content: center;
+
+    .toast_text {
+      min-width: 400rpx;
+      display: block;
+      max-width: 700rpx;
+    }
+  }
+</style>

@@ -1,0 +1,26 @@
+<template>
+  <view>
+    <topBar></topBar>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import TopBar from './topBar'
+
+  export default class Shop extends wepy.page {
+    config = {
+      navigationBarTitleText: 'XN(Z003)神以灵'
+    }
+
+    components = {
+      topBar: TopBar
+    }
+  }
+</script>
+
+<style lang='less'>
+  page {
+    background: #fff;
+  }
+</style>

@@ -2,7 +2,7 @@
   <view class="entry">
     <image class="tip_icon" src="../../images/tip.png" />
     <text>上次消费的门店</text>
-    <button class="entry_btn" type="default">进入</button>
+    <button class="entry_btn" type="default" @tap="go2shop">进入</button>
   </view>
 </template>
 
@@ -10,7 +10,17 @@
   import wepy from 'wepy'
 
   export default class Entry extends wepy.component {
-
+    methods = {
+      go2shop() {
+        console.log(111)
+        wepy.navigateTo({
+          url: '/pages/shop/index',
+          success: function() {
+            console.log('成功跳转到商店页面')
+          }
+        })
+      }
+    }
   }
 </script>
 
