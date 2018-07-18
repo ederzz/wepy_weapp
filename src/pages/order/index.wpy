@@ -23,6 +23,7 @@
 <script>
   import wepy from 'wepy'
   import OrderItem from './order_item'
+  import { request } from '@/common/utils.js'
 
   export default class Order extends wepy.page {
     config = {
@@ -36,88 +37,7 @@
     data = {
       systemInfo: {},
       currentTab: 0,
-      orderList: [
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        },
-        {
-          text: '2222',
-          img: '',
-          status: '已完成',
-          price: 3.30,
-          time: '2018-04-25 09:19:58',
-          shop: '考拉便利XN(Z003)知道创宇'
-        }
-      ]
+      orderList: []
     }
 
     methods = {
@@ -126,10 +46,20 @@
       }
     }
 
-    onLoad() {
+    async onLoad() {
       const systemInfo = wepy.getStorageSync('systemInfo')
-      console.log(systemInfo)
       this.systemInfo = systemInfo
+      const {
+        data: {
+          order_list
+        }
+      } = await request({
+        url: '/order_list'
+      })
+
+      this.orderList = order_list
+      console.log(this.orderList)
+      this.$apply()
     }
   }
 </script>
