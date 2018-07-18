@@ -1,16 +1,177 @@
 <template>
-  <view>
-    这里是订单中心
+  <view class="order_container">
+    <view class="tabs">
+      <view class="tab_item {{ currentTab === 0 ? 'active' : '' }}" @tap="switchTab({{ 0 }})">
+        <view>全部任务</view>
+      </view>
+      <view class="tab_item {{ currentTab === 1 ? 'active' : '' }}" @tap="switchTab({{ 1 }})">
+        <view>已完成</view>
+      </view>
+      <view class="tab_item {{ currentTab === 2 ? 'active' : '' }}" @tap="switchTab({{ 2 }})">
+        <view>待支付</view>
+      </view>
+      <view class="tab_item {{ currentTab === 3 ? 'active' : '' }}" @tap="switchTab({{ 3 }})">
+        <view class="border_hide">已取消</view>
+      </view>
+    </view>
+    <scroll-view scroll-y="{{ true }}" style="height: {{ systemInfo.windowHeight - 52 }}px" class="order_content">
+      <order_item :orderList.sync='orderList'></order_item>
+    </scroll-view>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import OrderItem from './order_item'
 
-  export default class Order extends wepy.component {
+  export default class Order extends wepy.page {
+    config = {
+      navigationTitleview: '我的订单'
+    }
 
+    components = {
+      order_item: OrderItem
+    }
+
+    data = {
+      systemInfo: {},
+      currentTab: 0,
+      orderList: [
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        },
+        {
+          text: '2222',
+          img: '',
+          status: '已完成',
+          price: 3.30,
+          time: '2018-04-25 09:19:58',
+          shop: '考拉便利XN(Z003)知道创宇'
+        }
+      ]
+    }
+
+    methods = {
+      switchTab(index) {
+        this.currentTab = index
+      }
+    }
+
+    onLoad() {
+      const systemInfo = wepy.getStorageSync('systemInfo')
+      console.log(systemInfo)
+      this.systemInfo = systemInfo
+    }
   }
 </script>
 
 <style lang='less'>
+  @import '../../common/common.less';
+
+  .order_container {
+    display: flex;
+    flex-direction: column;
+
+    .tabs {
+      display: flex;
+      font-weight: 400;
+      background: #fff;
+      height: 52px;
+      box-sizing: border-box;
+
+      .tab_item {
+        flex: 1;
+        padding: 15px 0;
+
+        view {
+          border-right: 1px solid #bbb;
+          text-align: center;
+          font-size: 14px;
+
+          &.border_hide {
+            border: none;
+          }
+        }
+
+        &.active {
+          border-bottom: 2px solid #0f0;
+          color: #0f0;
+        }
+      }
+    }
+
+    .order_content {
+    }
+  }
+
+
 </style>

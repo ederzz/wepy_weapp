@@ -1,0 +1,76 @@
+<template>
+  <view class="list_wrapper">
+    <repeat for="{{ orderList }}" key="index" index="index" item="item">
+      <view class="order_item">
+        <image class="item_img" src="item.img"></image>
+        <view class="item_center">
+          <view>{{ item.shop }}</view>
+          <view class="item_time">{{ item.time }}</view>
+        </view>
+        <view class="item_right">
+          <view class="item_price">￥{{ item.price }}</view>
+          <view class="item_status">{{ item.status }}</view>
+        </view>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class OrderItem extends wepy.component {
+    props = {
+      orderList: Array
+    }
+  }
+</script>
+
+<style lang='less'>
+  .list_wrapper {
+    margin-top: 10px;
+    font-size: 14px;
+
+    .order_item {
+      display: flex;
+      background: #fff;
+      padding: 8px 15px;
+      align-items: center;
+
+      .item_img {
+        width: 100rpx;
+        height: 100rpx;
+        border-radius: 50rpx;
+        border: .5px solid #bbb;
+        margin-right: 15px;
+      }
+
+      .item_center {
+        width: 370rpx;
+        margin-right: 70rpx;
+
+        .item_time {
+          color: rgba(0, 0, 0, .4);
+          font-size: 12px;
+        }
+      }
+
+      .item_right {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .item_price {
+          color: #ff0015;
+          font-size: 16px;
+          margin-bottom: 5px;
+        }
+
+        .item_status {
+          color: rgba(0, 0, 0, .4);
+          font-size: 12px;
+        }
+      }
+    }
+  }
+</style>

@@ -1,12 +1,24 @@
 <template>
   <view>
+    <toast :text.sync="text" :isShow.sync="isShow"></toast>
     <topBar></topBar>
+    <warning :show.sync="warnShow">
+      <view slot="content" class="content">
+        <view class="content_title">提示</view>
+        <view class="content_bd">该活动仅对会员有效</view>
+        <view class="content_ft">
+          <view class="upgrade_btn" @tap="upgrade">免费升级</view>
+        </view>
+      </view>
+    </warning>
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
   import TopBar from './topBar'
+  import Warning from './warning'
+  import Toast from '@/components/toast'
 
   export default class Shop extends wepy.page {
     config = {
@@ -14,7 +26,37 @@
     }
 
     components = {
-      topBar: TopBar
+      topBar: TopBar,
+      warning: Warning,
+      toast: Toast
+    }
+
+    data = {
+      text: '现在暂时不提供升级服务~~',
+      isShow: false,
+      warnShow: false
+    }
+
+    methods = {
+      upgrade() {
+        this.isShow = true
+        this.$apply()
+        setTimeout(() => {
+          this.isShow = false
+          this.$apply()
+        }, 1000)
+      }
+    }
+
+    events = {
+      'hideWarn': () => {
+        this.warnShow = false
+        this.$apply()
+      },
+      'showWarn': () => {
+        this.warnShow = true
+        this.$apply()
+      }
     }
   }
 </script>
@@ -22,5 +64,48 @@
 <style lang='less'>
   page {
     background: #fff;
+
+    .btn_container {
+      margin-top: 20px;
+    }
+
+    .content {
+      width: 550rpx;
+      background: #fff;
+      height: 300rpx;
+      border-radius: 4px;
+      color: #000;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      box-sizing: border-box;
+
+      .content_title {
+        color: rgba(223, 186, 25, .7);
+        font-size: 18px;
+        font-weight: 400;
+      }
+
+      .content_bd {
+        font-size: 12px;
+        font-weight: 200;
+        color: rgba(0, 0, 0, .7)
+      }
+
+      .content_ft {
+        .upgrade_btn {
+          background: rgb(223, 186, 25);
+          width: 200rpx;
+          height: 60rpx;
+          border-radius: 30rpx;
+          text-align: center;
+          line-height: 60rpx;
+          font-size: 12px;
+          font-weight: 300;
+        }
+      }
+    }
   }
 </style>

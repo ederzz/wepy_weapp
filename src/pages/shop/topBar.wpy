@@ -1,10 +1,10 @@
 <template>
-  <view class="shop_container">
+  <view class="btn_container">
     <view class="btn">
       <image class="shop_icon" src="../../images/food.png"></image>
       <text>超值外卖</text>
     </view>
-    <view class="btn">
+    <view class="btn" @tap="showUpgrade">
       <image class="shop_icon" src="../../images/recharge.png"></image>
       <text>充值领分红</text>
     </view>
@@ -23,12 +23,16 @@
    */
 
   export default class TopBar extends wepy.component {
-
+    methods = {
+      showUpgrade() {
+        this.$emit('showWarn')
+      }
+    }
   }
 </script>
 
 <style lang='less'>
-  .shop_container {
+  .btn_container {
     display: flex;
     padding: 0 12px;
     justify-content: space-between;

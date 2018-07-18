@@ -29,15 +29,15 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      // 'pages/shop/index',
+      'pages/order/index',
       'pages/scan/index',
       'pages/profile/index',
       'pages/hotGoods/index',
       'pages/vip/index',
-      'pages/order/index',
       'pages/joinUs/index',
       'pages/coupon/index',
-      'pages/advice/index'
+      'pages/advice/index',
+      'pages/shop/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -80,6 +80,7 @@ export default class extends wepy.app {
 
   onLaunch() {
     this.testAsync()
+    this.getSystemInfo()
   }
 
   sleep (s) {
@@ -104,6 +105,16 @@ export default class extends wepy.app {
       success (res) {
         that.globalData.userInfo = res.userInfo
         cb && cb(res.userInfo)
+      }
+    })
+  }
+  getSystemInfo() {
+    const systemInfo = wepy.getSystemInfoSync()
+    wepy.setStorage({
+      key: 'systemInfo',
+      data: systemInfo,
+      success() {
+        console.log('系统信息存储成功.')
       }
     })
   }
