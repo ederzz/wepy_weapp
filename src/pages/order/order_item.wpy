@@ -2,7 +2,7 @@
   <view class="list_wrapper">
     <repeat for="{{ orderList }}" key="index" index="index" item="item">
       <view class="order_item">
-        <image class="item_img" src="item.img_url"></image>
+        <image class="item_img" src="{{item.img_url}}"></image>
         <view class="item_center">
           <view>{{ item.shop_name }}</view>
           <view class="item_time">{{ item.order_time }}</view>

@@ -1,8 +1,9 @@
 <template>
   <view class="order_container">
     <tabs :tabList.sync="tabList" :currentTab.sync="currentTab"></tabs>
-    <scroll-view scroll-y="{{ true }}" style="height: {{ systemInfo.windowHeight - 52 }}px" class="order_content">
+    <scroll-view @scrolltolower="scrollToLower" scroll-y="{{ true }}" style="height: {{ systemInfo.windowHeight - 52 }}px" class="order_content">
       <order_item :orderList.sync='orderList'></order_item>
+      <loading :show.sync="show" :message.sync="message"></loading>
     </scroll-view>
   </view>
 </template>
@@ -11,6 +12,7 @@
   import wepy from 'wepy'
   import OrderItem from './order_item'
   import Tabs from '@/components/tabs'
+  import Loading from '@/components/loading'
   import { request } from '@/common/utils.js'
 
   export default class Order extends wepy.page {
@@ -20,37 +22,65 @@
 
     components = {
       order_item: OrderItem,
-      tabs: Tabs
+      tabs: Tabs,
+      loading: Loading
     }
 
     data = {
       systemInfo: {},
       currentTab: 0,
+      allOrders: [], // 所有订单数据源，渲染数据由此过滤产生
       orderList: [],
       tabList: [
         '全部订单',
         '已完成',
         '待支付',
         '已取消'
-      ]
+      ],
+      show: false, // 默认不显示loading
+      message: '加载中'
     }
 
     methods = {
       switchTab(index) {
         this.currentTab = index
+      },
+      async scrollToLower() {
+        await this.moreOrders()
       }
     }
+    /**
+     * todo: 添加loading gif
+     *
+     */
 
     events = {
       'switch-tab': index => {
+        this.refreshOrderList(index)
         this.currentTab = index
         this.$apply()
       }
     }
 
-    async onLoad() {
-      const systemInfo = wepy.getStorageSync('systemInfo')
-      this.systemInfo = systemInfo
+    watch = {
+      allOrders() {
+        this.refreshOrderList(this.currentTab, true)
+      }
+    }
+
+    refreshOrderList(index, updater = false) {
+      if (!updater && (this.currentTab === index)) {
+        return false
+      }
+
+      if (index === 0) {
+        this.orderList = this.allOrders
+        return
+      }
+      this.orderList = this.allOrders.filter(current => current.order_status === this.tabList[index])
+    }
+
+    async moreOrders() {
       const {
         data: {
           order_list: orderList
@@ -59,10 +89,16 @@
         url: '/order_list'
       })
 
-      this.orderList = orderList.map(current => Object.assign({}, current, {
+      this.allOrders = this.allOrders.concat(orderList.map(current => Object.assign({}, current, {
         order_price: current.order_price.toFixed(2)
-      }))
+      })))
       this.$apply()
+    }
+
+    async onLoad() {
+      const systemInfo = wepy.getStorageSync('systemInfo')
+      this.systemInfo = systemInfo
+      await this.moreOrders()
     }
   }
 </script>
@@ -73,9 +109,6 @@
   .order_container {
     display: flex;
     flex-direction: column;
-
-    .order_content {
-    }
   }
 
 

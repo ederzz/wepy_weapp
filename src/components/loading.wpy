@@ -1,0 +1,35 @@
+<template>
+  <view wx:if="{{show}}" class="load__wrapper">
+    <image class="load__img" src="../images/loading.gif" />
+    <view class="load__text">{{ message }}</view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Loading extends wepy.component {
+    props = {
+      message: String,
+      show: Boolean
+    }
+  }
+</script>
+
+<style lang='less'>
+  .load__wrapper {
+    display: flex;
+    justify-content: center;
+
+    .load__img {
+      width: 18px;
+      height: 18px;
+      margin-right: 10px;
+    }
+
+    .load__text {
+      font-size: 14px;
+      color: rgba(0, 0, 0, .6);
+    }
+  }
+</style>
