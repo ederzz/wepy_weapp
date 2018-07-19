@@ -1,0 +1,59 @@
+<template>
+  <view class="tabs__wrapper">
+    <repeat for="{{ tabList }}" key="index" index="index" item="item">
+      <view class="tab__item {{ currentTab === index ? 'active' : '' }}" @tap="switchTab({{ index }})">
+        <view class="tab__text">{{ item }}</view>
+      </view>
+    </repeat>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Tabs extends wepy.component {
+    props = {
+      tabList: Array,
+      currentTab: Number
+    }
+
+    methods = {
+      switchTab(index) {
+        if (this.currentTab === index) {
+          return false
+        }
+        this.$emit('switch-tab', index)
+      }
+    }
+  }
+</script>
+
+<style lang='less'>
+  .tabs__wrapper {
+      display: flex;
+      font-weight: 400;
+      background: #fff;
+      height: 52px;
+      box-sizing: border-box;
+
+      .tab__item {
+        flex: 1;
+        padding: 15px 0;
+
+        .tab__text {
+          border-right: 1px solid #bbb;
+          text-align: center;
+          font-size: 14px;
+
+          &.border_hide {
+            border: none;
+          }
+        }
+
+        &.active {
+          border-bottom: 2px solid #0f0;
+          color: #0f0;
+        }
+      }
+    }
+</style>
