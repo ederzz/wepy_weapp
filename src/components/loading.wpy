@@ -17,9 +17,13 @@
 </script>
 
 <style lang='less'>
+  @import '../common/common.less';
+
   .load__wrapper {
     display: flex;
     justify-content: center;
+    background: #fff;
+    padding: 5px 0;
 
     .load__img {
       width: 18px;
@@ -29,7 +33,7 @@
 
     .load__text {
       font-size: 14px;
-      color: rgba(0, 0, 0, .6);
+      color: @prey_color;
     }
   }
 </style>

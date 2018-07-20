@@ -1,0 +1,27 @@
+<template>
+  <view wx:if="{{ show }}" class="place__holder">
+    {{message}}
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class PlaceHolder extends wepy.component {
+    props = {
+      message: String,
+      show: Boolean
+    }
+  }
+</script>
+
+<style lang='less'>
+  @import '../common/common.less';
+
+  .place__holder {
+    text-align: center;
+    color: @prey_color;
+    font-size: 14px;
+    padding: 5px 0;
+  }
+</style>

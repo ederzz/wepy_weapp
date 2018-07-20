@@ -3,7 +3,8 @@
     <tabs :tabList.sync="tabList" :currentTab.sync="currentTab"></tabs>
     <scroll-view @scrolltolower="scrollToLower" scroll-y="{{ true }}" style="height: {{ systemInfo.windowHeight - 52 }}px" class="order_content">
       <order_item :orderList.sync='orderList'></order_item>
-      <loading :show.sync="show" :message.sync="message"></loading>
+      <loading :show.sync="loadShow" :message.sync="message"></loading>
+      <place_holder :show.sync="placeHolderShow" :message.sync="placeHolderMessage"></place_holder>
     </scroll-view>
   </view>
 </template>
@@ -13,17 +14,20 @@
   import OrderItem from './order_item'
   import Tabs from '@/components/tabs'
   import Loading from '@/components/loading'
+  import PlaceHolder from '@/components/place_holder'
   import { request } from '@/common/utils.js'
+  import { errorCode } from '@/common/constants.js'
 
   export default class Order extends wepy.page {
     config = {
-      navigationTitleview: '我的订单'
+      navigationBarTitleText: '我的订单'
     }
 
     components = {
       order_item: OrderItem,
       tabs: Tabs,
-      loading: Loading
+      loading: Loading,
+      place_holder: PlaceHolder
     }
 
     data = {
@@ -37,8 +41,10 @@
         '待支付',
         '已取消'
       ],
-      show: false, // 默认不显示loading
-      message: '加载中'
+      loadShow: false, // 默认不显示loading
+      message: '加载中',
+      placeHolderShow: false,
+      placeHolderMessage: '客官，再往下拉也没有数据啦！'
     }
 
     methods = {
@@ -49,10 +55,6 @@
         await this.moreOrders()
       }
     }
-    /**
-     * todo: 添加loading gif
-     *
-     */
 
     events = {
       'switch-tab': index => {
@@ -81,17 +83,43 @@
     }
 
     async moreOrders() {
+      if (this.placeHolderShow) {
+        return null
+      }
+
+      this.loadShow = true
+      const result = await request({
+        url: '/order_list',
+        options: {
+          method: 'get'
+        }
+      })
+
       const {
         data: {
-          order_list: orderList
-        }
-      } = await request({
-        url: '/order_list'
-      })
+          order_list: orderList,
+          noMoreData = false
+        },
+        statusCode
+      } = result
+
+      if (errorCode.includes(statusCode)) {
+        this.loadShow = false
+        this.$apply()
+        return
+      }
 
       this.allOrders = this.allOrders.concat(orderList.map(current => Object.assign({}, current, {
         order_price: current.order_price.toFixed(2)
       })))
+
+      this.loadShow = false
+      /**
+       * 如果没有更多数据了显示place_holder组件
+       */
+      if (noMoreData) {
+        this.placeHolderShow = true
+      }
       this.$apply()
     }
 

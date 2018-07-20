@@ -10,11 +10,6 @@ const request = ({
     ...options
   })
 
-function getNumber(num) {
-  return Math.floor(num) - 9
-}
-
 export {
-  request,
-  getNumber
+  request
 }
