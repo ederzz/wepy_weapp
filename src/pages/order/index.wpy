@@ -5,6 +5,7 @@
       <order_item :orderList.sync='orderList'></order_item>
       <loading :show.sync="loadShow" :message.sync="message"></loading>
       <place_holder :show.sync="placeHolderShow" :message.sync="placeHolderMessage"></place_holder>
+      <toast :isShow.sync="toastShow" :text.sync="toastText"></toast>
     </scroll-view>
   </view>
 </template>
@@ -15,19 +16,22 @@
   import Tabs from '@/components/tabs'
   import Loading from '@/components/loading'
   import PlaceHolder from '@/components/place_holder'
+  import Toast from '@/components/toast'
   import { request } from '@/common/utils.js'
   import { errorCode } from '@/common/constants.js'
 
   export default class Order extends wepy.page {
     config = {
-      navigationBarTitleText: '我的订单'
+      navigationBarTitleText: '我的订单',
+      enablePullDownRefresh: true
     }
 
     components = {
       order_item: OrderItem,
       tabs: Tabs,
       loading: Loading,
-      place_holder: PlaceHolder
+      place_holder: PlaceHolder,
+      toast: Toast
     }
 
     data = {
@@ -44,7 +48,9 @@
       loadShow: false, // 默认不显示loading
       message: '加载中',
       placeHolderShow: false,
-      placeHolderMessage: '客官，再往下拉也没有数据啦！'
+      placeHolderMessage: '客官，再往下拉也没有数据啦！',
+      toastText: '服务器开小差了',
+      toastShow: false
     }
 
     methods = {
@@ -83,50 +89,91 @@
     }
 
     async moreOrders() {
-      if (this.placeHolderShow) {
-        return null
-      }
-
-      this.loadShow = true
-      const result = await request({
-        url: '/order_list',
-        options: {
-          method: 'get'
+      try {
+        if (this.placeHolderShow) {
+          return null
         }
-      })
 
-      const {
-        data: {
-          order_list: orderList,
-          noMoreData = false
-        },
-        statusCode
-      } = result
+        this.loadShow = true
+        const result = await request({
+          url: '/order_list',
+          options: {
+            method: 'get'
+          }
+        })
 
-      if (errorCode.includes(statusCode)) {
+        const {
+          data: {
+            order_list: orderList,
+            noMoreData = false
+          },
+          statusCode
+        } = result
+
+        if (errorCode.includes(statusCode)) {
+          this.loadShow = false
+          this.$apply()
+          return
+        }
+
+        this.allOrders = this.allOrders.concat(orderList.map(current => Object.assign({}, current, {
+          order_price: current.order_price.toFixed(2)
+        })))
+
+        this.loadShow = false
+        /**
+        * 如果没有更多数据了显示place_holder组件，接口待优化
+        */
+        if (noMoreData) {
+          this.placeHolderShow = true
+        }
+        this.$apply()
+      } catch (error) {
+        this.toastShow = true
         this.loadShow = false
         this.$apply()
-        return
+        setTimeout(() => {
+          this.toastShow = false
+          this.$apply()
+        }, 1000)
+        console.log(error)
       }
-
-      this.allOrders = this.allOrders.concat(orderList.map(current => Object.assign({}, current, {
-        order_price: current.order_price.toFixed(2)
-      })))
-
-      this.loadShow = false
-      /**
-       * 如果没有更多数据了显示place_holder组件
-       */
-      if (noMoreData) {
-        this.placeHolderShow = true
-      }
-      this.$apply()
     }
 
     async onLoad() {
       const systemInfo = wepy.getStorageSync('systemInfo')
       this.systemInfo = systemInfo
       await this.moreOrders()
+    }
+
+    async onPullDownRefresh() {
+      const {
+        data: {
+          order_list: orderList
+        },
+        statusCode
+      } = await request({
+        url: '/order_list',
+        options: {
+          method: 'get'
+        }
+      })
+
+      wepy.stopPullDownRefresh()
+
+      if (errorCode.includes(statusCode)) {
+        return
+      }
+
+      this.allOrders = orderList.map(current => Object.assign(
+        {},
+        current,
+        {
+          order_price: current.order_price.toFixed(2)
+        }))
+
+      this.placeHolderShow = false
+      this.$apply()
     }
   }
 </script>
