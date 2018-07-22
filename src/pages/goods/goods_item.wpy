@@ -7,9 +7,9 @@
         <view class="good__price">￥{{ item.price }}</view>
       </view>
       <view class="purchase">
-        <view @tap="subNumber" wx:if="{{ifPurchase}}" class="sub__btn">-</view>
+        <view @tap="subNumber({{ item.price }})" wx:if="{{ifPurchase}}" class="sub__btn">-</view>
         <view wx:if="{{ ifPurchase }}" class="purchase__number">{{ purchaseNumber }}</view>
-        <view @tap="addNumber" class="add__btn">+</view>
+        <view @tap="addNumber({{ item.price }})" class="add__btn">+</view>
       </view>
     </view>
   </repeat>
@@ -29,11 +29,12 @@
     }
 
     methods = {
-      addNumber() {
+      addNumber(price) {
         this.ifPurchase = true
         this.purchaseNumber++
+        this.$emit('addGood', price)
       },
-      subNumber() {
+      subNumber(price) {
         if (this.purchaseNumber === 0) {
           return
         }
@@ -41,6 +42,7 @@
           this.ifPurchase = false
         }
         this.purchaseNumber--
+        this.$emit('subGood', price)
       }
     }
   }

@@ -13,7 +13,11 @@
         <image class="cart__img" src="../../images/cart.png"></image>
         <text class="cart__number">{{ cartNumber }}</text>
       </view>
-      <view class="cart__price">￥{{ cartPrice }}元</view>
+      <view class="cart__price">
+        <text>￥</text>
+          {{ orderPrice }}
+        <text>元</text>
+      </view>
       <view class="settle__btn">结算</view>
     </view>
   </view>
@@ -56,12 +60,26 @@
       cartPrice: 0
     }
 
+    computed = {
+      orderPrice() {
+        return this.cartPrice.toFixed(2)
+      }
+    }
+
     events = {
       'switch-tab': index => {
         if (this.currentTab !== index) {
           this.currentTab = index
           this.$apply()
         }
+      },
+      'addGood': price => {
+        this.cartNumber++
+        this.cartPrice += price
+      },
+      'subGood': price => {
+        this.cartNumber--
+        this.cartPrice -= price
       }
     }
   }
@@ -169,6 +187,7 @@
       .cart__price {
         color: rgba(0, 0, 0, .5);
         font-size: 16px;
+        display: flex;
       }
     }
   }
