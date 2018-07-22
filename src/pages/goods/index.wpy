@@ -1,0 +1,111 @@
+<template>
+  <view class="goods__container">
+    <top_bar></top_bar>
+    <view class="container__bd">
+      <tabs :tabList.sync="tabList" :currentTab.sync="currentTab"></tabs>
+      <scroll-view class="goods__list">
+        <goods_item :goodsList.sync="goodsList"></goods_item>
+      </scroll-view>
+    </view>
+    <view class="goods__order"></view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import Tabs from '@/components/tabs'
+  import GoodsItem from './goods_item'
+  import TopBar from './top_bar'
+
+  export default class Goods extends wepy.page {
+    config = {
+      navigationBarTitleText: '店铺商品'
+    }
+
+    components = {
+      tabs: Tabs,
+      goods_item: GoodsItem,
+      top_bar: TopBar
+    }
+
+    data = {
+      currentTab: 0,
+      tabList: [
+        '热销商品',
+        '默认货架',
+        '休闲零食',
+        '方便速食'
+      ],
+      goodsList: [
+        {
+          img_url: 'www.baidu.com',
+          name: '卫龙亲嘴烧',
+          price: 0.5
+        }
+      ]
+    }
+
+    events = {
+      'switch-tab': index => {
+        if (this.currentTab !== index) {
+          this.currentTab = index
+          this.$apply()
+        }
+      }
+    }
+  }
+</script>
+
+<style lang='less'>
+  .goods__container {
+    position: relative;
+    height: 100%;
+    
+    .container__bd {
+      display: flex;
+      font-size: 16px;
+      font-weight: 300;
+
+      // 覆盖tabs组件默认样式
+      .tabs__wrapper {
+        width: 187rpx;
+        flex-direction: column;
+        height: 400rpx;
+        background: transparent;
+        font-size: 16px;
+        font-weight: 300;
+
+        .tab__item {
+          border: none;
+          border-bottom: 1px solid rgba(0, 0, 0, .1);
+          box-sizing: border-box;
+
+          &.active {
+            border-left: 2px solid rgb(243, 168, 28);
+            color: rgb(243, 168, 28);
+            background: #fff;
+          }
+
+          .tab__text {
+            border: none;
+          }
+        }
+      }
+
+      .goods__list {
+        flex-grow: 1;
+        height: 922rpx;
+        background: #fff;
+      }
+    }
+
+    .goods__order {
+      height: 90rpx;
+      border-top: 1px solid rgba(0, 0, 0, .2);
+      background: #fff;
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+  }
+</style>

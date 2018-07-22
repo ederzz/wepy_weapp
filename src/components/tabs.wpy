@@ -13,7 +13,10 @@
 
   export default class Tabs extends wepy.component {
     props = {
-      tabList: Array,
+      tabList: {
+        type: Array,
+        default: []
+      },
       currentTab: Number
     }
 

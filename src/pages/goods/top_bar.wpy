@@ -1,0 +1,33 @@
+<template>
+  <view class="top__bar">
+    <view class="title">店铺商品</view>
+    <view class="scan__code">扫码购物</view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class TopBar extends wepy.component {
+
+  }
+</script>
+
+<style lang='less'>
+  @import '../../common/common.less';
+
+  .top__bar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #fff;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-left: none;
+    border-right: none;
+
+    .scan__code {
+      color: @main_color;
+      font-size: 14px;
+    }
+  }
+</style>

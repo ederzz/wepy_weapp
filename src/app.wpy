@@ -29,15 +29,15 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-      'pages/order/index',
+      'pages/goods/index',
       'pages/scan/index',
       'pages/profile/index',
-      'pages/hotGoods/index',
       'pages/vip/index',
       'pages/joinUs/index',
       'pages/coupon/index',
       'pages/advice/index',
-      'pages/shop/index'
+      'pages/shop/index',
+      'pages/order/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -46,11 +46,11 @@ export default class extends wepy.app {
       navigationBarTextStyle: 'black'
     },
     tabBar: {
-      selectedColor: '#78f30b',
+      selectedColor: '#95f194',
       backgroundColor: '#fff',
       list: [
         {
-          pagePath: 'pages/hotGoods/index',
+          pagePath: 'pages/goods/index',
           text: '爆款商品',
           'selectedIconPath': './images/select_hot.png',
           'iconPath': './images/hot.png'
