@@ -16,7 +16,7 @@
       height: 865rpx;
 
       .scan_btn {
-        background: rgba(0, 255, 0, 0.6);
+        background: @main_color;
         color: #fff;
         width: 530rpx;
         height: 100rpx;
@@ -45,6 +45,7 @@
       </button>
     </view>
     <toast :text.sync="toastText" :isShow.sync="toastShow"></toast>
+    <ad :show.sync="adShow"></ad>
   </view>
 </template>
 
@@ -52,6 +53,7 @@
   import wepy from 'wepy'
   import Entry from './entry'
   import Toast from '../../components/toast'
+  import Ad from './ad'
   import scanMixins from '../../mixins/scan.js'
 
   export default class Scan extends wepy.page {
@@ -61,17 +63,22 @@
 
     components = {
       entry: Entry,
-      toast: Toast
+      toast: Toast,
+      ad: Ad
     }
 
     mixins = [scanMixins]
 
     data = {
       text: '我现在不想卖东西给你',
-      isShow: false
+      isShow: false,
+      adShow: true
     }
 
     events = {
+      'close_ad': () => {
+        this.adShow = false
+      }
     }
 
     onLoad() {
@@ -84,6 +91,10 @@
       setTimeout(() => {
         wepy.hideLoading()
       }, 1000 * Math.random())
+    }
+
+    onShow() {
+      this.adShow = true
     }
   }
 </script>
