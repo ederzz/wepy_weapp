@@ -44,7 +44,7 @@
         <text>货架二维码</text>
       </button>
     </view>
-    <toast :text.sync="text" :isShow.sync="isShow"></toast>
+    <toast :text.sync="toastText" :isShow.sync="toastShow"></toast>
   </view>
 </template>
 
@@ -52,6 +52,7 @@
   import wepy from 'wepy'
   import Entry from './entry'
   import Toast from '../../components/toast'
+  import scanMixins from '../../mixins/scan.js'
 
   export default class Scan extends wepy.page {
     config = {
@@ -63,41 +64,11 @@
       toast: Toast
     }
 
+    mixins = [scanMixins]
+
     data = {
       text: '我现在不想卖东西给你',
       isShow: false
-    }
-
-    computed = {
-    }
-
-    methods = {
-      scan() {
-        const self = this
-        wepy.scanCode({
-          scanType: ['qrCode'],
-          success(...res) {
-            console.log(res)
-            self.text = '我现在不想卖东西给你~~'
-            self.isShow = true
-            self.$apply()
-            setTimeout(() => {
-              self.isShow = false
-              self.$apply()
-            }, 2000)
-          },
-          fail() {
-            // 请从便利店后加上
-            self.text = '请从便利店货架上扫描二维码~~'
-            self.isShow = true
-            self.$apply()
-            setTimeout(() => {
-              self.isShow = false
-              self.$apply()
-            }, 2000)
-          }
-        })
-      }
     }
 
     events = {

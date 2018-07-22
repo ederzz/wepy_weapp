@@ -4,10 +4,18 @@
     <view class="container__bd">
       <tabs :tabList.sync="tabList" :currentTab.sync="currentTab"></tabs>
       <scroll-view class="goods__list">
+        <view class="goods__title">{{ tabList[currentTab] }}</view>
         <goods_item :goodsList.sync="goodsList"></goods_item>
       </scroll-view>
     </view>
-    <view class="goods__order"></view>
+    <view class="goods__order">
+      <view class="cart">
+        <image class="cart__img" src="../../images/cart.png"></image>
+        <text class="cart__number">{{ cartNumber }}</text>
+      </view>
+      <view class="cart__price">￥{{ cartPrice }}元</view>
+      <view class="settle__btn">结算</view>
+    </view>
   </view>
 </template>
 
@@ -19,7 +27,8 @@
 
   export default class Goods extends wepy.page {
     config = {
-      navigationBarTitleText: '店铺商品'
+      navigationBarTitleText: '店铺商品',
+      enablePullDownRefresh: false,
     }
 
     components = {
@@ -42,7 +51,9 @@
           name: '卫龙亲嘴烧',
           price: 0.5
         }
-      ]
+      ],
+      cartNumber: 0,
+      cartPrice: 0
     }
 
     events = {
@@ -57,6 +68,8 @@
 </script>
 
 <style lang='less'>
+  @import '../../common/common.less';
+
   .goods__container {
     position: relative;
     height: 100%;
@@ -96,6 +109,12 @@
         flex-grow: 1;
         height: 922rpx;
         background: #fff;
+
+        .goods__title {
+          padding: 6px 10px;
+          border-bottom: 1px solid rgba(0, 0, 0, .2);
+          color: rgba(0, 0, 0, .7);
+        }
       }
     }
 
@@ -106,6 +125,51 @@
       position: absolute;
       width: 100%;
       bottom: 0;
+      display: flex;
+      align-items: center;
+
+      .settle__btn {
+        background: @main_color;
+        color: #fff;
+        width: 200rpx;
+        height: 70rpx;
+        border-radius: 35rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 300;
+        margin-left: 300rpx;
+      }
+
+      .cart {
+        position: relative;
+        margin: 0 20px;
+
+        .cart__img {
+          width: 30px;
+          height: 30px;
+        }
+
+        .cart__number {
+          position: absolute;
+          color: #fff;
+          width: 12px;
+          height: 12px;
+          border-radius: 50%;
+          background: #f00;
+          right: 0;
+          top: 0;
+          font-size: 8px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+        }
+      }
+
+      .cart__price {
+        color: rgba(0, 0, 0, .5);
+        font-size: 16px;
+      }
     }
   }
 </style>

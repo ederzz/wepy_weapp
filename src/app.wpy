@@ -46,7 +46,7 @@ export default class extends wepy.app {
       navigationBarTextStyle: 'black'
     },
     tabBar: {
-      selectedColor: '#95f194',
+      selectedColor: '#7cdf4e',
       backgroundColor: '#fff',
       list: [
         {

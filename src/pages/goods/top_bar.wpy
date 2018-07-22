@@ -1,15 +1,25 @@
 <template>
   <view class="top__bar">
     <view class="title">店铺商品</view>
-    <view class="scan__code">扫码购物</view>
+    <view @tap="scan" class="scan__code">
+      <image class="scan_img" src="../../images/qr_scan.png"></image>
+      <view>扫码购物</view>
+    </view>
   </view>
+  <toast :text.sync="toastText" :isShow.sync="toastShow"></toast>
 </template>
 
 <script>
   import wepy from 'wepy'
+  import Toast from '@/components/toast'
+  import scanMixins from '../../mixins/scan.js'
 
   export default class TopBar extends wepy.component {
+    mixins = [scanMixins]
 
+    components = {
+      toast: Toast
+    }
   }
 </script>
 
@@ -28,6 +38,13 @@
     .scan__code {
       color: @main_color;
       font-size: 14px;
+      display: flex;
+      align-items: center;
+
+      .scan_img {
+        width: 26px;
+        height: 26px;
+      }
     }
   }
 </style>
