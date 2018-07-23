@@ -7,9 +7,9 @@
         <view class="good__price">￥{{ item.price }}</view>
       </view>
       <view class="purchase">
-        <view @tap="subNumber({{ item.price }})" wx:if="{{ifPurchase}}" class="sub__btn">-</view>
-        <view wx:if="{{ ifPurchase }}" class="purchase__number">{{ purchaseNumber }}</view>
-        <view @tap="addNumber({{ item.price }})" class="add__btn">+</view>
+        <view @tap="subNumber({{ item.key }}, {{ item.price }})" wx:if="{{item.ifShow}}" class="sub__btn">-</view>
+        <view wx:if="{{ item.ifShow }}" class="purchase__number">{{ item.purchaseNumber }}</view>
+        <view @tap="addNumber({{ item.key }}, {{ item.price }})" class="add__btn">+</view>
       </view>
     </view>
   </repeat>
@@ -17,32 +17,27 @@
 
 <script>
   import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
+  import { addGood, subGood } from '../../store/actions'
+
+  @connect({}, {
+    addGood,
+    subGood
+  })
 
   export default class GoodsItem extends wepy.component {
     props = {
       goodsList: Array
     }
 
-    data = {
-      purchaseNumber: 0,
-      ifPurchase: false
-    }
-
     methods = {
-      addNumber(price) {
-        // this.ifPurchase = true
-        // this.purchaseNumber++
-        // this.$emit('addGood', price)
+      addNumber(key, price) {
+        this.methods.addGood(key)
+        this.$emit('addGood', price)
       },
-      subNumber(price) {
-        // if (this.purchaseNumber === 0) {
-        //   return
-        // }
-        // if (this.purchaseNumber === 1) {
-        //   this.ifPurchase = false
-        // }
-        // this.purchaseNumber--
-        // this.$emit('subGood', price)
+      subNumber(key, price) {
+        this.methods.subGood(key)
+        this.$emit('subGood', price)
       }
     }
   }

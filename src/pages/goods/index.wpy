@@ -29,6 +29,7 @@
   import Tabs from '@/components/tabs'
   import GoodsItem from './goods_item'
   import TopBar from './top_bar'
+  import { initGoods } from '../../store/actions'
   
   @connect({
     hotGoods(state) {
@@ -43,6 +44,8 @@
     fastFood(state) {
       return state.goods.fastFood
     }
+  }, {
+    initGoods
   })
 
   export default class Goods extends wepy.page {
@@ -103,7 +106,7 @@
     }
 
     onLoad() {
-      console.log(this.hotGoods)
+      this.methods.initGoods()
     }
   }
 </script>
