@@ -5,7 +5,7 @@
       <tabs :tabList.sync="tabList" :currentTab.sync="currentTab"></tabs>
       <scroll-view scroll-y="true" class="goods__list">
         <view class="goods__title">{{ tabList[currentTab] }}</view>
-        <goods_item :goodsList.sync="hotGoods"></goods_item>
+        <goods_item :goodsList.sync="goodsList"></goods_item>
       </scroll-view>
     </view>
     <view class="goods__order">
@@ -32,14 +32,23 @@
   
   @connect({
     hotGoods(state) {
-      return state.goods.hotGood
+      return state.goods.hotGoods
+    },
+    defaultShelves(state) {
+      return state.goods.defaultShelves
+    },
+    snacks(state) {
+      return state.goods.snacks
+    },
+    fastFood(state) {
+      return state.goods.fastFood
     }
   })
 
   export default class Goods extends wepy.page {
     config = {
       navigationBarTitleText: '店铺商品',
-      enablePullDownRefresh: false,
+      enablePullDownRefresh: false
     }
 
     components = {
@@ -56,13 +65,6 @@
         '休闲零食',
         '方便速食'
       ],
-      goodsList: [
-        {
-          img_url: 'www.baidu.com',
-          name: '卫龙亲嘴烧',
-          price: 0.5
-        }
-      ],
       cartNumber: 0,
       cartPrice: 0
     }
@@ -70,6 +72,16 @@
     computed = {
       orderPrice() {
         return this.cartPrice.toFixed(2)
+      },
+      goodsList() {
+        const goodsMap = [
+          'hotGoods',
+          'defaultShelves',
+          'snacks',
+          'fastFood'
+        ]
+
+        return this[goodsMap[this.currentTab]]
       }
     }
 
@@ -88,6 +100,10 @@
         this.cartNumber--
         this.cartPrice -= price
       }
+    }
+
+    onLoad() {
+      console.log(this.hotGoods)
     }
   }
 </script>

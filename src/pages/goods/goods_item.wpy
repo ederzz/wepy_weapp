@@ -30,19 +30,19 @@
 
     methods = {
       addNumber(price) {
-        this.ifPurchase = true
-        this.purchaseNumber++
-        this.$emit('addGood', price)
+        // this.ifPurchase = true
+        // this.purchaseNumber++
+        // this.$emit('addGood', price)
       },
       subNumber(price) {
-        if (this.purchaseNumber === 0) {
-          return
-        }
-        if (this.purchaseNumber === 1) {
-          this.ifPurchase = false
-        }
-        this.purchaseNumber--
-        this.$emit('subGood', price)
+        // if (this.purchaseNumber === 0) {
+        //   return
+        // }
+        // if (this.purchaseNumber === 1) {
+        //   this.ifPurchase = false
+        // }
+        // this.purchaseNumber--
+        // this.$emit('subGood', price)
       }
     }
   }
