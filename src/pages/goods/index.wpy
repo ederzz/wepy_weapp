@@ -3,9 +3,9 @@
     <top_bar></top_bar>
     <view class="container__bd">
       <tabs :tabList.sync="tabList" :currentTab.sync="currentTab"></tabs>
-      <scroll-view class="goods__list">
+      <scroll-view scroll-y="true" class="goods__list">
         <view class="goods__title">{{ tabList[currentTab] }}</view>
-        <goods_item :goodsList.sync="goodsList"></goods_item>
+        <goods_item :goodsList.sync="hotGoods"></goods_item>
       </scroll-view>
     </view>
     <view class="goods__order">
@@ -25,9 +25,16 @@
 
 <script>
   import wepy from 'wepy'
+  import { connect } from 'wepy-redux'
   import Tabs from '@/components/tabs'
   import GoodsItem from './goods_item'
   import TopBar from './top_bar'
+  
+  @connect({
+    hotGoods(state) {
+      return state.goods.hotGood
+    }
+  })
 
   export default class Goods extends wepy.page {
     config = {
