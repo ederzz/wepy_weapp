@@ -57,6 +57,12 @@
           border-bottom: 2px solid #0f0;
           color: #0f0;
         }
+
+        &:last-child {
+          .tab__text {
+            border: none;
+          }
+        }
       }
     }
 </style>

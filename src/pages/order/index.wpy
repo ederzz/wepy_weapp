@@ -1,7 +1,7 @@
 <template>
   <view class="order_container">
     <tabs :tabList.sync="tabList" :currentTab.sync="currentTab"></tabs>
-    <scroll-view @scrolltolower="scrollToLower" scroll-y="{{ true }}" style="height: {{ systemInfo.windowHeight - 52 }}px" class="order_content">
+    <scroll-view @scrolltolower="scrollToLower" scroll-y="{{ true }}" style="height: {{ systemInfo.windowHeight }}px" class="order_content">
       <order_item :orderList.sync='orderList'></order_item>
       <loading :show.sync="loadShow" :message.sync="message"></loading>
       <place_holder :show.sync="placeHolderShow" :message.sync="placeHolderMessage"></place_holder>
@@ -142,6 +142,7 @@
 
     async onLoad() {
       const systemInfo = wepy.getStorageSync('systemInfo')
+      console.log(systemInfo)
       this.systemInfo = systemInfo
       await this.moreOrders()
     }
@@ -184,6 +185,7 @@
   .order_container {
     display: flex;
     flex-direction: column;
+    height: 100%;
   }
 
 
