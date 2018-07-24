@@ -31,12 +31,40 @@
         margin-top: 80rpx;
       }
     }
+
+    .notify__wrapper {
+      position: relative;
+      width: 100%;
+      background: rgb(253, 250, 217);
+      height: 75rpx;
+      overflow: hidden;
+
+      @keyframes scroll
+      {
+        0% { left: 750rpx; }
+        100% { left:-740rpx; }
+      }
+
+      .notify {
+        position: absolute;
+        top: 0rpx;
+        height: 100rpx;
+        font-size: 30rpx;
+        white-space: nowrap;
+        line-height: 75rpx;
+        color: rgba(255, 0, 0, .4);
+        animation: scroll 15s linear infinite;
+      }
+    }
   }
 </style>
 
 <template>
   <view class="scan_container">
     <entry></entry>
+    <view class='notify__wrapper'>
+      <view class="notify">{{ notifyText }}</view>
+    </view>
     <view class="wrapper">
       <image class="scan_img" src="../../images/qr_image.png" />
       <button @tap="scan" class="scan_btn">
@@ -72,7 +100,8 @@
     data = {
       text: '我现在不想卖东西给你',
       isShow: false,
-      adShow: true
+      adShow: true,
+      notifyText: '听说现在各大门店都有优惠活动，赶快扫描参加吧！！！'
     }
 
     events = {

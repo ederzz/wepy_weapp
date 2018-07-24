@@ -1,7 +1,9 @@
 <template>
   <view class="entry">
-    <image class="tip_icon" src="../../images/tip.png" />
-    <text>上次消费的门店</text>
+    <view class="title__wrapper">
+      <image class="tip_icon" src="../../images/tip.png" />
+      <text>上次消费的门店</text>
+    </view>
     <button class="entry_btn" type="default" @tap="go2shop">进入</button>
   </view>
 </template>
@@ -32,12 +34,18 @@
     align-items: center;
     background: #fff;
     padding: 20px 15px;
+    justify-content: space-between;
 
-    .tip_icon {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
+    .title__wrapper {
+      display: flex;
+
+      .tip_icon {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
     }
+
 
     .entry_btn {
       width: 70px;
@@ -48,6 +56,7 @@
       color: rgba(0, 0, 0, .7);
       font-weight: 400;
       background: #fff;
+      margin: 0;
     }
   }
 </style>
