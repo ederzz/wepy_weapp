@@ -13,7 +13,7 @@
       align-items: center;
       border-top: 1px solid transparent;
       background: #fff;
-      height: 865rpx;
+      height: 910rpx;
 
       .scan_btn {
         background: @main_color;
