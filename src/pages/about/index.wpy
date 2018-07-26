@@ -1,0 +1,236 @@
+<template>
+  <view class="about__wrapper">
+    <view class="introduction">
+      <image class="avatar" src="../../images/shenyiling.jpeg" />
+      <view class="info">
+        <view class="nickname">神以灵</view>
+        <view class="motto">逍遥一世之上、睥睨天地之间</view>
+        <view class="geo">
+          <image class="geo__img" src="../../images/geo.png" />
+          <view @tap="share" class="position">
+            mianyang,sichuan province
+          </view>
+        </view>
+      </view>
+    </view>
+    <div class="map__wrapper">
+      <map 
+        class="map"
+        latitude="31.4436000000" 
+        longitude="104.7368930000" 
+        scale="16" 
+        bindcontroltap="controltap" 
+        markers="{{markers}}" 
+        polyline="{{polyline}}" 
+        bindmarkertap="markertap" 
+        bindregionchange="regionchange" 
+        show-location 
+      ></map>
+    </div>
+    <view class="contact">
+      <view class="mail">
+        <view class="title">邮箱：</view>
+        <view class="url">jzx1951028yyjy@163.com</view>
+      </view>
+      <view class="github">
+        <view class="title">GitHub：</view>
+        <view class="url">https://github.com/shenyiling</view>
+      </view>
+      <view class="content">
+        <view class="title">小程序介绍：</view>
+        <view class="url">{{ content }}</view>
+      </view>
+    </view>
+    <view class="forward__wrapper">
+      <button open-type="share" class="forward__btn">
+        <image class="img" src="../../images/forward.png" />
+      </button>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class About extends wepy.page {
+    config = {
+      navigationBarTitleText: '关于神以灵'
+    }
+
+    data = {
+      content: '这里是神以灵使用wepy制作的微信小程序，作为小程序开发的经验积累，项目内容不限，添加一些感兴趣的小demo~~',
+      markers: [{
+        iconPath: '../../images/school.png',
+        id: 0,
+        longitude: 104.7368930000,
+        latitude: 31.4436000000,
+        width: 16,
+        height: 16,
+        title: '绵阳市实验高中',
+        callout: {
+          content: '绵阳市实验高中',
+          color: '#00f',
+          bgColor: '#ff0'
+        }
+      }, {
+        iconPath: '../../images/house.png',
+        id: 1,
+        longitude: 104.6883700000,
+        latitude: 31.4652000000,
+        width: 16,
+        height: 16,
+        title: '神以灵的家',
+        callout: {
+          content: '神以灵的家',
+          color: '#00f',
+          bgColor: '#ff0'
+        }
+      }],
+      polyline: [{
+        points: [{
+          longitude: 104.7368930000,
+          latitude: 31.4436000000
+        }, {
+          longitude: 104.6883700000,
+          latitude: 31.4652000000
+        }],
+        color: '#00f',
+        width: 2,
+        dottedLine: false,
+        arrowLine: true
+      }]
+    }
+
+    methods = {
+      share() {
+        wepy.showShareMenu()
+      }
+    }
+
+    onShareAppMessage() {
+      return {
+        title: '欢迎查看神以灵的小程序~~'
+      }
+    }
+
+    regionchange(e) {
+      console.log(e.type)
+    }
+
+    markertap(e) {
+      console.log(e.markerId)
+    }
+
+    controltap(e) {
+      console.log(e.controlId)
+    }
+  }
+</script>
+
+<style lang='less'>
+  @import '../../common/common.less';
+
+  page {
+    background: #fff;
+  }
+
+  .about__wrapper {
+    padding: 40rpx 40rpx 0;
+    font-family: 'Courier New';
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+
+
+    .introduction {
+      display: flex;
+
+      .avatar {
+        width: 200rpx;
+        height: 200rpx;
+        border-radius: 5px;
+        margin-right: 20rpx;
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20rpx 0;
+
+        .nickname {
+          font-size: 44rpx;
+        }
+
+        .motto {
+          font-size: 32rpx;
+          color: rgba(0, 0, 0, .6);
+        }
+
+        .geo {
+          font-size: 26rpx;
+          color: rgba(0, 0, 0, .6);
+          display: flex;
+
+          .geo__img {
+            width: 24rpx;
+            height: 24rpx;
+            margin-right: 5px;
+          }
+
+          .position {
+            margin-top: 2rpx;
+          }
+        }
+      }
+    }
+
+    .map__wrapper {
+      .map {
+        width: 100%; 
+        height: 320rpx; 
+        margin-top: 40rpx;
+      }
+    }
+
+    .contact {
+      margin-top: 60rpx;
+
+      .mail,
+      .github,
+      .content {
+        margin-bottom: 30rpx;
+      }
+
+      .title {
+        font-weight: 400;
+        font-size: 44rpx;
+        margin-bottom: 10rpx;
+      }
+
+      .url {
+        font-size: 32rpx;
+
+      }
+    }
+
+    .forward__wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 40rpx 0;
+
+      .forward__btn {
+        width: 600rpx;
+        height: 75rpx;
+        background: rgb(96, 56, 240);
+        border-radius: 4px;
+        .flex_center;
+
+        .img {
+          width: 50rpx;
+          height: 50rpx;
+        }
+      }
+    }
+  }
+</style>

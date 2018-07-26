@@ -74,6 +74,11 @@
           iconPath: '../../images/advice.png',
           message: '意见反馈',
           navPath: '/pages/advice/index'
+        },
+        {
+          iconPath: '../../images/about.png',
+          message: '关于我',
+          navPath: '/pages/about/index'
         }
       ]
     }
