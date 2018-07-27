@@ -13,6 +13,7 @@
         </view>
       </view>
     </view>
+    <music_bar :musicInfo.sync="bgMusic"></music_bar>
     <div class="map__wrapper">
       <map 
         class="map"
@@ -51,13 +52,22 @@
 
 <script>
   import wepy from 'wepy'
+  import MusicBar from '@/components/musicBar'
 
   export default class About extends wepy.page {
     config = {
       navigationBarTitleText: '关于神以灵'
     }
 
+    components = {
+      music_bar: MusicBar
+    }
+
     data = {
+      bgMusic: {
+        src: 'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
+        playTime: 321
+      },
       content: '这里是神以灵使用wepy制作的微信小程序，作为小程序开发的经验积累，项目内容不限，添加一些感兴趣的小demo~~',
       markers: [{
         iconPath: '../../images/school.png',
@@ -105,6 +115,19 @@
       share() {
         wepy.showShareMenu()
       }
+    }
+
+    onLoad() {
+      // const innerAudioContext = wepy.createInnerAudioContext()
+      // innerAudioContext.autoplay = true
+      // innerAudioContext.src = 'http://m10.music.126.net/20180727102633/5c7d263d4278f44c65141a86c8913ce7/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3'
+      // innerAudioContext.onPlay(() => {
+      //     console.log('开始播放')
+      // })
+      // innerAudioContext.onError((res) => {
+      //     console.log(res.errMsg)
+      //     console.log(res.errCode)
+      // })
     }
 
     onShareAppMessage() {
