@@ -69,17 +69,17 @@ export default class MusicBar extends wepy.component {
 
   methods = {
     _toggle() {
-      if (this.ifPlay) {
+      if (!this.innerAudioContext.paused) {
         this.innerAudioContext.pause()
-        this.ifPlay = false
+        // this.ifPlay = false
       } else {
         this.innerAudioContext.play()
-        this.ifPlay = true
+        // this.ifPlay = true
       }
     },
     _next() {
       this._end()
-      this.ifPlay = true
+      // this.ifPlay = true
     },
     _pre() {
       let index
@@ -90,7 +90,7 @@ export default class MusicBar extends wepy.component {
       }
       this.innerAudioContext.src = this.dataSource[index]
       this.dataIndex = index
-      this.ifPlay = true
+      // this.ifPlay = true
     }
   }
 
