@@ -1,7 +1,7 @@
 <template>
   <view class="about__wrapper">
     <view class="introduction">
-      <image class="avatar" src="../../images/shenyiling.jpeg" />
+      <image @tap="gotoProfile" class="avatar" src="../../images/shenyiling.jpeg" />
       <view class="info">
         <view class="nickname">神以灵</view>
         <view class="motto">逍遥一世之上、睥睨天地之间</view>
@@ -26,7 +26,7 @@
         polyline="{{polyline}}" 
         bindmarkertap="markertap" 
         bindregionchange="regionchange" 
-        show-location 
+        show-location
       ></map>
     </div>
     <view class="contact">
@@ -127,7 +127,20 @@
           latitude: 31.4652000000
         }
         this.mapScale = 18
+        this.mapContext.moveToLocation() // 回到当前定位点，待处理
+      },
+      gotoProfile() {
+        wepy.navigateTo({
+          url: '/pages/profile/index',
+          success: function() {
+            console.log('安全抵达profile页~~')
+          }
+        })
       }
+    }
+
+    onLoad() {
+      this.mapContext = wepy.createMapContext('map', this)
     }
 
     onShareAppMessage() {

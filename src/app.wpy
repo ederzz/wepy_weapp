@@ -61,8 +61,8 @@ export default class extends wepy.app {
           'selectedIconPath': './images/select_qr.png',
           'iconPath': './images/qr.png'
         }, {
-          'pagePath': 'pages/profile/index',
-          'text': '我的',
+          'pagePath': 'pages/about/index',
+          'text': '关于我',
           'selectedIconPath': './images/select_profile.png',
           'iconPath': './images/profile.png'
         }
