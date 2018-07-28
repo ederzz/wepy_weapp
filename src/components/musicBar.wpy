@@ -1,6 +1,7 @@
 <template>
   <view class="music__bar">
     <image class="music__img" src="../images/music1.png" />
+    <view class="currentTime">{{ formatCurrentTime }}</view>
     <view class="play__panel">
       <view class="pre__btn">
         <image @tap="_pre" src="../images/pre.png" />
@@ -27,18 +28,31 @@ export default class MusicBar extends wepy.component {
     innerAudioContext: {},
     ifPlay: true,
     dataSource: [
-      'http://m10.music.126.net/20180728112425/8e77e7d9d61a4e62869962bed90bfe37/ymusic/99f6/da04/fa1e/f1feb17b894a07b53fd620c7781b148b.mp3',
+      'http://m10.music.126.net/20180728125354/557918309f069148a8b3b8e6ca6f997c/ymusic/3640/fc17/637a/8ba13a3a1a81915d7255d5dd7c51cd1c.mp3',
       'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
       'http://m10.music.126.net/20180728112635/1024c838a44f1eb1eb44c8a5f7751ef1/ymusic/8007/9813/dcaa/67a760614ffeeaf2cc61896995c6133a.mp3'
     ],
-    dataIndex: 0
+    dataIndex: 0,
+    currentTime: 0
+  }
+
+  computed = {
+    formatCurrentTime() {
+      const time = parseInt(this.currentTime)
+      const minutes = time / 60 >= 10 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`
+      const seconds = time % 60 >= 10 ? time % 60 : `0${time % 60}`
+      return `${minutes} : ${seconds}`
+    }
   }
 
   onLoad() {
     this.innerAudioContext = wepy.createInnerAudioContext()
     this.innerAudioContext.autoplay = true
+    this.innerAudioContext.volume = 0.7
     this.innerAudioContext.src = this.dataSource[0]
-    console.log(this.innerAudioContext.duration, this.innerAudioContext.currentTime)
+    this.innerAudioContext.onEnded(() => {
+      this._end()
+    })
     this.innerAudioContext.onPlay(() => {
       console.log('开始播放')
     })
@@ -46,6 +60,11 @@ export default class MusicBar extends wepy.component {
       console.log(res.errMsg)
       console.log(res.errCode)
     })
+    this.innerAudioContext.onTimeUpdate((() => {
+      const { currentTime } = this.innerAudioContext
+      this.currentTime = currentTime
+      this.$apply()
+    }))
   }
 
   methods = {
@@ -59,14 +78,7 @@ export default class MusicBar extends wepy.component {
       }
     },
     _next() {
-      let index
-      if (this.dataIndex === 2) {
-        index = 0
-      } else {
-        index = this.dataIndex + 1
-      }
-      this.innerAudioContext.src = this.dataSource[index]
-      this.dataIndex = index
+      this._end()
     },
     _pre() {
       let index
@@ -78,6 +90,17 @@ export default class MusicBar extends wepy.component {
       this.innerAudioContext.src = this.dataSource[index]
       this.dataIndex = index
     }
+  }
+
+  _end() {
+    let index
+    if (this.dataIndex === 2) {
+      index = 0
+    } else {
+      index = this.dataIndex + 1
+    }
+    this.innerAudioContext.src = this.dataSource[index]
+    this.dataIndex = index
   }
 }
 </script>
@@ -101,6 +124,13 @@ export default class MusicBar extends wepy.component {
     position: relative;
     justify-content: flex-end;
     margin-top: 60rpx;
+
+    .currentTime {
+      font-size: 26rpx;
+      position: absolute;
+      right: 4rpx;
+      top: -36rpx;
+    }
 
     .music__img {
       position: absolute;
