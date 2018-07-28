@@ -79,6 +79,7 @@ export default class MusicBar extends wepy.component {
     },
     _next() {
       this._end()
+      this.ifPlay = true
     },
     _pre() {
       let index
@@ -89,6 +90,7 @@ export default class MusicBar extends wepy.component {
       }
       this.innerAudioContext.src = this.dataSource[index]
       this.dataIndex = index
+      this.ifPlay = true
     }
   }
 
@@ -154,6 +156,11 @@ export default class MusicBar extends wepy.component {
       image {
         width: 40rpx;
         height: 40rpx;
+        border-radius: 4px;
+
+        &:active {
+          box-shadow: 2px 2px 4px #bbb;
+        }
 
         &:active {
           // box-shadow: 10px 10px 10px red;
