@@ -143,6 +143,14 @@
       this.mapContext = wepy.createMapContext('map', this)
     }
 
+    onHide() {
+      this.$broadcast('hideMusic')
+    }
+
+    onShow() {
+      this.$broadcast('showMusic')
+    }
+
     onShareAppMessage() {
       return {
         title: '欢迎查看神以灵的小程序~~'
