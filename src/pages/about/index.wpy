@@ -85,8 +85,8 @@
         title: '绵阳市实验高中',
         callout: {
           content: '绵阳市实验高中',
-          color: '#00f',
-          bgColor: '#ff0'
+          color: '#0000ff', // 一定得是6位的16进制数值
+          bgColor: '#ffff00'
         }
       }, {
         iconPath: '../../images/house.png',
@@ -98,8 +98,8 @@
         title: '神以灵的家',
         callout: {
           content: '神以灵的家',
-          color: '#00f',
-          bgColor: '#ff0'
+          color: '#0000ff',
+          bgColor: '#ffff00'
         }
       }],
       polyline: [{
