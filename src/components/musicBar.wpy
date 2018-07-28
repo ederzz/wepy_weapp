@@ -60,11 +60,11 @@ export default class MusicBar extends wepy.component {
       console.log(res.errMsg)
       console.log(res.errCode)
     })
-    this.innerAudioContext.onTimeUpdate((() => {
+    this.innerAudioContext.onTimeUpdate(() => {
       const { currentTime } = this.innerAudioContext
       this.currentTime = currentTime
       this.$apply()
-    }))
+    })
   }
 
   methods = {

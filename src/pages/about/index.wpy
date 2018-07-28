@@ -5,7 +5,7 @@
       <view class="info">
         <view class="nickname">神以灵</view>
         <view class="motto">逍遥一世之上、睥睨天地之间</view>
-        <view class="geo">
+        <view @tap="move2home" class="geo">
           <image class="geo__img" src="../../images/geo.png" />
           <view @tap="share" class="position">
             mianyang,sichuan province
@@ -16,10 +16,11 @@
     <music_bar :musicInfo.sync="bgMusic"></music_bar>
     <div class="map__wrapper">
       <map 
+        id="map"
         class="map"
-        latitude="31.4436000000" 
-        longitude="104.7368930000" 
-        scale="16" 
+        latitude="{{ location.latitude }}" 
+        longitude="{{ location.longitude }}" 
+        scale="{{mapScale}}" 
         bindcontroltap="controltap" 
         markers="{{markers}}" 
         polyline="{{polyline}}" 
@@ -64,6 +65,11 @@
     }
 
     data = {
+      location: {
+        latitude: 31.4436000000,
+        longitude: 104.7368930000
+      },
+      mapScale: 16,
       bgMusic: {
         src: 'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
         playTime: 321
@@ -114,20 +120,14 @@
     methods = {
       share() {
         wepy.showShareMenu()
+      },
+      move2home() {
+        this.location = {
+          longitude: 104.6883700000,
+          latitude: 31.4652000000
+        }
+        this.mapScale = 18
       }
-    }
-
-    onLoad() {
-      // const innerAudioContext = wepy.createInnerAudioContext()
-      // innerAudioContext.autoplay = true
-      // innerAudioContext.src = 'http://m10.music.126.net/20180727102633/5c7d263d4278f44c65141a86c8913ce7/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3'
-      // innerAudioContext.onPlay(() => {
-      //     console.log('开始播放')
-      // })
-      // innerAudioContext.onError((res) => {
-      //     console.log(res.errMsg)
-      //     console.log(res.errCode)
-      // })
     }
 
     onShareAppMessage() {
