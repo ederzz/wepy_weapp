@@ -1,32 +1,140 @@
 <template>
   <view class="music__bar">
-    music bar
+    <image class="music__img" src="../images/music1.png" />
+    <view class="play__panel">
+      <view class="pre__btn">
+        <image @tap="_pre" src="../images/pre.png" />
+      </view>
+      <view class="play__toggle">
+        <image @tap="_toggle" class="play__btn" src="../images/play.png" />
+      </view>
+      <view class="next__btn">
+        <image @tap="_next" src="../images/next.png" />
+      </view>
+    </view>
   </view>
 </template>
 
 <script>
-  import wepy from 'wepy'
+import wepy from 'wepy'
 
-  export default class MusicBar extends wepy.component {
-    props = {
-      musicInfo: Object
-    }
+export default class MusicBar extends wepy.component {
+  props = {
+    musicInfo: Object
+  }
 
-    onLoad() {
-      const innerAudioContext = wepy.createInnerAudioContext()
-      innerAudioContext.autoplay = true
-      innerAudioContext.src = this.musicInfo.src
-      innerAudioContext.onPlay(() => {
-          console.log('开始播放')
-      })
-      innerAudioContext.onError((res) => {
-          console.log(res.errMsg)
-          console.log(res.errCode)
-      })
+  data = {
+    innerAudioContext: {},
+    ifPlay: true,
+    dataSource: [
+      'http://m10.music.126.net/20180728112425/8e77e7d9d61a4e62869962bed90bfe37/ymusic/99f6/da04/fa1e/f1feb17b894a07b53fd620c7781b148b.mp3',
+      'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
+      'http://m10.music.126.net/20180728112635/1024c838a44f1eb1eb44c8a5f7751ef1/ymusic/8007/9813/dcaa/67a760614ffeeaf2cc61896995c6133a.mp3'
+    ],
+    dataIndex: 0
+  }
+
+  onLoad() {
+    this.innerAudioContext = wepy.createInnerAudioContext()
+    this.innerAudioContext.autoplay = true
+    this.innerAudioContext.src = this.dataSource[0]
+    console.log(this.innerAudioContext.duration, this.innerAudioContext.currentTime)
+    this.innerAudioContext.onPlay(() => {
+      console.log('开始播放')
+    })
+    this.innerAudioContext.onError((res) => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
+    })
+  }
+
+  methods = {
+    _toggle() {
+      if (this.ifPlay) {
+        this.innerAudioContext.pause()
+        this.ifPlay = false
+      } else {
+        this.innerAudioContext.play()
+        this.ifPlay = true
+      }
+    },
+    _next() {
+      let index
+      if (this.dataIndex === 2) {
+        index = 0
+      } else {
+        index = this.dataIndex + 1
+      }
+      this.innerAudioContext.src = this.dataSource[index]
+      this.dataIndex = index
+    },
+    _pre() {
+      let index
+      if (this.dataIndex === 0) {
+        index = 2
+      } else {
+        index = this.dataIndex - 1
+      }
+      this.innerAudioContext.src = this.dataSource[index]
+      this.dataIndex = index
     }
   }
+}
 </script>
 
 <style lang='less'>
+  @keyframes rotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 
+  .music__bar {
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    padding: 14rpx 0;
+    box-shadow: 1px 2px 8px rgba(110, 109, 110, .5);
+    position: relative;
+    justify-content: flex-end;
+    margin-top: 60rpx;
+
+    .music__img {
+      position: absolute;
+      width: 80rpx;
+      height: 80rpx;
+      animation: rotate 6s linear infinite;
+      left: 60rpx;
+      top: -34rpx;
+    }
+
+    .play__panel {
+      display: flex;
+      align-items: center;
+      margin-right: 90rpx;
+
+      >view {
+        display: flex;
+        align-items: center;
+      }
+
+      image {
+        width: 40rpx;
+        height: 40rpx;
+
+        &:active {
+          // box-shadow: 10px 10px 10px red;
+        }
+
+        &.play__btn {
+          width: 50rpx;
+          height: 50rpx;
+          margin: 0 80rpx;
+        }
+      }
+    }
+  }
 </style>
