@@ -1,0 +1,113 @@
+<template>
+  <view class="form__submit">
+    <view class="header">Welcome to <text style="color: #376ee6;">Join us</text></view>
+    <form class="form" @submit="_submit">
+      <label class="form__item">
+        <view class="title">First name</view>
+        <input class="{{ inputFocus === 0 ? 'focus' : '' }}" @focus="handleFocus({{ 0 }})" name="firstName" />
+      </label>
+      <label class="form__item">
+        <view class="title">Last name</view>
+        <input class="{{ inputFocus === 1 ? 'focus' : '' }}" @focus="handleFocus({{ 1 }})" name="lastName" />
+      </label>
+      <label class="form__item">
+        <view class="title">Address</view>
+        <input class="{{ inputFocus === 2 ? 'focus' : '' }}" @focus="handleFocus({{ 2 }})" name="address" />
+      </label>
+      <label class="form__item">
+        <view class="title">Country</view>
+        <input class="{{ inputFocus === 3 ? 'focus' : '' }}" @focus="handleFocus({{ 3 }})" name="country" />
+      </label>
+      <label class="form__item">
+        <view class="title">Birthday</view>
+        <input class="{{ inputFocus === 4 ? 'focus' : '' }}" @focus="handleFocus({{ 4 }})" name="birth" />
+      </label>
+      <label class="form__item">
+        <view class="title">Description</view>
+        <input class="{{ inputFocus === 5 ? 'focus' : '' }}" @focus="handleFocus({{ 5 }})" name="description" />
+      </label>
+      <button class="submit__btn" formType="submit">Submit Info</button>
+    </form>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Form extends wepy.page {
+  config = {
+    navigationBarTitleText: '表单提交',
+    navigationBarBackgroundColor: '#376ee6',
+    navigationBarTextStyle: 'white'
+  }
+
+  data = {
+    inputFocus: null
+  }
+
+  methods = {
+    _submit(event) {
+      console.log(event)
+      // TODO: 处理表单提交
+    },
+    handleFocus(index) {
+      this.inputFocus = index
+    }
+  }
+}
+</script>
+
+<style lang='less'>
+  @import '../../common/common.less';
+
+  page {
+    background: #fff;
+  }
+
+  .form__submit {
+    .header {
+      font-size: 44rpx;
+      text-align: center;
+      margin-top: 50rpx;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20rpx;
+
+      .form__item {
+        display: block;
+        color: #bbb;
+        font-size: 24rpx;
+        margin-bottom: 50rpx;
+
+        .title {
+          margin-bottom: 24rpx;
+        }
+
+        input {
+          width: 660rpx;
+          border: 1.5px solid rgba(0, 0, 0, .1);
+          background: rgba(0, 0, 0, .005);
+          border-radius: 6rpx;
+          height: 76rpx;
+          color: #000;
+          padding: 0 10px;
+
+          &.focus {
+            border: 1.5px solid @form_border;
+            background: @form_bg;
+          }
+        }
+      }
+
+      .submit__btn {
+        color: #fff;
+        background: rgb(25, 223, 157);
+        border: none;
+      }
+    }
+  }
+</style>

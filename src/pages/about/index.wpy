@@ -3,7 +3,7 @@
     <view class="introduction">
       <image @tap="gotoProfile" class="avatar" src="../../images/shenyiling.jpeg" />
       <view class="info">
-        <view class="nickname">神以灵</view>
+        <view class="nickname">神以灵<text style="font-size: 12px;">(点击头像看看)</text></view>
         <view class="motto">逍遥一世之上、睥睨天地之间</view>
         <view @tap="move2home" class="geo">
           <image class="geo__img" src="../../images/geo.png" />
