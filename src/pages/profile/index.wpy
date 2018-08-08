@@ -68,7 +68,7 @@
         {
           iconPath: '../../images/join.png',
           message: '加入我们',
-          navPath: '/pages/joinUs/index'
+          navPath: '/pages/form/index'
         },
         {
           iconPath: '../../images/advice.png',

@@ -15,17 +15,17 @@
     </view>
     <music_bar :musicInfo.sync="bgMusic"></music_bar>
     <div class="map__wrapper">
-      <map 
+      <map
         id="map"
         class="map"
-        latitude="{{ location.latitude }}" 
-        longitude="{{ location.longitude }}" 
-        scale="{{mapScale}}" 
-        bindcontroltap="controltap" 
-        markers="{{markers}}" 
-        polyline="{{polyline}}" 
-        bindmarkertap="markertap" 
-        bindregionchange="regionchange" 
+        latitude="{{ location.latitude }}"
+        longitude="{{ location.longitude }}"
+        scale="{{mapScale}}"
+        bindcontroltap="controltap"
+        markers="{{markers}}"
+        polyline="{{polyline}}"
+        bindmarkertap="markertap"
+        bindregionchange="regionchange"
         show-location
       ></map>
     </div>
@@ -139,7 +139,7 @@
       }
     }
 
-    onLoad() {
+    onLoad(options) {
       this.mapContext = wepy.createMapContext('map', this)
     }
 
@@ -231,8 +231,8 @@
 
     .map__wrapper {
       .map {
-        width: 100%; 
-        height: 320rpx; 
+        width: 100%;
+        height: 320rpx;
         margin-top: 40rpx;
       }
     }
