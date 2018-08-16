@@ -6,16 +6,34 @@
           <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
         </repeat>
       </view>
+      <view class="content">
+        <pie_chart hidden="{{ tabIndex === 0 ? false : true }}"></pie_chart>
+        <line_chart hidden="{{ tabIndex === 1 ? false : true }}"></line_chart>
+        <scatter_chart hidden="{{ tabIndex === 2 ? false : true }}"></scatter_chart>
+      </view>
     </view>
+
   </view>
 </template>
 
 <script>
 import wepy from 'wepy'
+import LineChart from '@/components/charts/lineChart'
+import PieChart from '@/components/charts/pieChart'
+import ScatterChart from '@/components/charts/scatterChart'
 
 export default class Charts extends wepy.page {
   config = {
-    navigationBarTitleText: "visitors"
+    navigationBarTitleText: 'visitors',
+    usingComponents: {
+      ec_canvas: '../components/charts/ec-canvas/ec-canvas'
+    }
+  }
+
+  components = {
+    line_chart: LineChart,
+    pie_chart: PieChart,
+    scatter_chart: ScatterChart
   }
 
   data = {
@@ -27,11 +45,11 @@ export default class Charts extends wepy.page {
     tabIndex: 0
   }
 
-   methods = {
-     switchTab(index) {
-       this.tabIndex = index
-     }
-   }
+  methods = {
+    switchTab(index) {
+      this.tabIndex = index
+    }
+  }
 }
 </script>
 
