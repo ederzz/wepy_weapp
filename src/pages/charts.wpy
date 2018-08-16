@@ -1,6 +1,12 @@
 <template>
   <view>
-    参观人数
+    <view class="tabs__wrapper">
+      <view class="tabs">
+        <repeat for="{{ tabs }}" key="index" index="index" item="item">
+          <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
+        </repeat>
+      </view>
+    </view>
   </view>
 </template>
 
@@ -8,12 +14,49 @@
 import wepy from 'wepy'
 
 export default class Charts extends wepy.page {
-    config = {
-        navigationBarTitleText: "visitors"
-    }
+  config = {
+    navigationBarTitleText: "visitors"
+  }
+
+  data = {
+    tabs: [
+      'By time',
+      'By country',
+      'By source'
+    ],
+    tabIndex: 0
+  }
+
+   methods = {
+     switchTab(index) {
+       this.tabIndex = index
+     }
+   }
 }
 </script>
 
 <style lang='less'>
+  .tabs__wrapper {
+    background: #fff;
+    margin-top: 20rpx;
 
+    .tabs {
+      display: flex;
+      font-size: 32rpx;
+      padding: 0 100rpx;
+      box-sizing: border-box;
+      justify-content: space-between;
+
+      .tab__item {
+        &.active::after {
+          content: '';
+          display: block;
+          height: 4rpx;
+          background: blue;
+          width: 70rpx;
+          margin-top: 20rpx;
+        }
+      }
+    }
+  }
 </style>

@@ -1,0 +1,16 @@
+<template>
+  <view class="line__chart">
+    linechart
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class LineChart extends wepy.component {
+}
+</script>
+
+<style lang='less'>
+
+</style>
