@@ -1,0 +1,19 @@
+<template>
+  <view>
+    参观人数
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Charts extends wepy.page {
+    config = {
+        navigationBarTitleText: "visitors"
+    }
+}
+</script>
+
+<style lang='less'>
+
+</style>

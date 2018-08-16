@@ -1,0 +1,28 @@
+<template>
+  <view>
+    <calendar />
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class DataCollect extends wepy.page {
+  config = {
+    navigationBarTitleText: '数据收集',
+    usingComponents: {
+      calendar: 'plugin://calendar/calendar'
+    }
+  }
+
+  methods = {
+  }
+
+  onLoad() {
+  }
+}
+</script>
+
+<style lang='less'>
+
+</style>

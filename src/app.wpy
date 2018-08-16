@@ -29,9 +29,10 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
+      'pages/charts',
+      'pages/dataCollect',
       'pages/form/index',
       'pages/about/index',
-      'pages/form/index',
       'pages/goods/index',
       'pages/scan/index',
       'pages/profile/index',
@@ -68,6 +69,12 @@ export default class extends wepy.app {
           'iconPath': './images/profile.png'
         }
       ]
+    },
+    plugins: {
+      calendar: {
+        version: '1.1.3',
+        provider: 'wx92c68dae5a8bb046'
+      }
     }
   }
 
@@ -81,9 +88,19 @@ export default class extends wepy.app {
     this.use('promisify')
   }
 
-  onLaunch() {
+  async onLaunch() {
     this.testAsync()
     this.getSystemInfo()
+
+    const loginRes = await wepy.login()
+    const {
+      code = ''
+    } = loginRes
+
+    if (code) {
+      const userRes = await wepy.getUserInfo()
+      console.log({loginRes, userRes})
+    }
   }
 
   sleep (s) {

@@ -15,7 +15,7 @@
         <input class="{{ inputFocus === 2 ? 'focus' : '' }}" @focus="handleFocus({{ 2 }})" name="address" />
       </label>
       <label class="form__item">
-        <view class="title">Country</view>
+        <view class="title" @tap="choose">Country</view>
         <input class="{{ inputFocus === 3 ? 'focus' : '' }}" @focus="handleFocus({{ 3 }})" name="country" />
       </label>
       <label class="form__item">
@@ -52,6 +52,20 @@ export default class Form extends wepy.page {
     },
     handleFocus(index) {
       this.inputFocus = index
+    },
+    choose() {
+      wx.chooseAddress({
+        success: function (res) {
+          console.log(res.userName)
+          console.log(res.postalCode)
+          console.log(res.provinceName)
+          console.log(res.cityName)
+          console.log(res.countyName)
+          console.log(res.detailInfo)
+          console.log(res.nationalCode)
+          console.log(res.telNumber)
+        }
+      })
     }
   }
 }
