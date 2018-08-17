@@ -7,12 +7,11 @@
         </repeat>
       </view>
       <view class="content">
-        <line_chart hidden="{{ tabIndex === 0 ? false : true }}"></line_chart>
-        <pie_chart hidden="{{ tabIndex === 1 ? false : true }}"></pie_chart>
-        <scatter_chart hidden="{{ tabIndex === 2 ? false : true }}"></scatter_chart>
+        <line_chart wx:if="{{ tabIndex === 0 ? true : false }}"></line_chart>
+        <pie_chart wx:if="{{ tabIndex === 1 ? true : false }}"></pie_chart>
+        <scatter_chart wx:if="{{ tabIndex === 2 ? true : false }}"></scatter_chart>
       </view>
     </view>
-
   </view>
 </template>
 

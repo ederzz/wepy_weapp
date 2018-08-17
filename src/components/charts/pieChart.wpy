@@ -28,100 +28,36 @@ export default class PieChart extends wepy.component {
     canvas.setChart(chart)
 
     const option = {
-      color: ['#37a2da', '#32c5e9', '#67e0e3'],
-      tooltip: {
-        trigger: 'axis',
-        axisPointer: {
-          type: 'shadow'
-        }
-      },
-      legend: {
-        data: ['热度', '正面', '负面']
-      },
-      grid: {
-        left: 20,
-        right: 20,
-        bottom: 15,
-        top: 40,
-        containLabel: true
-      },
-      xAxis: [
-        {
-          type: 'value',
-          axisLine: {
-            lineStyle: {
-              color: '#999'
-            }
-          },
-          axisLabel: {
-            color: '#666'
-          }
-        }
-      ],
-      yAxis: [
-        {
-          type: 'category',
-          axisTick: { show: false },
-          data: ['汽车之家', '今日头条', '百度贴吧', '一点资讯', '微信', '微博', '知乎'],
-          axisLine: {
-            lineStyle: {
-              color: '#999'
-            }
-          },
-          axisLabel: {
-            color: '#666'
-          }
-        }
-      ],
       series: [
         {
-          name: '热度',
-          type: 'bar',
+          name:'访问来源',
+          type:'pie',
+          radius: ['60%', '70%'],
+          avoidLabelOverlap: false,
           label: {
             normal: {
+              show: false,
+              position: 'center'
+            },
+            emphasis: {
               show: true,
-              position: 'inside'
+              textStyle: {
+                fontSize: '30',
+                fontWeight: 'bold'
+              }
             }
           },
-          data: [300, 270, 340, 344, 300, 320, 310],
-          itemStyle: {
-            // emphasis: {
-            //   color: '#37a2da'
-            // }
-          }
-        },
-        {
-          name: '正面',
-          type: 'bar',
-          stack: '总量',
-          label: {
+          labelLine: {
             normal: {
-              show: true
+              show: false
             }
           },
-          data: [120, 102, 141, 174, 190, 250, 220],
-          itemStyle: {
-            // emphasis: {
-            //   color: '#32c5e9'
-            // }
-          }
-        },
-        {
-          name: '负面',
-          type: 'bar',
-          stack: '总量',
-          label: {
-            normal: {
-              show: true,
-              position: 'left'
-            }
-          },
-          data: [-20, -32, -21, -34, -90, -130, -110],
-          itemStyle: {
-            // emphasis: {
-            //   color: '#67e0e3'
-            // }
-          }
+          data:[
+            {value: 100, name:'Japan', itemStyle: { color: '#e4e7ec' }},
+            {value: 270, name:'China', itemStyle: { color: '#a2aab9' }},
+            {value: 210, name:'America', itemStyle: { color: '#20222b' }},
+            {value: 120, name:'England', itemStyle: { color: '#4582fa' }}
+          ]
         }
       ]
     }
