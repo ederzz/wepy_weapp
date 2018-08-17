@@ -1,6 +1,7 @@
 <template>
   <view>
     <calendar />
+    <a></a>
   </view>
 </template>
 
