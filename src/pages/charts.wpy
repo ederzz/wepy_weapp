@@ -1,15 +1,18 @@
 <template>
   <view>
-    <view class="tabs__wrapper">
-      <view class="tabs">
-        <repeat for="{{ tabs }}" key="index" index="index" item="item">
-          <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
-        </repeat>
-      </view>
-      <view class="content">
-        <line_chart wx:if="{{ tabIndex === 0 ? true : false }}"></line_chart>
-        <pie_chart wx:if="{{ tabIndex === 1 ? true : false }}"></pie_chart>
-        <scatter_chart wx:if="{{ tabIndex === 2 ? true : false }}"></scatter_chart>
+    <view class="visitor__wrapper">
+      <view class="title">visitors</view>
+      <view class="tabs__wrapper">
+        <view class="tabs">
+          <repeat for="{{ tabs }}" key="index" index="index" item="item">
+            <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
+          </repeat>
+        </view>
+        <view class="content">
+          <line_chart wx:if="{{ tabIndex === 0 ? true : false }}"></line_chart>
+          <pie_chart wx:if="{{ tabIndex === 1 ? true : false }}"></pie_chart>
+          <scatter_chart wx:if="{{ tabIndex === 2 ? true : false }}"></scatter_chart>
+        </view>
       </view>
     </view>
   </view>
@@ -23,7 +26,7 @@ import ScatterChart from '@/components/charts/scatterChart'
 
 export default class Charts extends wepy.page {
   config = {
-    navigationBarTitleText: 'visitors',
+    navigationBarTitleText: 'Charts',
     usingComponents: {
       ec_canvas: '../components/charts/ec-canvas/ec-canvas'
     }
@@ -53,25 +56,38 @@ export default class Charts extends wepy.page {
 </script>
 
 <style lang='less'>
-  .tabs__wrapper {
+  .visitor__wrapper {
     background: #fff;
-    margin-top: 20rpx;
 
-    .tabs {
-      display: flex;
-      font-size: 32rpx;
-      padding: 0 100rpx;
+    .title {
+      font-size: 60rpx;
+      padding: 0 60rpx;
       box-sizing: border-box;
-      justify-content: space-between;
+    }
 
-      .tab__item {
-        &.active::after {
-          content: '';
-          display: block;
-          height: 4rpx;
-          background: blue;
-          width: 70rpx;
-          margin-top: 20rpx;
+    .tabs__wrapper {
+      margin-top: 20rpx;
+
+      .tabs {
+        display: flex;
+        font-size: 32rpx;
+        padding: 0 60rpx;
+        box-sizing: border-box;
+        justify-content: space-between;
+
+        .tab__item {
+          &.active {
+            color: #6668ee;
+          }
+
+          &.active::after {
+            content: '';
+            display: block;
+            height: 4rpx;
+            background: #6668ee;
+            width: 70rpx;
+            margin-top: 20rpx;
+          }
         }
       }
     }
