@@ -1,0 +1,121 @@
+<template>
+  <view class="swiper__wrapper">
+    <view class="tabs">
+      <repeat for="{{ tabItems }}" key="index" index="index" item="item">
+        <view @tap="switchTab({{ index }})" class="tab__item {{ index === currentTab ? 'active' : '' }}">{{ item }}</view>
+      </repeat>
+    </view>
+    <swiper class="swiper" current="{{currentTab}}" @change="swiperChange" circular>
+      <repeat for="{{ songs }}" key="index" index="index" item="item">
+        <swiper-item class="music__item">
+          <view class="music__index">{{ index }}</view>
+          <view class="music__info">
+            <view class="music__name">{{ item.name }}</view>
+            <view class="music__author">
+              a <text>{{ item.listen_count }}</text>次{{ item.author }}
+            </view>
+          </view>
+          <view class="play__btn">></view>
+        </swiper-item>
+      </repeat>
+    </swiper>
+  </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Demo extends wepy.page {
+  config = {
+    navigationBarTitleText: 'DEMO',
+    navigationBarBackgroundColor: '#161616',
+    navigationBarTextStyle: 'white'
+  }
+
+  data = {
+    tabItems: [
+      '最新',
+      '摇滚',
+      '民谣',
+      '流行',
+      '电子',
+      '说唱'
+    ],
+    currentTab: 0,
+    songs: [
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      },
+    ]
+  }
+
+  methods = {
+    swiperChange({ detail: { current } }) {
+      this.currentTab = current
+    },
+    switchTab(index) {
+      this.currentTab = index
+    }
+  }
+}
+</script>
+
+<style lang='less'>
+  @tab_color: #9b9b9b;
+  @tab_border: #27c79d;
+
+  page {
+    height: 100%;
+    background: #161616;
+  }
+
+  .swiper__wrapper {
+    .tabs {
+      display: flex;
+
+      .tab__item {
+        text-align: center;
+        font-size: 28rpx;
+        color: @tab_color;
+        padding: 26rpx 8rpx 18rpx;
+        margin: 0 10rpx;
+        box-sizing: border-box;
+        border: 6rpx solid transparent;
+
+        &.active {
+          border-bottom-color: @tab_border;
+          color: #fff;
+          font-size: 32rpx;
+          // vertical-align: baseline; TODO 文字底部对齐
+        }
+      }
+    }
+
+    .swiper {
+      .music__item {
+        display: flex;
+
+        .music__name,
+        .play__btn {
+          color: #fff;
+        }
+
+        .music__index,
+        .music__author {
+          color: @tab_color;
+        }
+
+        .music__index,
+        .music__name {
+          font-size: 32rpx;
+        }
+
+        .music__author {
+          font-size: 22rpx;
+        }
+      }
+    }
+  }
+</style>
