@@ -6,18 +6,23 @@
       </repeat>
     </view>
     <swiper class="swiper" current="{{currentTab}}" @change="swiperChange" circular>
-      <repeat for="{{ songs }}" key="index" index="index" item="item">
-        <swiper-item class="music__item">
-          <view class="music__index">{{ index }}</view>
-          <view class="music__info">
-            <view class="music__name">{{ item.name }}</view>
-            <view class="music__author">
-              a <text>{{ item.listen_count }}</text>次{{ item.author }}
+        <swiper-item class="categrory">
+          <repeat for="{{ songs }}" key="index" index="index" item="item">
+            <view class="music__item">
+              <view class="music__index">
+                <image class="index__icon" wx:if="{{ item.imgSrc }}" src="{{ item.imgSrc }}" />
+                {{ item.imgSrc ? '' : index }}
+              </view>
+              <view class="music__info">
+                <view class="music__name">{{ item.name }}</view>
+                <view class="music__author">
+                  <image src="../images/volume.png" class="volume__img" /> <text style="margin: 0 10rpx;">{{ item.listen_count }} 次</text>| {{ item.author }}
+                </view>
+              </view>
+              <image src="../images/playmusic.png" class="play__btn" />
             </view>
-          </view>
-          <view class="play__btn">></view>
+          </repeat>
         </swiper-item>
-      </repeat>
     </swiper>
   </view>
 </template>
@@ -30,6 +35,27 @@ export default class Demo extends wepy.page {
     navigationBarTitleText: 'DEMO',
     navigationBarBackgroundColor: '#161616',
     navigationBarTextStyle: 'white'
+  }
+
+  computed = {
+    songs() {
+      return this.songs.map((current, i) => {
+        switch (i) {
+          case 0:
+            current.imgSrc = '../images/champion.png'
+            break
+          case 1:
+            current.imgSrc = '../images/runner_up.png'
+            break
+          case 2:
+            current.imgSrc = '../images/third_winner.png'
+            break
+          default:
+            current.imgSrc = ''
+        }
+        return current
+      })
+    }
   }
 
   data = {
@@ -48,6 +74,41 @@ export default class Demo extends wepy.page {
         author: '地磁卡',
         listen_count: 992
       },
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      },
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      },
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      },
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      },
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      },
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      },
+      {
+        name: '幻视你/Vision of You',
+        author: '地磁卡',
+        listen_count: 992
+      }
     ]
   }
 
@@ -72,6 +133,10 @@ export default class Demo extends wepy.page {
   }
 
   .swiper__wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
     .tabs {
       display: flex;
 
@@ -94,26 +159,65 @@ export default class Demo extends wepy.page {
     }
 
     .swiper {
-      .music__item {
-        display: flex;
+      flex: 1;
 
-        .music__name,
-        .play__btn {
-          color: #fff;
-        }
+      .categrory {
+        overflow: scroll;
 
-        .music__index,
-        .music__author {
-          color: @tab_color;
-        }
+        .music__item {
+          display: flex;
+          margin: 50rpx 0;
+          align-items: center;
 
-        .music__index,
-        .music__name {
-          font-size: 32rpx;
-        }
+          .music__name,
+          .play__btn {
+            color: #fff;
+          }
 
-        .music__author {
-          font-size: 22rpx;
+          .music__index,
+          .music__author {
+            color: @tab_color;
+          }
+
+          .music__index,
+          .music__name {
+            font-size: 32rpx;
+          }
+
+          .music__index {
+            width: 100rpx;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .index__icon {
+              width: 40rpx;
+              height: 40rpx;
+            }
+          }
+
+          .music__name {
+            margin-bottom: 20rpx;
+          }
+
+          .music__author {
+            font-size: 22rpx;
+
+            .volume__img {
+              width: 32rpx;
+              height: 32rpx;
+            }
+          }
+
+          .music__info {
+            flex: 1;
+          }
+
+          .play__btn {
+            width: 44rpx;
+            height: 44rpx;
+            margin-right: 80rpx;
+          }
         }
       }
     }
