@@ -1,0 +1,6 @@
+<view style="left: {{ positionX }}rpx;top: {{ positionY }}rpx" class="hot__area__wrapper {{ loadStart ? 'load-start' : '' }} {{ showHotArea ? 'show' : 'hide' }}">
+    <view class="animate__circle"></view>
+    <view bindtap="toggleVisible" class="visible__switch"></view>
+    <view class="connect__line"></view>
+    <view bindtap="navigate" class="content">{{ content }}</view>
+</view>

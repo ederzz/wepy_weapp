@@ -1,0 +1,15 @@
+.lazy__load__image__wrapper {
+    position: relative;
+}
+
+.hot__areas__container.show {
+    opacity: 1;
+}
+.hot__areas__container.hide {
+    opacity: 0;
+}
+
+.lazy__load__image__wrapper .custom__img:host {
+    width: 750rpx;
+    height: 350rpx;
+}

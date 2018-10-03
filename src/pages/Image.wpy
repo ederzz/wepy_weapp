@@ -1,0 +1,59 @@
+<template>
+    <view class="hot__area__image__container">
+        <swiper>
+            <repeat for="{{ imgSrc }}" key="index" index="index" item="item">
+                <swiper-item>
+                    <custom_image hot-area-config="{{ hotAreaConfig }}" load-condition="{{loadCondition}}" image-container-class="lazy__load__image__wrapper" image-class="my__image" img-src="{{item}}"></custom_image>
+                </swiper-item>
+            </repeat>
+        </swiper>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Image extends wepy.page {
+    config = {
+        usingComponents: {
+            custom_image: '../components/HotAreaImage/hotAreaImage'
+        }
+    }
+
+    data = {
+        loadCondition: {},
+        imgSrc: [
+            '../../images/longmao.jpg',
+            '../../images/longmao1.jpeg',
+            '../../images/longmao2.jpeg',
+            '../../images/longmao3.jpeg',
+            '../../images/longmao4.png'
+        ],
+        hotAreaConfig: [
+            {
+                content: '我是content1',
+                x: 20,
+                y: 100,
+                navigateUrl: '/pages/profile/index'
+            },
+            {
+                content: '我是content2',
+                x: 200,
+                y: 200,
+                navigateUrl: '/pages/form/index'
+            }
+        ]
+    }
+
+    onLoad() {
+
+    }
+}
+</script>
+
+<style lang='less'>
+ .my__image {
+    width: 100%;
+    height: 400rpx;
+ }
+</style>
