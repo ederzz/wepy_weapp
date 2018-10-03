@@ -1,0 +1,5 @@
+.custom__img:host {
+  /* image default wxss */
+  width: 750rpx;
+  height: 750rpx;
+}
