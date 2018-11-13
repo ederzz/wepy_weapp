@@ -1,12 +1,12 @@
 @keyframes circleShadow {
     0% {
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, .2);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, .3);
     }
     50% {
-        box-shadow: 0 0 0 8rpx rgba(0, 0, 0, .2);
+        box-shadow: 0 0 0 8rpx rgba(0, 0, 0, .3);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, .2);
+        box-shadow: 0 0 0 0 rgba(0, 0, 0, .3);
     }
 }
 
@@ -23,6 +23,35 @@
     }
 }
 
+@keyframes contentShow {
+    0% {
+        max-width: 0;
+        opacity: 0;
+        color: transparent;
+        padding: 0 14rpx;
+    }
+    100% {
+        max-width: 200rpx;
+        opacity: 1;
+        color: #fff;
+        padding: 0 14rpx;
+    }
+}
+
+@keyframes contentHide {
+    0% {
+        max-width: 200rpx;
+        opacity: 1;
+        color: #fff;
+    }
+    100% {
+        max-width: 0;
+        opacity: 0;
+        padding: 0 14rpx;
+        color: transparent;
+    }
+}
+
 .hot__area__wrapper {
     position: absolute;
     left: 100rpx;
@@ -32,42 +61,50 @@
 }
 
 .hot__area__wrapper.hide {
+    transition: opacity .1s .5s;
     opacity: 0;
 }
 
 .hot__area__wrapper.show {
     opacity: 1;
 }
-.hot__area__wrapper > .visible__switch {
-    width: 29rpx;
-    height: 29rpx;
-    border-radius: 50%;
-    position: absolute;
-    box-sizing: border-box;
-    left: -7rpx;
-    z-index: 22;
+.hot__area__wrapper.load-start.show > .content {
+    animation: contentShow .8s ease-in forwards;
+}
+.hot__area__wrapper.load-start.hide > .content {
+    animation: contentHide .8s ease-in forwards;
+}
+
+.hot__area__wrapper.load-start > .connect__line {
+    transition: opacity .8s;
+}
+.hot__area__wrapper.load-start.show > .connect__line {
+    opacity: 1;
+}
+.hot__area__wrapper.load-start.hide > .connect__line {
+    opacity: 0;
 }
 
 .hot__area__wrapper > .animate__circle {
-    width: 15rpx;
-    height: 15rpx;
-    border-radius: 50%;
+    width: 10rpx;
+    height: 10rpx;
+    border-radius: 10rpx;
     background: #fff;
-    animation: circleShadow 2s ease-in infinite;
+    animation: circleShadow 1.5s ease-in infinite;
 }
 
 .hot__area__wrapper > .connect__line {
-    width: 30rpx;
-    height: 3rpx;
+    width: 32rpx;
+    height: 2rpx;
     background: #fff;
 }
 
 .hot__area__wrapper > .content {
-    border: 3rpx solid #fff;
+    border: 2rpx solid #fff;
     border-radius: 18rpx;
     color: #fff;
-    font-size: 22rpx;
-    padding: 4rpx 8rpx;
+    font-size: 20rpx;
+    padding: 0 14rpx;
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
@@ -75,10 +112,21 @@
     opacity: 0;
     color: transparent;
     transition: all .5s ease-in;
+    background: rgba(0, 0, 0, .4);
+    box-sizing: border-box;
+    height: 38rpx;
+    display: flex;
+    /* align-items: center; */
+    line-height: 34rpx;
+    font-weight: 500;
 }
 
-.hot__area__wrapper.load-start > .content {
+/* .hot__area__wrapper.load-start > .content {
     max-width: 200rpx;
     opacity: 1;
     color: #fff;
+} */
+
+.hot__area__wrapper.left {
+    transform: translateX(-100%);
 }

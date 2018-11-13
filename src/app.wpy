@@ -29,6 +29,8 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
+    //   'pages/hotAreaImage',
+      'pages/loadingCollections',
       'pages/demo',
       'pages/charts',
       'pages/dataCollect',

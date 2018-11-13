@@ -1,0 +1,4 @@
+<view class="rotate__loading__wrapper">
+    <view class="circle"></view>
+    <view class="text">LOADING</view>
+</view>

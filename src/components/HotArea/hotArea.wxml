@@ -1,6 +1,11 @@
-<view style="left: {{ positionX }}rpx;top: {{ positionY }}rpx" class="hot__area__wrapper {{ loadStart ? 'load-start' : '' }} {{ showHotArea ? 'show' : 'hide' }}">
+<view wx:if="{{ (secondPos <= positionX && positionX < thirdPost) || (positionX <= firstPos) }}" style="left: {{ positionX }}rpx;top: {{ positionY }}rpx" class="hot__area__wrapper {{ loadStart ? 'load-start' : '' }} {{ showHotArea ? 'show' : 'hide' }}">
     <view class="animate__circle"></view>
-    <view bindtap="toggleVisible" class="visible__switch"></view>
     <view class="connect__line"></view>
     <view bindtap="navigate" class="content">{{ content }}</view>
+</view>
+
+<view wx:if="{{ (firstPos < positionX && positionX < secondPos) || (thirdPos <= positionX) }}" style="left: {{ positionX }}rpx;top: {{ positionY }}rpx" class="hot__area__wrapper left {{ loadStart ? 'load-start' : '' }} {{ showHotArea ? 'show' : 'hide' }}">
+    <view bindtap="navigate" class="content">{{ content }}</view>
+    <view class="connect__line"></view>
+    <view class="animate__circle"></view>
 </view>

@@ -17,6 +17,9 @@ Component({
     imageMode: {
         type: String,
         value: 'aspectFill'
+    },
+    imgId: {
+        type: String
     }
   },
   data: {
@@ -37,6 +40,7 @@ Component({
     const intersectionObj = this.createIntersectionObserver()
     const intersectionObj1 = this.createIntersectionObserver()
     intersectionObj.relativeToViewport(loadCondition).observe('.custom__img', res => {
+        // 到达load-confition设置位置，加载图片
         if (this.data.show) {
             return
         }
@@ -47,6 +51,7 @@ Component({
         })
     })
     intersectionObj1.relativeToViewport().observe('.custom__img', res => {
+        // 进入可视区域加载图片热点组件
         if (this.data.loadHotAreas) {
             return
         }

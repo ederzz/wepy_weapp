@@ -1,0 +1,26 @@
+.rotate__loading__wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+@keyframes rotateInfinite {
+    0% {
+        transform: rotateZ(0deg);
+    }
+    100% {
+        transform: rotateZ(360deg);
+    }
+}
+.rotate__loading__wrapper > .circle {
+    width: 80rpx;
+    height: 80rpx;
+    border-radius: 50%;
+    border: 2rpx solid rgba(0, 0, 0, .3);
+    border-right-color: rgba(0, 0, 0, 1);
+    animation: rotateInfinite 1s linear infinite;
+}
+.rotate__loading__wrapper > .text {
+    font-size: 30rpx;
+    margin-top: 20rpx;
+}
+

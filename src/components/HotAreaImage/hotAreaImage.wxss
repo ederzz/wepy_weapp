@@ -1,5 +1,8 @@
-.lazy__load__image__wrapper {
+.lazy__load__image__wrapper:host {
     position: relative;
+    overflow: hidden;
+    width: 700rpx;
+    height: 350rpx;
 }
 
 .hot__areas__container.show {

@@ -1,0 +1,6 @@
+<view class="loading__wrapper">
+    <view class="left {{ leftClass }}"></view>
+    <view class="right {{ rightClass }}"></view>
+    <view class="top {{ topClass }}"></view>
+    <view class="bot {{ botClass }}"></view>
+</view>

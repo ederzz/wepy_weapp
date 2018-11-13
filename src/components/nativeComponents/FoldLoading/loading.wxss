@@ -1,0 +1,158 @@
+@keyframes rightToLeft {
+    0% {
+        transform: perspective(40rpx) rotateY(0deg);
+        background-color: #e63f35;
+    }
+    49% {
+        transform: perspective(40rpx) rotateY(90deg);
+        background-color: #be271e;
+    }
+    50% {
+        transform: perspective(40rpx) rotateY(90deg);
+        background-color: #dfa51b;
+    }
+    100% {
+        transform: perspective(40rpx) rotateY(180deg);
+        background-color: #fbd008;
+    }
+}
+@keyframes botToTop {
+    0% {
+        transform: perspective(96rpx) rotateX(0deg);
+        background-color: #fbd008;
+    }
+    49% {
+        transform: perspective(96rpx) rotateX(-90deg);
+        background-color: #dfa51b;
+    }
+    50% {
+        transform: perspective(96rpx) rotateX(-90deg);
+        background-color: #339622;
+    }
+    100% {
+        transform: perspective(96rpx) rotateX(-180deg);
+        background-color: #58ba47;
+    }
+}
+@keyframes leftToRight {
+    0% {
+        transform: perspective(40rpx) rotateY(0deg);
+        background-color: #58ba47;
+    }
+    49% {
+        transform: perspective(40rpx) rotateY(-90deg);
+        background-color: #40a62f;
+    }
+    50% {
+        transform: perspective(40rpx) rotateY(-90deg);
+        background-color: #177aa9;
+    }
+    100% {
+        transform: perspective(40rpx) rotateY(-180deg);
+        background-color: #269ad1;
+    }
+}
+@keyframes topToBot {
+    0% {
+        transform: perspective(96rpx) rotateX(0deg);
+        background-color: #269ad1;
+    }
+    49% {
+        transform: perspective(96rpx) rotateX(-90deg);
+        background-color: #1a87bb;
+    }
+    50% {
+        transform: perspective(96rpx) rotateX(-90deg);
+        background-color: #be271e;
+    }
+    100% {
+        transform: perspective(96rpx) rotateX(-180deg);
+        background-color: #e63f35;
+    }
+}
+.loading__wrapper {
+    width: 60rpx;
+    height: 60rpx;
+    border-radius: 50%;
+    position: relative;
+}
+.right {
+    width: 30rpx;
+    height: 60rpx;
+    border-radius: 0 30rpx 30rpx 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    background: #e63f35;
+    transform-origin: 0 50%;
+}
+.right.run {
+    animation: rightToLeft .5s linear;
+    z-index: 2;
+}
+.bot {
+    width: 60rpx;
+    height: 30rpx;
+    border-radius: 0 0 30rpx 30rpx;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background: #fbd008;
+    transform-origin: 50% 0;
+    z-index: 0;
+}
+.bot.run {
+    animation: botToTop .5s linear;
+    z-index: 2;
+}
+.left {
+    width: 30rpx;
+    height: 60rpx;
+    border-radius: 30rpx 0 0 30rpx;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #e63f35;
+    z-index: 1;
+    transform-origin: 100% 50%;
+}
+.left.run {
+    animation: leftToRight .5s linear;
+    z-index: 2;
+}
+.top {
+    width: 60rpx;
+    height: 30rpx;
+    border-radius: 30rpx 30rpx 0 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: #fbd008;
+    transform-origin: 50% 100%;
+    z-index: 0;
+}
+.top.run {
+    animation: topToBot .5s linear;
+    z-index: 2;
+}
+
+.yellow {
+    background-color: #fbd008;
+}
+.red {
+    background-color: #e63f35;
+}
+.blue {
+    background-color: #269ad1;
+}
+.green {
+    background-color: #58ba47;
+}
+
+.left.passive,
+.right.passive,
+.bot.passive,
+.top.passive {
+    z-index: 0;
+}

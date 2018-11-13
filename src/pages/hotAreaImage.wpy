@@ -1,0 +1,41 @@
+<template>
+    <view>
+        <hot_area_image
+            img-src="{{ imgSrc }}"
+            image-class="hot__area__image"
+            load-condition="{{ loadCondition }}"
+            hot-area-config="{{  }}"
+            />
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class HotAreaImage extends wepy.page {
+    config = {
+        navigationBarTitleText: 'hot area image',
+        usingComponents: {
+            'hot_area_image': '../components/HotAreaImage/hotAreaImage'
+        }
+    }
+
+    data = {
+        loadCondition: {
+            bottom: 20
+        },
+        imgSrc: '',
+        hotAreaConfig: [
+            {
+
+            },
+        ]
+    }
+}
+</script>
+
+<style lang='less'>
+    .hot__area__image {
+        border: 1rpx solid red;
+    }
+</style>

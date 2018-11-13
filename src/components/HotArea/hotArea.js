@@ -15,24 +15,46 @@ Component({
         showHotArea: {
             type: Boolean,
             value: true
+        },
+        productId: {
+            type: Number
+        },
+        areaWidth: {
+            type: Number,
+            value: 710
         }
     },
     data: {
-        loadStart: false
+        loadStart: false,
+        firstPos: 0,
+        secondPos: 0,
+        thirdPos: 0,
     },
     methods: {
         toggleVisible() {
             this.triggerEvent('togglevisiable')
         },
         navigate() {
-            if (this.data.showHotArea) {
+            const {
+                showHotArea,
+                content,
+                productId
+            } = this.data
+            if (showHotArea && productId) {
                 wx.navigateTo({
-                    url: this.data.navigateUrl
+                    url: `${this.data.navigateUrl}?productId=${productId || ''}&type=JY&productType=product`
                 })
             }
         }
     },
     ready() {
+        const { areaWidth } = this.data
+        this.setData({
+            firstPos: (areaWidth / 3).toFixed(2),
+            secondPos: (areaWidth / 2).toFixed(2),
+            thirdPos: (areaWidth / 3 * 2).toFixed(2)
+        })
+
         const intersectionObj = this.createIntersectionObserver()
         intersectionObj.relativeToViewport().observe('.hot__area__wrapper', res => {
             if (this.data.loadStart) {

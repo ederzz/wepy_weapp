@@ -1,8 +1,8 @@
-<view class="lazy__load__image__wrapper image-class">
-    <image style="display: block;" mode="{{ imageMode }}" src="{{ show ? imgSrc : '' }}" class="custom__img image-class" />
+<view id="{{ imgId }}" class="lazy__load__image__wrapper image-class">
+    <image style="display: block;" bind:tap="toggleAllHotAreaVisiable" mode="{{ imageMode }}" src="{{ show ? imgSrc : '' }}" class="custom__img image-class" />
     <view class="hot__areas__container">
         <block wx:for="{{ loadHotAreas ? hotAreaConfig : [] }}" wx:key="index" wx:for-index="index" wx:for-item="item">
-            <hot_area bindtogglevisiable="toggleAllHotAreaVisiable" show-hot-area="{{ allHotAreaVisiable }}" navigate-url="{{ item.navigateUrl }}" content="{{ item.content }}" position-x="{{ item.x }}" position-y="{{ item.y }}"></hot_area>
+            <hot_area show-hot-area="{{ allHotAreaVisiable }}" navigate-url="/pages/productDetail/index" product-id="{{ item.productId }}" content="{{ item.subject }}" position-x="{{ item.coordinateX }}" position-y="{{ item.coordinateY }}"></hot_area>
         </block>
     </view>
 </view>
