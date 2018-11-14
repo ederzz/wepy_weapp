@@ -1,19 +1,19 @@
 <style lang="less">
-  @import './common/common.less';
+    @import './common/common.less';
 
-  .container {
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    box-sizing: border-box;
-  }
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        box-sizing: border-box;
+    }
 
-  page {
-    background: rgba(0, 0, 0, .06);
-    height: 100%;
-  }
+    page {
+        background: rgba(0, 0, 0, .06);
+        height: 100%;
+    }
 </style>
 
 <script>
@@ -27,125 +27,120 @@ const store = configStore()
 setStore(store)
 
 export default class extends wepy.app {
-  config = {
-    pages: [
-      'pages/price',
-      'pages/loadingCollections',
-      'pages/demo',
-      'pages/charts',
-      'pages/dataCollect',
-      'pages/form/index',
-      'pages/about/index',
-      'pages/goods/index',
-      'pages/scan/index',
-      'pages/profile/index',
-      'pages/vip/index',
-      'pages/coupon/index',
-      'pages/advice/index',
-      'pages/shop/index',
-      'pages/order/index'
-    ],
-    window: {
-      backgroundTextStyle: 'light',
-      navigationBarBackgroundColor: '#fff',
-      navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black',
-    //   navigationStyle: 'custom' 自定义导航栏 只保留右上角胶囊按钮
-    },
-    tabBar: {
-      selectedColor: '#7cdf4e',
-      backgroundColor: '#fff',
-      list: [
-        {
-          pagePath: 'pages/goods/index',
-          text: '爆款商品',
-          'selectedIconPath': './images/select_hot.png',
-          'iconPath': './images/hot.png'
-        }, {
-          'pagePath': 'pages/scan/index',
-          'text': '扫货架码',
-          'selectedIconPath': './images/select_qr.png',
-          'iconPath': './images/qr.png'
-        }, {
-          'pagePath': 'pages/charts',
-          'text': 'chart',
-          'selectedIconPath': './images/chart_select.png',
-          'iconPath': './images/chart.png'
-        }, {
-          'pagePath': 'pages/about/index',
-          'text': '关于我',
-          'selectedIconPath': './images/select_profile.png',
-          'iconPath': './images/profile.png'
+    config = {
+        pages: [
+            'pages/about/index',
+            'pages/profile/index',
+            'pages/price',
+            'pages/loadingCollections',
+            'pages/demo',
+            'pages/charts',
+            'pages/dataCollect',
+            'pages/form/index',
+            'pages/goods/index',
+            'pages/scan/index',
+            'pages/vip/index',
+            'pages/coupon/index',
+            'pages/advice/index',
+            'pages/shop/index',
+            'pages/order/index'
+        ],
+        window: {
+            backgroundTextStyle: 'light',
+            navigationBarBackgroundColor: '#fff',
+            navigationBarTitleText: 'WeChat',
+            navigationBarTextStyle: 'black'
+            //   navigationStyle: 'custom' 自定义导航栏 只保留右上角胶囊按钮
+        },
+        tabBar: {
+            selectedColor: '#7cdf4e',
+            backgroundColor: '#fff',
+            list: [
+                {
+                    'pagePath': 'pages/scan/index',
+                    'text': 'demos',
+                    'selectedIconPath': './images/select_qr.png',
+                    'iconPath': './images/qr.png'
+                }, {
+                    'pagePath': 'pages/charts',
+                    'text': 'chart',
+                    'selectedIconPath': './images/chart_select.png',
+                    'iconPath': './images/chart.png'
+                }, {
+                    'pagePath': 'pages/about/index',
+                    'text': '关于我',
+                    'selectedIconPath': './images/select_profile.png',
+                    'iconPath': './images/profile.png'
+                }
+            ]
+        },
+        plugins: {
+            calendar: {
+                version: '1.1.3',
+                provider: 'wx92c68dae5a8bb046'
+            }
         }
-      ]
-    },
-    plugins: {
-      calendar: {
-        version: '1.1.3',
-        provider: 'wx92c68dae5a8bb046'
-      }
     }
-  }
 
-  globalData = {
-    userInfo: null
-  }
-
-  constructor () {
-    super()
-    this.use('requestfix')
-    this.use('promisify')
-  }
-
-  async onLaunch() {
-    this.testAsync()
-    this.getSystemInfo()
-
-    const loginRes = await wepy.login()
-    const {
-      code = ''
-    } = loginRes
-
-    if (code) {
-      const userRes = await wepy.getUserInfo()
-      console.log({loginRes, userRes})
+    globalData = {
+        userInfo: null
     }
-  }
 
-  sleep (s) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve('promise resolved')
-      }, s * 1000)
-    })
-  }
-
-  async testAsync () {
-    const data = await this.sleep(3)
-    console.log(data)
-  }
-
-  getUserInfo(cb) {
-    const that = this
-    if (this.globalData.userInfo) {
-      return this.globalData.userInfo
+    constructor () {
+        super()
+        this.use('requestfix')
+        this.use('promisify')
     }
-    wepy.getUserInfo({
-      success (res) {
-        that.globalData.userInfo = res.userInfo
-        cb && cb(res.userInfo)
-      }
-    })
-  }
-  getSystemInfo() {
-    const systemInfo = wepy.getSystemInfoSync()
-    wepy.setStorage({
-      key: 'systemInfo',
-      data: systemInfo,
-      success() {
-        console.log('系统信息存储成功.')
-      }
-    })
-  }
+
+    async onLaunch() {
+        this.testAsync()
+        this.getSystemInfo()
+
+        const loginRes = await wepy.login()
+        const {
+            code = ''
+        } = loginRes
+
+        if (code) {
+            const userRes = await wepy.getUserInfo()
+            console.log({loginRes, userRes})
+        }
+    }
+
+    sleep (s) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve('promise resolved')
+            }, s * 1000)
+        })
+    }
+
+    async testAsync () {
+        const data = await this.sleep(3)
+        console.log(data)
+    }
+
+    getUserInfo(cb) {
+        const that = this
+        if (this.globalData.userInfo) {
+            return this.globalData.userInfo
+        }
+        wepy.getUserInfo({
+            success (res) {
+                that.globalData.userInfo = res.userInfo
+                cb && cb(res.userInfo)
+            }
+        })
+    }
+    getSystemInfo() {
+        const systemInfo = wepy.getSystemInfoSync()
+        wepy.setStorage({
+            key: 'systemInfo',
+            data: systemInfo,
+            success() {
+                console.log('系统信息存储成功.')
+            }
+        })
+    }
 }
 </script>
