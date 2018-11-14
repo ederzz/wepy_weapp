@@ -1,0 +1,14 @@
+/* 默认样式 */
+.price-wrapper {
+    color: #f00;
+    display: inline-block;
+}
+.price-wrapper > .count__decimal {
+    font-size: 22rpx;
+}
+.price-wrapper > view {
+    display: inline-block;
+    line-height: 1;
+    font-size: 44rpx;
+}
+

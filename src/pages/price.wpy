@@ -1,0 +1,24 @@
+<template>
+    <view>
+        <price
+            value="{{ 22.1 }}"
+            markSize="{{ 22 }}"
+            />
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Test extends wepy.page {
+    config = {
+        navigationBarTitleText: '',
+        usingComponents: {
+            price: '../components/nativeComponents/price/price'
+        }
+    }
+}
+</script>
+
+<style lang='less'>
+</style>

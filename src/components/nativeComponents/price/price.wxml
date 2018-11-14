@@ -1,0 +1,5 @@
+<view class="price-wrapper price-class">
+    <view class="mark" style="font-size: {{ markSize }}rpx;">￥</view>
+    <view class="count" style="font-size: {{ countSize }}rpx;">{{ count }}</view>
+    <view class="count__decimal" style="font-size: {{ decimalSize }}rpx;">.{{ decimal }}</view>
+</view>

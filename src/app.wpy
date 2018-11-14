@@ -29,7 +29,7 @@ setStore(store)
 export default class extends wepy.app {
   config = {
     pages: [
-    //   'pages/hotAreaImage',
+      'pages/price',
       'pages/loadingCollections',
       'pages/demo',
       'pages/charts',
@@ -49,7 +49,8 @@ export default class extends wepy.app {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
+    //   navigationStyle: 'custom' 自定义导航栏 只保留右上角胶囊按钮
     },
     tabBar: {
       selectedColor: '#7cdf4e',
