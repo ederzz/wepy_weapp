@@ -1,0 +1,22 @@
+<template>
+    <view class="demos">
+
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Demos extends wepy.page {
+    config = {
+        navigationBarTitleText: 'demos',
+        usingComponents: {
+
+        }
+    }
+}
+</script>
+
+<style lang='less'>
+
+</style>

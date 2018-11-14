@@ -29,6 +29,7 @@ setStore(store)
 export default class extends wepy.app {
     config = {
         pages: [
+            'pages/demos',
             'pages/about/index',
             'pages/profile/index',
             'pages/price',
@@ -53,24 +54,24 @@ export default class extends wepy.app {
             //   navigationStyle: 'custom' 自定义导航栏 只保留右上角胶囊按钮
         },
         tabBar: {
-            selectedColor: '#7cdf4e',
+            selectedColor: '#037eff',
             backgroundColor: '#fff',
             list: [
                 {
-                    'pagePath': 'pages/scan/index',
+                    'pagePath': 'pages/demos',
                     'text': 'demos',
-                    'selectedIconPath': './images/select_qr.png',
-                    'iconPath': './images/qr.png'
+                    'selectedIconPath': './images/demo_tab_active.png',
+                    'iconPath': './images/demo_tab.png'
                 }, {
                     'pagePath': 'pages/charts',
                     'text': 'chart',
-                    'selectedIconPath': './images/chart_select.png',
-                    'iconPath': './images/chart.png'
+                    'selectedIconPath': './images/chart_tab_active.png',
+                    'iconPath': './images/chart_tab.png'
                 }, {
                     'pagePath': 'pages/about/index',
                     'text': '关于我',
-                    'selectedIconPath': './images/select_profile.png',
-                    'iconPath': './images/profile.png'
+                    'selectedIconPath': './images/profile_tab_active.png',
+                    'iconPath': './images/profile_tab.png'
                 }
             ]
         },
