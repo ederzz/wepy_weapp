@@ -1,6 +1,13 @@
 <template>
     <view class="demos">
-
+        <repeat for="{{ demoList }}" key="index" index="index" item="item">
+            <demo_block
+                title="{{ item.title }}"
+                content="{{ item.content }}"
+                navUrl="{{ item.navUrl }}"
+                block-class="demo-item"
+                />
+        </repeat>
     </view>
 </template>
 
@@ -11,12 +18,55 @@ export default class Demos extends wepy.page {
     config = {
         navigationBarTitleText: 'demos',
         usingComponents: {
-
+            demo_block: '../components/nativeComponents/demoBlock/index'
         }
+    }
+
+    data = {
+        demoList: [
+            {
+                title: 'LOADING动画',
+                content: '自定义的loading效果，相较于官方的loading api，效果更多样~',
+                navUrl: '/pages/loadingCollections'
+            },
+            {
+                title: 'price组件',
+                content: '自定义的price组件，常用于商品的价格展示，价格的符号、整数位、小数位字体大小可不一样，但保持底部对齐~~',
+                navUrl: '/pages/price'
+            },
+            {
+                title: '多行省略组件',
+                content: '自定义多行省略组件~',
+                navUrl: '/pages/textEllipsis'
+            },
+            {
+                title: '带热区的自定义图片组件',
+                content: '带热区的图片组件，热区自带css动画效果，点击热区可进行跳转其他页面~~',
+                navUrl: ''
+            },
+            {
+                title: '懒加载图片组件',
+                content: '自定义懒加载图片组件~',
+                navUrl: ''
+            }
+        ]
     }
 }
 </script>
 
 <style lang='less'>
+    page {
+        background: #fff;
+    }
 
+    .demos {
+        padding: 0 40rpx;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .demo-item {
+            margin-bottom: 40rpx;
+        }
+    }
 </style>

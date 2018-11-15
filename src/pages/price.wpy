@@ -1,7 +1,7 @@
 <template>
     <view>
         <price
-            value="{{ 22.1 }}"
+            value="{{ aa }}"
             markSize="{{ 22 }}"
             />
     </view>
@@ -16,6 +16,17 @@ export default class Test extends wepy.page {
         usingComponents: {
             price: '../components/nativeComponents/price/price'
         }
+    }
+
+    data = {
+        aa: 22.1
+    }
+
+    onLoad() {
+        setTimeout(() => {
+            this.aa = 23.1
+            this.$apply()
+        }, 3000)
     }
 }
 </script>

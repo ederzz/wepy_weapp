@@ -1,0 +1,20 @@
+.demo-block {
+    display: flex;
+}
+.demo-block > .img {
+    width: 160rpx;
+    height: 160rpx;
+    border-radius: 8rpx;
+    margin-right: 20rpx;
+    box-shadow: 2rpx 2rpx 44rpx 0 rgba(0, 0, 0, .2);
+}
+.info > .title {
+    font-size: 44rpx;
+    color: rgba(0, 0, 0, .8);
+    margin-bottom: 10rpx;
+}
+.info > .content {
+    color: rgba(0, 0, 0, .5);
+    font-size: 28rpx;
+    width: 500rpx;
+}

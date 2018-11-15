@@ -3,4 +3,5 @@
     <view class="right {{ rightClass }}"></view>
     <view class="top {{ topClass }}"></view>
     <view class="bot {{ botClass }}"></view>
+    <view></view>
 </view>

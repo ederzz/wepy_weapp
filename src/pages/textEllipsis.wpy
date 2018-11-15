@@ -1,0 +1,26 @@
+<template>
+    <view class="demos">
+        <text_ellipsis
+            text="{{ text }}"
+            />
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class Demos extends wepy.page {
+    config = {
+        usingComponents: {
+            text_ellipsis: '../components/nativeComponents/EllipsisText/index'
+        }
+    }
+
+    data = {
+        text: '我们都不是很完美的人，但我们要接受不完美的自己。在孤独的时候，给自己安慰；在寂寞的时候，给自己温暖。学会独立，告别依赖，对软弱的自己说再见。生活不是只有温暖，人生的路不会永远平坦，但只要你对自己有信心，知道自己的价值，懂的珍惜自己，世界的一切不完美，你都可以坦然面对。'
+    }
+}
+</script>
+
+<style lang='less'>
+</style>

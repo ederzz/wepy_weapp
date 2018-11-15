@@ -5,7 +5,15 @@ Component({
     properties: {
         value: {
             type: Number,
-            value: 0
+            value: 0,
+            observer(newVal, old) {
+                if (newVal !== old) {
+                    this.setData({
+                        count: newVal.toFixed(2).split('.')[0],
+                        decimal: newVal.toFixed(2).split('.')[1]
+                    })
+                }
+            }
         },
         markSize: {
             type: Number,
@@ -30,7 +38,7 @@ Component({
             value: '00'
         }
     },
-    attached() {
+    ready() {
         const {
             value
         } = this.data

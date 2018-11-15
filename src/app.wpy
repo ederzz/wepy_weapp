@@ -30,9 +30,10 @@ export default class extends wepy.app {
     config = {
         pages: [
             'pages/demos',
+            'pages/textEllipsis',
+            'pages/price',
             'pages/about/index',
             'pages/profile/index',
-            'pages/price',
             'pages/loadingCollections',
             'pages/demo',
             'pages/charts',

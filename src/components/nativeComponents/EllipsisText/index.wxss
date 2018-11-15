@@ -1,0 +1,69 @@
+@keyframes hei {
+    0% {
+        height: 126rpx;
+    }
+    100% {
+        height: 200px;
+    }
+}
+
+.ellipsis-container {
+    position: relative;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    font-size: 28rpx;
+    color: rgb(72, 72, 72);
+    max-height: 126rpx;
+    letter-spacing: 70rpx;
+    width: 678rpx;
+    overflow: hidden;
+}
+
+.ellipsis-content {
+    color: rgb(72, 72, 72);
+    font-weight: 300;
+    display: inline;
+    vertical-align: top;
+    font-size: 28rpx;
+    letter-spacing: normal;
+    line-height: 44rpx;
+}
+
+.ellipsis__content__expanded {
+    color: rgb(72, 72, 72);
+    font-weight: 300;
+    display: inline;
+    vertical-align: top;
+    font-size: 28rpx;
+    letter-spacing: normal;
+    line-height: 44rpx;
+}
+
+.container {
+    font-size: 28rpx;
+    width: 678rpx;
+    overflow: hidden;
+    height: 126rpx;
+    transition: all 2s ease-in;
+}
+
+.expand__btn {
+    position: absolute;
+    right: 10rpx;
+    top: 92rpx;
+    color: rgb(72, 72, 72);
+    font-weight: 500;
+    width: 48rpx;
+    line-height: 34rpx;
+    white-space: nowrap;
+    letter-spacing: normal;
+    font-size: 24rpx;
+}
+
+.collapse__btn {
+    font-size: 24rpx;
+    font-weight: 500;
+    color: rgb(72, 72, 72);
+    margin-left: 10rpx;
+}
