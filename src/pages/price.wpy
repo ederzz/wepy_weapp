@@ -2,8 +2,11 @@
     <view>
         <price
             value="{{ value }}"
-            markSize="{{ 22 }}"
-            />
+            mark-size="{{ 44 }}"
+            count-size="{{ 44 }}"
+            decimal-size="{{ 22 }}"
+            price-class="price"
+        />
     </view>
 </template>
 
@@ -32,4 +35,7 @@ export default class Test extends wepy.page {
 </script>
 
 <style lang='less'>
+    .price {
+        color: green!important;
+    }
 </style>
