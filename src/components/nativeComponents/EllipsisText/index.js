@@ -19,7 +19,6 @@ Component({
     },
     methods: {
         expand() {
-            console.log(this.data.isExpand)
             this.setData({
                 isExpand: true
             }, () => {

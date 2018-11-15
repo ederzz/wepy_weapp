@@ -1,11 +1,25 @@
 <template>
-    <view>
+    <view class="price-demos">
         <price
             value="{{ value }}"
             mark-size="{{ 44 }}"
             count-size="{{ 44 }}"
             decimal-size="{{ 22 }}"
             price-class="price"
+        />
+        <price
+            value="{{ 11.22 }}"
+            mark-size="{{ 33 }}"
+            count-size="{{ 33 }}"
+            decimal-size="{{ 33 }}"
+            price-class="price-2"
+        />
+        <price
+            value="{{ 55.0 }}"
+            mark-size="{{ 22 }}"
+            count-size="{{ 44 }}"
+            decimal-size="{{ 22 }}"
+            price-class="price-3"
         />
     </view>
 </template>
@@ -35,7 +49,26 @@ export default class Test extends wepy.page {
 </script>
 
 <style lang='less'>
+    .price-demos {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .price-wrapper {
+        display: block;
+        margin-bottom: 40rpx;
+    }
+
     .price {
         color: green!important;
+    }
+
+    .price-2 {
+        color: rgb(219, 106, 40)!important;
+    }
+
+    .price-3 {
+        color: rgb(54, 209, 196)!important;
     }
 </style>
