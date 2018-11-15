@@ -1,7 +1,7 @@
 <template>
     <view>
         <price
-            value="{{ aa }}"
+            value="{{ value }}"
             markSize="{{ 22 }}"
             />
     </view>
@@ -19,7 +19,7 @@ export default class Test extends wepy.page {
     }
 
     data = {
-        aa: 22.1
+        value: 22.1
     }
 
     onLoad() {

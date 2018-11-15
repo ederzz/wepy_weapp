@@ -48,6 +48,11 @@ export default class Demos extends wepy.page {
                 title: '懒加载图片组件',
                 content: '自定义懒加载图片组件~',
                 navUrl: ''
+            },
+            {
+                title: '仿写豆瓣音乐小程序音乐列表',
+                content: '仿写豆瓣音乐小程序音乐列表~',
+                navUrl: '/pages/musicList'
             }
         ]
     }

@@ -1,4 +1,7 @@
 Component({
+    options: {
+        addGlobalClass: true
+    },
     properties: {
         text: {
             type: String,
@@ -62,7 +65,6 @@ Component({
         },
     },
     ready() {
-        console.log(this.data.isExpand)
         const query = this.createSelectorQuery()
         query.select(".ellipsis-content").boundingClientRect()
         query.select(".ellipsis-container").boundingClientRect()
@@ -85,5 +87,6 @@ Component({
 
             }
         })
-    }
+    },
+    externalClasses: ['class-name']
 })

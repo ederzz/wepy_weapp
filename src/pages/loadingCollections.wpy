@@ -1,7 +1,11 @@
 <template>
     <view class="loading__demos">
-        <fold_loading />
-        <rotate_loading />
+        <view class="item">
+            <fold_loading />
+        </view>
+        <view class="item">
+            <rotate_loading />
+        </view>
     </view>
 </template>
 
@@ -24,6 +28,10 @@ export default class LoadingCollections extends wepy.page {
         display: flex;
         flex-direction: column;
         align-items: center;
+
+        .item {
+            margin-top: 40rpx;
+        }
     }
 </style>
 

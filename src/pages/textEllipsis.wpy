@@ -1,9 +1,8 @@
 <template>
-    <view class="demos">
-        <text_ellipsis
-            text="{{ text }}"
-            />
-    </view>
+    <text_ellipsis
+        text="{{ text }}"
+        class-name="text-ellipsis"
+        />
 </template>
 
 <script>
@@ -11,6 +10,7 @@ import wepy from 'wepy'
 
 export default class Demos extends wepy.page {
     config = {
+        navigationBarTitleText: 'text ellipsis',
         usingComponents: {
             text_ellipsis: '../components/nativeComponents/EllipsisText/index'
         }
@@ -23,4 +23,12 @@ export default class Demos extends wepy.page {
 </script>
 
 <style lang='less'>
+    page {
+        display: flex;
+        justify-content: center;
+
+        .text-ellipsis {
+            margin-top: 100rpx;
+        }
+    }
 </style>

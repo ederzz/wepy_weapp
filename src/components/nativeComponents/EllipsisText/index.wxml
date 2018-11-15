@@ -1,4 +1,4 @@
-<view wx:if="{{ !isExpand }}" class="ellipsis-container">
+<view wx:if="{{ !isExpand }}" class="ellipsis-container class-name">
     <view  wx:if="{{ !isExpand }}" class="ellipsis-content">{{ text }}<text style="visibility:hidden" class="collapse__btn">收起</text></view>
     <view wx:if="{{ hasEllipsis && !isExpand }}" bind:tap="expand" class="expand__btn">展开</view>
 </view>
