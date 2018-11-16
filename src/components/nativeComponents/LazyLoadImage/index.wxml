@@ -1,0 +1,1 @@
+<image mode="{{ imageMode }}" style="display: block;background-color: {{ bgColor }};" src="{{ show ? imgSrc : '' }}" class="custom__img image-class" />

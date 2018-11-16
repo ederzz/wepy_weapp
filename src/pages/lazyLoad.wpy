@@ -1,0 +1,62 @@
+<template>
+    <view class="lazy-load-wrapper">
+        <repeat for="{{ imgs }}" key="index" index="index" item="item">
+            <lazy_load_img
+                img-src="{{ item }}"
+                load-condition="{{ loadCondition }}"
+                image-class="lazy-load-img"
+                image-mode="aspectFill"
+                />
+        </repeat>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+
+export default class LazyLoad extends wepy.page {
+    config = {
+        navigationBarTitleText: 'lazy load',
+        usingComponents: {
+            lazy_load_img: '../components/nativeComponents/LazyLoadImage/index'
+        }
+    }
+
+    data = {
+        loadCondition: {
+            bottom: -200 // 可自定义
+        },
+        imgs: [
+            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
+            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
+            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
+            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
+            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
+            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
+            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg'
+        ]
+    }
+}
+</script>
+
+<style lang='less'>
+    .lazy-load-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .lazy-load-img {
+       width: 600rpx!important;
+       height: 440rpx!important;
+       margin-bottom: 40rpx;
+    }
+</style>
