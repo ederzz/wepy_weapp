@@ -1,4 +1,4 @@
-.lazy__load__image__wrapper:host {
+.lazy__load__image__wrapper {
     position: relative;
     overflow: hidden;
     width: 700rpx;
@@ -12,7 +12,7 @@
     opacity: 0;
 }
 
-.lazy__load__image__wrapper .custom__img:host {
-    width: 750rpx;
+.custom__img {
+    width: 700rpx;
     height: 350rpx;
 }

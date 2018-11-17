@@ -1,11 +1,12 @@
 <template>
-    <view>
-        <hot_area_image
-            img-src="{{ imgSrc }}"
-            image-class="hot__area__image"
-            load-condition="{{ loadCondition }}"
-            hot-area-config="{{  }}"
-            />
+    <view class="container">
+        <repeat for="{{ imgConfig }}" key="index" index="index" item="item">
+            <hot_area_image
+                img-src="{{ item.imgSrc }}"
+                load-condition="{{ item.loadCondition }}"
+                hot-area-config="{{ item.hotAreaConfig }}"
+                />
+        </repeat>
     </view>
 </template>
 
@@ -16,26 +17,70 @@ export default class HotAreaImage extends wepy.page {
     config = {
         navigationBarTitleText: 'hot area image',
         usingComponents: {
-            'hot_area_image': '../components/HotAreaImage/hotAreaImage'
+            'hot_area_image': '../components/nativeComponents/HotAreaImage/hotAreaImage'
         }
     }
 
     data = {
-        loadCondition: {
-            bottom: 20
-        },
-        imgSrc: '',
-        hotAreaConfig: [
+        imgConfig: [
             {
-
+                loadCondition: {
+                    bottom: 20
+                },
+                imgSrc: 'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
+                hotAreaConfig: [
+                    {
+                        content: 'navigate to profile page.ahhhhh~~',
+                        x: 122,
+                        y: 122,
+                        navigateUrl: '/pages/about/index',
+                        isTabPage: true
+                    }
+                ]
             },
+            {
+                loadCondition: {
+                    bottom: 20
+                },
+                imgSrc: 'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
+                hotAreaConfig: [
+                    {
+                        content: 'navigate to charts page~~',
+                        x: 522,
+                        y: 222,
+                        navigateUrl: '/pages/charts',
+                        isTabPage: true
+                    }
+                ]
+            },
+            {
+                loadCondition: {
+                    bottom: 20
+                },
+                imgSrc: 'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
+                hotAreaConfig: [
+                    {
+                        content: 'navigate to profile page~~',
+                        x: 322,
+                        y: 122,
+                        navigateUrl: '/pages/about/index',
+                        isTabPage: true
+                    }
+                ]
+            }
         ]
     }
 }
 </script>
 
 <style lang='less'>
-    .hot__area__image {
-        border: 1rpx solid red;
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .lazy__load__image__wrapper {
+            margin-bottom: 60rpx;
+        }
     }
 </style>

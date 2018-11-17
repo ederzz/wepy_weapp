@@ -1,1 +1,0 @@
-<image mode="{{ imageMode }}" style="display: block" src="{{ show ? imgSrc : '' }}" class="custom__img image-class" />

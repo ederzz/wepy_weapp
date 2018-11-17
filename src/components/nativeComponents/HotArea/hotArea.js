@@ -16,12 +16,13 @@ Component({
             type: Boolean,
             value: true
         },
-        productId: {
-            type: Number
-        },
         areaWidth: {
             type: Number,
-            value: 710
+            value: 700
+        },
+        isTabPage: {
+            type: Boolean,
+            value: false
         }
     },
     data: {
@@ -37,13 +38,19 @@ Component({
         navigate() {
             const {
                 showHotArea,
-                content,
-                productId
+                navigateUrl,
+                isTabPage
             } = this.data
-            if (showHotArea && productId) {
-                wx.navigateTo({
-                    url: `${this.data.navigateUrl}?productId=${productId || ''}&type=JY&productType=product`
-                })
+            if (showHotArea) {
+                if (isTabPage) {
+                    wx.switchTab({
+                        url: navigateUrl
+                    })
+                } else {
+                    wx.navigateTo({
+                        url: navigateUrl
+                    })
+                }
             }
         }
     },

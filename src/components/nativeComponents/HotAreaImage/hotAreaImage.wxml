@@ -1,0 +1,8 @@
+<view id="{{ imgId }}" class="lazy__load__image__wrapper img-class">
+    <image style="display: block;" bind:tap="toggleAllHotAreaVisiable" mode="{{ imageMode }}" src="{{ show ? imgSrc : '' }}" class="custom__img img-class" />
+    <view class="hot__areas__container">
+        <block wx:for="{{ loadHotAreas ? hotAreaConfig : [] }}" wx:key="index" wx:for-index="index" wx:for-item="item">
+            <hot_area area-width="{{ hotAreaWidth }}" show-hot-area="{{ allHotAreaVisiable }}" is-tab-page="{{ item.isTabPage }}" navigate-url="{{ item.navigateUrl }}" content="{{ item.content }}" position-x="{{ item.x }}" position-y="{{ item.y }}"></hot_area>
+        </block>
+    </view>
+</view>
