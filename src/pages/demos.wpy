@@ -42,7 +42,7 @@ export default class Demos extends wepy.page {
             {
                 title: '带热区的自定义图片组件',
                 content: '带热区的图片组件，热区自带css动画效果，点击热区可进行跳转其他页面~~',
-                navUrl: ''
+                navUrl: '/pages/hotAreaImage'
             },
             {
                 title: '懒加载图片组件',
