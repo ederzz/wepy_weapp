@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "ec-canvas": "../../charts/ec-canvas/ec-canvas"
+    }
+}
+  

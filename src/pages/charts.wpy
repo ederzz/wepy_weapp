@@ -1,20 +1,23 @@
 <template>
   <view>
-    <view class="visitor__wrapper">
-      <view class="title">visitors</view>
-      <view class="tabs__wrapper">
-        <view class="tabs">
-          <repeat for="{{ tabs }}" key="index" index="index" item="item">
-            <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
-          </repeat>
-        </view>
-        <view class="content">
-          <line_chart wx:if="{{ tabIndex === 0 ? true : false }}"></line_chart>
-          <pie_chart wx:if="{{ tabIndex === 1 ? true : false }}"></pie_chart>
-          <scatter_chart wx:if="{{ tabIndex === 2 ? true : false }}"></scatter_chart>
-        </view>
+      <view class="visitor__wrapper">
+          <view class="title">visitors</view>
+          <view class="tabs__wrapper">
+              <view class="tabs">
+                  <repeat for="{{ tabs }}" key="index" index="index" item="item">
+                      <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
+                  </repeat>
+              </view>
+              <view class="content">
+                  <line_chart wx:if="{{ tabIndex === 0 ? true : false }}"></line_chart>
+                  <pie_chart wx:if="{{ tabIndex === 1 ? true : false }}"></pie_chart>
+                  <scatter_chart wx:if="{{ tabIndex === 2 ? true : false }}"></scatter_chart>
+              </view>
+          </view>
       </view>
-    </view>
+      <view style="width: 750rpx;height: 750rpx;">
+          <map_chart />
+      </view>
   </view>
 </template>
 
@@ -25,71 +28,72 @@ import PieChart from '@/components/charts/pieChart'
 import ScatterChart from '@/components/charts/scatterChart'
 
 export default class Charts extends wepy.page {
-  config = {
-    navigationBarTitleText: 'Charts',
-    usingComponents: {
-      ec_canvas: '../components/charts/ec-canvas/ec-canvas'
-    }
-  }
-
-  components = {
-    line_chart: LineChart,
-    pie_chart: PieChart,
-    scatter_chart: ScatterChart
-  }
-
-  data = {
-    tabs: [
-      'By time',
-      'By country',
-      'By source'
-    ],
-    tabIndex: 0
-  }
-
-  methods = {
-    switchTab(index) {
-      this.tabIndex = index
-    }
-  }
-}
-</script>
-
-<style lang='less'>
-  .visitor__wrapper {
-    background: #fff;
-
-    .title {
-      font-size: 60rpx;
-      padding: 0 60rpx;
-      box-sizing: border-box;
+    config = {
+        navigationBarTitleText: 'Charts',
+        usingComponents: {
+            ec_canvas: '../components/charts/ec-canvas/ec-canvas',
+            map_chart: '../components/nativeComponents/mapChart/index'
+        }
     }
 
-    .tabs__wrapper {
-      margin-top: 20rpx;
+    components = {
+        line_chart: LineChart,
+        pie_chart: PieChart,
+        scatter_chart: ScatterChart
+    }
 
-      .tabs {
-        display: flex;
-        font-size: 32rpx;
+    data = {
+        tabs: [
+            'By time',
+            'By country',
+            'By source'
+        ],
+        tabIndex: 0
+    }
+
+    methods = {
+        switchTab(index) {
+            this.tabIndex = index
+        }
+    }
+  }
+  </script>
+
+  <style lang='less'>
+    .visitor__wrapper {
+      background: #fff;
+
+      .title {
+        font-size: 60rpx;
         padding: 0 60rpx;
         box-sizing: border-box;
-        justify-content: space-between;
+      }
 
-        .tab__item {
-          &.active {
-            color: #6668ee;
-          }
+      .tabs__wrapper {
+        margin-top: 20rpx;
 
-          &.active::after {
-            content: '';
-            display: block;
-            height: 4rpx;
-            background: #6668ee;
-            width: 70rpx;
-            margin-top: 20rpx;
+        .tabs {
+          display: flex;
+          font-size: 32rpx;
+          padding: 0 60rpx;
+          box-sizing: border-box;
+          justify-content: space-between;
+
+          .tab__item {
+            &.active {
+              color: #6668ee;
+            }
+
+            &.active::after {
+              content: '';
+              display: block;
+              height: 4rpx;
+              background: #6668ee;
+              width: 70rpx;
+              margin-top: 20rpx;
+            }
           }
         }
       }
-    }
-  }
+}
 </style>
