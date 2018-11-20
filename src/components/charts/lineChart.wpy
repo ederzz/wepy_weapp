@@ -1,7 +1,7 @@
 <template>
-  <view class="line__chart">
-    <ec_canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" bind:init="echartInit"></ec_canvas>
-  </view>
+    <view class="line__chart">
+        <ec_canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" bind:init="echartInit"></ec_canvas>
+    </view>
 </template>
 
 <script>
@@ -9,72 +9,72 @@ import wepy from 'wepy'
 import echarts from './ec-canvas/echarts.js'
 
 export default class LineChart extends wepy.component {
-  data = {
-    ec: {}
-  }
-
-  methods = {
-    echartInit (e) {
-      this.initChart(e.detail.canvas, e.detail.width, e.detail.height)
-    }
-  }
-
-  initChart(canvas, width, height) {
-    const chart = echarts.init(canvas, null, {
-      width: width,
-      height: height
-    })
-    canvas.setChart(chart)
-
-    const option = {
-      xAxis: {
-        type: 'category',
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
-        axisTick: {
-          show: false
-        },
-        axisLabel: {
-          color: '#bbb',
-          fontWeight: 800
-        },
-        axisLine: {
-          lineStyle: {
-            color: '#bbb'
-          }
-        }
-      },
-      yAxis: {
-        type: 'value',
-        interval: 100,
-        max: 400,
-        show: true,
-        splitLine: {
-          show: true
-        },
-        axisLine: {
-          show: false
-        },
-        axisTick: {
-          show: false
-        },
-        axisLabel: {
-          show: false
-        }
-      },
-      series: [{
-        data: [250, 320, 110, 180, 190, 150, 165],
-        type: 'line',
-        lineStyle: {
-          color: '#000',
-          width: 3
-        },
-        showSymbol: false
-      }]
+    data = {
+        ec: {}
     }
 
-    chart.setOption(option)
-    return chart
-  }
+    methods = {
+        echartInit (e) {
+            this.initChart(e.detail.canvas, e.detail.width, e.detail.height)
+        }
+    }
+
+    initChart(canvas, width, height) {
+        const chart = echarts.init(canvas, null, {
+            width: width,
+            height: height
+        })
+        canvas.setChart(chart)
+
+        const option = {
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    color: '#bbb',
+                    fontWeight: 800
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#bbb'
+                    }
+                }
+            },
+            yAxis: {
+                type: 'value',
+                interval: 100,
+                max: 400,
+                show: true,
+                splitLine: {
+                    show: true
+                },
+                axisLine: {
+                    show: false
+                },
+                axisTick: {
+                    show: false
+                },
+                axisLabel: {
+                    show: false
+                }
+            },
+            series: [{
+                data: [250, 320, 110, 180, 190, 150, 165],
+                type: 'line',
+                lineStyle: {
+                    color: '#000',
+                    width: 3
+                },
+                showSymbol: false
+            }]
+        }
+
+        chart.setOption(option)
+        return chart
+    }
 }
 </script>
 
