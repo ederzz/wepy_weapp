@@ -32,7 +32,7 @@ export default class Charts extends wepy.page {
         navigationBarTitleText: 'Charts',
         usingComponents: {
             ec_canvas: '../components/charts/ec-canvas/ec-canvas',
-            map_chart: '../components/nativeComponents/mapChart/index'
+            map_chart: '../components/nativeComponents/HeNanMapChart/index'
         }
     }
 
