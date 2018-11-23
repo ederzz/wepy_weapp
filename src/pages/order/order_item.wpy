@@ -17,13 +17,13 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
+    import wepy from 'wepy'
 
-  export default class OrderItem extends wepy.component {
-    props = {
-      orderList: Array
+    export default class OrderItem extends wepy.component {
+        props = {
+            orderList: Array
+        }
     }
-  }
 </script>
 
 <style lang='less'>

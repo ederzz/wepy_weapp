@@ -7,17 +7,17 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
+    import wepy from 'wepy'
 
-  export default class Toast extends wepy.component {
-    props = {
-      text: String,
-      isShow: Boolean
-      /**
-       * TODO: 添加icon选项
-       */
+    export default class Toast extends wepy.component {
+        props = {
+            text: String,
+            isShow: Boolean
+            /**
+            * TODO: 添加icon选项
+            */
+        }
     }
-  }
 </script>
 
 <style lang='less'>

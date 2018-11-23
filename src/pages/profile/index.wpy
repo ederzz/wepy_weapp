@@ -32,73 +32,64 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
-  import User from './user'
-  import UserBar from './userBar'
+    import wepy from 'wepy'
+    import User from './user'
+    import UserBar from './userBar'
 
-  export default class Profile extends wepy.page {
-    config = {
-      navigationBarTitleText: '个人中心'
-    }
-
-    components = {
-      user: User,
-      userBar: UserBar
-    }
-
-    data = {
-      a1: '223423',
-      a2: '34343',
-      barInfo: [
-        {
-          iconPath: '../../images/order.png',
-          message: '我的订单',
-          navPath: '/pages/order/index'
-        },
-        {
-          iconPath: '../../images/quan.png',
-          message: '我的优惠券',
-          navPath: '/pages/coupon/index'
-        },
-        {
-          iconPath: '../../images/vip.png',
-          message: '领取超级会员',
-          navPath: '/pages/vip/index'
-        },
-        {
-          iconPath: '../../images/join.png',
-          message: '加入我们',
-          navPath: '/pages/form/index'
-        },
-        {
-          iconPath: '../../images/advice.png',
-          message: '意见反馈',
-          navPath: '/pages/advice/index'
+    export default class Profile extends wepy.page {
+        config = {
+            navigationBarTitleText: '个人中心'
         }
-      ]
+
+        components = {
+            user: User,
+            userBar: UserBar
+        }
+
+        data = {
+            a1: '223423',
+            a2: '34343',
+            barInfo: [
+                {
+                    iconPath: '../../images/order.png',
+                    message: '我的订单',
+                    navPath: '/pages/order/index'
+                },
+                {
+                    iconPath: '../../images/quan.png',
+                    message: '我的优惠券',
+                    navPath: ''
+                },
+                {
+                    iconPath: '../../images/vip.png',
+                    message: '领取超级会员',
+                    navPath: ''
+                },
+                {
+                    iconPath: '../../images/join.png',
+                    message: '加入我们',
+                    navPath: '/pages/form/index'
+                },
+                {
+                    iconPath: '../../images/advice.png',
+                    message: '意见反馈',
+                    navPath: ''
+                }
+            ]
+        }
+
+        onLoad() {
+            wepy.showLoading({
+                mask: true
+            })
+
+            /**
+             * TODO: fetch data
+             */
+
+            setTimeout(() => {
+                wepy.hideLoading()
+            }, 1000 * Math.random())
+        }
     }
-
-    computed = {
-    }
-
-    methods = {
-    }
-
-    events = {
-    }
-
-    onLoad() {
-      wepy.showLoading({
-        mask: true
-      })
-
-      /**
-       * TODO: fetch data
-       */
-
-      setTimeout(() => {
-        wepy.hideLoading()
-      }, 1000 * Math.random())
-    }
-  }
 </script>

@@ -40,14 +40,7 @@ export default class extends wepy.app {
             'pages/loadingCollections',
             'pages/musicList',
             'pages/charts',
-            'pages/dataCollect',
             'pages/form/index',
-            'pages/goods/index',
-            'pages/scan/index',
-            'pages/vip/index',
-            'pages/coupon/index',
-            'pages/advice/index',
-            'pages/shop/index',
             'pages/order/index'
         ],
         window: {

@@ -11,172 +11,172 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
-  import OrderItem from './order_item'
-  import Tabs from '@/components/tabs'
-  import Loading from '@/components/loading'
-  import PlaceHolder from '@/components/place_holder'
-  import Toast from '@/components/toast'
-  import { request } from '@/common/utils.js'
-  import { errorCode } from '@/common/constants.js'
+    import wepy from 'wepy'
+    import OrderItem from './order_item'
+    import Tabs from '@/components/tabs'
+    import Loading from '@/components/loading'
+    import PlaceHolder from '@/components/place_holder'
+    import Toast from '@/components/toast'
+    import { request } from '@/common/utils.js'
+    import { errorCode } from '@/common/constants.js'
 
-  export default class Order extends wepy.page {
-    config = {
-      navigationBarTitleText: '我的订单',
-      enablePullDownRefresh: true
-    }
-
-    components = {
-      order_item: OrderItem,
-      tabs: Tabs,
-      loading: Loading,
-      place_holder: PlaceHolder,
-      toast: Toast
-    }
-
-    data = {
-      systemInfo: {},
-      currentTab: 0,
-      allOrders: [], // 所有订单数据源，渲染数据由此过滤产生
-      orderList: [],
-      tabList: [
-        '全部订单',
-        '已完成',
-        '待支付',
-        '已取消'
-      ],
-      loadShow: false, // 默认不显示loading
-      message: '加载中',
-      placeHolderShow: false,
-      placeHolderMessage: '客官，再往下拉也没有数据啦！',
-      toastText: '服务器开小差了',
-      toastShow: false
-    }
-
-    methods = {
-      switchTab(index) {
-        this.currentTab = index
-      },
-      async scrollToLower() {
-        await this.moreOrders()
-      }
-    }
-
-    events = {
-      'switch-tab': index => {
-        this.refreshOrderList(index)
-        this.currentTab = index
-        this.$apply()
-      }
-    }
-
-    watch = {
-      allOrders() {
-        this.refreshOrderList(this.currentTab, true)
-      }
-    }
-
-    refreshOrderList(index, updater = false) {
-      if (!updater && (this.currentTab === index)) {
-        return false
-      }
-
-      if (index === 0) {
-        this.orderList = this.allOrders
-        return
-      }
-      this.orderList = this.allOrders.filter(current => current.order_status === this.tabList[index])
-    }
-
-    async moreOrders() {
-      try {
-        if (this.placeHolderShow) {
-          return null
+    export default class Order extends wepy.page {
+        config = {
+            navigationBarTitleText: '我的订单',
+            enablePullDownRefresh: true
         }
 
-        this.loadShow = true
-        const result = await request({
-          url: '/order_list',
-          options: {
-            method: 'get'
-          }
-        })
-
-        const {
-          data: {
-            order_list: orderList,
-            noMoreData = false
-          },
-          statusCode
-        } = result
-
-        if (errorCode.includes(statusCode)) {
-          this.loadShow = false
-          this.$apply()
-          return
+        components = {
+            order_item: OrderItem,
+            tabs: Tabs,
+            loading: Loading,
+            place_holder: PlaceHolder,
+            toast: Toast
         }
 
-        this.allOrders = this.allOrders.concat(orderList.map(current => Object.assign({}, current, {
-          order_price: current.order_price.toFixed(2)
-        })))
-
-        this.loadShow = false
-        /**
-        * 如果没有更多数据了显示place_holder组件，接口待优化
-        */
-        if (noMoreData) {
-          this.placeHolderShow = true
+        data = {
+            systemInfo: {},
+            currentTab: 0,
+            allOrders: [], // 所有订单数据源，渲染数据由此过滤产生
+            orderList: [],
+            tabList: [
+                '全部订单',
+                '已完成',
+                '待支付',
+                '已取消'
+            ],
+            loadShow: false, // 默认不显示loading
+            message: '加载中',
+            placeHolderShow: false,
+            placeHolderMessage: '客官，再往下拉也没有数据啦！',
+            toastText: '服务器开小差了',
+            toastShow: false
         }
-        this.$apply()
-      } catch (error) {
-        this.toastShow = true
-        this.loadShow = false
-        this.$apply()
-        setTimeout(() => {
-          this.toastShow = false
-          this.$apply()
-        }, 1000)
-        console.log(error)
-      }
-    }
 
-    async onLoad() {
-      const systemInfo = wepy.getStorageSync('systemInfo')
-      console.log(systemInfo)
-      this.systemInfo = systemInfo
-      await this.moreOrders()
-    }
-
-    async onPullDownRefresh() {
-      const {
-        data: {
-          order_list: orderList
-        },
-        statusCode
-      } = await request({
-        url: '/order_list',
-        options: {
-          method: 'get'
+        methods = {
+            switchTab(index) {
+                this.currentTab = index
+            },
+            async scrollToLower() {
+                await this.moreOrders()
+            }
         }
-      })
 
-      wepy.stopPullDownRefresh()
+        events = {
+            'switch-tab': index => {
+                this.refreshOrderList(index)
+                this.currentTab = index
+                this.$apply()
+            }
+        }
 
-      if (errorCode.includes(statusCode)) {
-        return
-      }
+        watch = {
+            allOrders() {
+                this.refreshOrderList(this.currentTab, true)
+            }
+        }
 
-      this.allOrders = orderList.map(current => Object.assign(
-        {},
-        current,
-        {
-          order_price: current.order_price.toFixed(2)
-        }))
+        refreshOrderList(index, updater = false) {
+            if (!updater && (this.currentTab === index)) {
+                return false
+            }
 
-      this.placeHolderShow = false
-      this.$apply()
+            if (index === 0) {
+                this.orderList = this.allOrders
+                return
+            }
+            this.orderList = this.allOrders.filter(current => current.order_status === this.tabList[index])
+        }
+
+        async moreOrders() {
+            try {
+                if (this.placeHolderShow) {
+                    return null
+                }
+
+                this.loadShow = true
+                const result = await request({
+                    url: '/order_list',
+                    options: {
+                        method: 'get'
+                    }
+                })
+
+                const {
+                    data: {
+                        order_list: orderList,
+                        noMoreData = false
+                    },
+                    statusCode
+                } = result
+
+                if (errorCode.includes(statusCode)) {
+                    this.loadShow = false
+                    this.$apply()
+                    return
+                }
+
+                this.allOrders = this.allOrders.concat(orderList.map(current => Object.assign({}, current, {
+                    order_price: current.order_price.toFixed(2)
+                })))
+
+                this.loadShow = false
+                /**
+                * 如果没有更多数据了显示place_holder组件，接口待优化
+                */
+                if (noMoreData) {
+                    this.placeHolderShow = true
+                }
+                this.$apply()
+            } catch (error) {
+                this.toastShow = true
+                this.loadShow = false
+                this.$apply()
+                setTimeout(() => {
+                    this.toastShow = false
+                    this.$apply()
+                }, 1000)
+                console.log(error)
+            }
+        }
+
+        async onLoad() {
+            const systemInfo = wepy.getStorageSync('systemInfo')
+            console.log(systemInfo)
+            this.systemInfo = systemInfo
+            await this.moreOrders()
+        }
+
+        async onPullDownRefresh() {
+            const {
+                data: {
+                    order_list: orderList
+                },
+                statusCode
+            } = await request({
+                url: '/order_list',
+                options: {
+                    method: 'get'
+                }
+            })
+
+            wepy.stopPullDownRefresh()
+
+            if (errorCode.includes(statusCode)) {
+                return
+            }
+
+            this.allOrders = orderList.map(current => Object.assign(
+                {},
+                current,
+                {
+                    order_price: current.order_price.toFixed(2)
+                }))
+
+            this.placeHolderShow = false
+            this.$apply()
+        }
     }
-  }
 </script>
 
 <style lang='less'>

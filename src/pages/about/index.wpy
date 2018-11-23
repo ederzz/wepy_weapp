@@ -52,123 +52,123 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
-  import MusicBar from '@/components/musicBar'
+    import wepy from 'wepy'
+    import MusicBar from '@/components/musicBar'
 
-  export default class About extends wepy.page {
-    config = {
-      navigationBarTitleText: '关于神以灵'
-    }
-
-    components = {
-      music_bar: MusicBar
-    }
-
-    data = {
-      location: {
-        latitude: 31.4436000000,
-        longitude: 104.7368930000
-      },
-      mapScale: 16,
-      bgMusic: {
-        src: 'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
-        playTime: 321
-      },
-      content: '这里是神以灵使用wepy制作的微信小程序，作为小程序开发的经验积累，项目内容不限，添加一些感兴趣的小demo~~',
-      markers: [{
-        iconPath: '../../images/school.png',
-        id: 0,
-        longitude: 104.7368930000,
-        latitude: 31.4436000000,
-        width: 16,
-        height: 16,
-        title: '绵阳市实验高中',
-        callout: {
-          content: '绵阳市实验高中',
-          color: '#0000ff', // 一定得是6位的16进制数值
-          bgColor: '#ffff00'
+    export default class About extends wepy.page {
+        config = {
+            navigationBarTitleText: '关于神以灵'
         }
-      }, {
-        iconPath: '../../images/house.png',
-        id: 1,
-        longitude: 104.6883700000,
-        latitude: 31.4652000000,
-        width: 16,
-        height: 16,
-        title: '神以灵的家',
-        callout: {
-          content: '神以灵的家',
-          color: '#0000ff',
-          bgColor: '#ffff00'
+
+        components = {
+            music_bar: MusicBar
         }
-      }],
-      polyline: [{
-        points: [{
-          longitude: 104.7368930000,
-          latitude: 31.4436000000
-        }, {
-          longitude: 104.6883700000,
-          latitude: 31.4652000000
-        }],
-        color: '#00f',
-        width: 2,
-        dottedLine: false,
-        arrowLine: true
-      }]
-    }
 
-    methods = {
-      share() {
-        wepy.showShareMenu()
-      },
-      move2home() {
-        this.location = {
-          longitude: 104.6883700000,
-          latitude: 31.4652000000
+        data = {
+            location: {
+                latitude: 31.4436000000,
+                longitude: 104.7368930000
+            },
+            mapScale: 16,
+            bgMusic: {
+                src: 'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
+                playTime: 321
+            },
+            content: '这里是神以灵使用wepy制作的微信小程序，作为小程序开发的经验积累，项目内容不限，添加一些感兴趣的小demo~~',
+            markers: [{
+                iconPath: '../../images/school.png',
+                id: 0,
+                longitude: 104.7368930000,
+                latitude: 31.4436000000,
+                width: 16,
+                height: 16,
+                title: '绵阳市实验高中',
+                callout: {
+                    content: '绵阳市实验高中',
+                    color: '#0000ff', // 一定得是6位的16进制数值
+                    bgColor: '#ffff00'
+                }
+            }, {
+                iconPath: '../../images/house.png',
+                id: 1,
+                longitude: 104.6883700000,
+                latitude: 31.4652000000,
+                width: 16,
+                height: 16,
+                title: '神以灵的家',
+                callout: {
+                    content: '神以灵的家',
+                    color: '#0000ff',
+                    bgColor: '#ffff00'
+                }
+            }],
+            polyline: [{
+                points: [{
+                    longitude: 104.7368930000,
+                    latitude: 31.4436000000
+                }, {
+                    longitude: 104.6883700000,
+                    latitude: 31.4652000000
+                }],
+                color: '#00f',
+                width: 2,
+                dottedLine: false,
+                arrowLine: true
+            }]
         }
-        this.mapScale = 18
-        this.mapContext.moveToLocation() // 回到当前定位点，待处理
-      },
-      gotoProfile() {
-        wepy.navigateTo({
-          url: '/pages/profile/index',
-          success: function() {
-            console.log('安全抵达profile页~~')
-          }
-        })
-      }
-    }
 
-    onLoad(options) {
-      this.mapContext = wepy.createMapContext('map', this)
-    }
+        methods = {
+            share() {
+                wepy.showShareMenu()
+            },
+            move2home() {
+                this.location = {
+                    longitude: 104.6883700000,
+                    latitude: 31.4652000000
+                }
+                this.mapScale = 18
+                this.mapContext.moveToLocation() // 回到当前定位点，待处理
+            },
+            gotoProfile() {
+                wepy.navigateTo({
+                    url: '/pages/profile/index',
+                    success: function() {
+                        console.log('安全抵达profile页~~')
+                    }
+                })
+            }
+        }
 
-    onHide() {
-      this.$broadcast('hideMusic')
-    }
+        onLoad(options) {
+            this.mapContext = wepy.createMapContext('map', this)
+        }
 
-    onShow() {
-      this.$broadcast('showMusic')
-    }
+        onHide() {
+            this.$broadcast('hideMusic')
+        }
 
-    onShareAppMessage() {
-      return {
-        title: '欢迎查看神以灵的小程序~~'
-      }
-    }
+        onShow() {
+            this.$broadcast('showMusic')
+        }
 
-    regionchange(e) {
-      console.log(e.type)
-    }
+        onShareAppMessage() {
+            return {
+                title: '欢迎查看神以灵的小程序~~'
+            }
+        }
 
-    markertap(e) {
-      console.log(e.markerId)
-    }
+        regionchange(e) {
+            console.log(e.type)
+        }
 
-    controltap(e) {
-      console.log(e.controlId)
+        markertap(e) {
+            console.log(e.markerId)
+        }
+
+        controltap(e) {
+            console.log(e.controlId)
+        }
     }
-  }
 </script>
 
 <style lang='less'>

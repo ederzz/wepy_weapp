@@ -11,13 +11,13 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
+    import wepy from 'wepy'
 
-  export default class User extends wepy.component {
-    data = {
-      account: 582027692
+    export default class User extends wepy.component {
+        data = {
+            account: 582027692
+        }
     }
-  }
 </script>
 
 <style lang='less'>

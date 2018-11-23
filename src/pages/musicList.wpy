@@ -28,99 +28,99 @@
 </template>
 
 <script>
-import wepy from 'wepy'
+    import wepy from 'wepy'
 
-export default class Demo extends wepy.page {
-  config = {
-    navigationBarTitleText: 'DEMO',
-    navigationBarBackgroundColor: '#161616',
-    navigationBarTextStyle: 'white'
-  }
-
-  computed = {
-    songs() {
-      return this.songs.map((current, i) => {
-        switch (i) {
-          case 0:
-            current.imgSrc = '../images/champion.png'
-            break
-          case 1:
-            current.imgSrc = '../images/runner_up.png'
-            break
-          case 2:
-            current.imgSrc = '../images/third_winner.png'
-            break
-          default:
-            current.imgSrc = ''
+    export default class Demo extends wepy.page {
+        config = {
+            navigationBarTitleText: 'DEMO',
+            navigationBarBackgroundColor: '#161616',
+            navigationBarTextStyle: 'white'
         }
-        return current
-      })
-    }
-  }
 
-  data = {
-    tabItems: [
-      '最新',
-      '摇滚',
-      '民谣',
-      '流行',
-      '电子',
-      '说唱'
-    ],
-    currentTab: 0,
-    songs: [
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      },
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      },
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      },
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      },
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      },
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      },
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      },
-      {
-        name: '幻视你/Vision of You',
-        author: '地磁卡',
-        listen_count: 992
-      }
-    ]
-  }
+        computed = {
+            songs() {
+                return this.songs.map((current, i) => {
+                    switch (i) {
+                    case 0:
+                        current.imgSrc = '../images/champion.png'
+                        break
+                    case 1:
+                        current.imgSrc = '../images/runner_up.png'
+                        break
+                    case 2:
+                        current.imgSrc = '../images/third_winner.png'
+                        break
+                    default:
+                        current.imgSrc = ''
+                    }
+                    return current
+                })
+            }
+        }
 
-  methods = {
-    swiperChange({ detail: { current } }) {
-      this.currentTab = current
-    },
-    switchTab(index) {
-      this.currentTab = index
+        data = {
+            tabItems: [
+                '最新',
+                '摇滚',
+                '民谣',
+                '流行',
+                '电子',
+                '说唱'
+            ],
+            currentTab: 0,
+            songs: [
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                },
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                },
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                },
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                },
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                },
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                },
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                },
+                {
+                    name: '幻视你/Vision of You',
+                    author: '地磁卡',
+                    listen_count: 992
+                }
+            ]
+        }
+
+        methods = {
+            swiperChange({ detail: { current } }) {
+                this.currentTab = current
+            },
+            switchTab(index) {
+                this.currentTab = index
+            }
+        }
     }
-  }
-}
 </script>
 
 <style lang='less'>

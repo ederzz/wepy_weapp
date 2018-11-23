@@ -9,61 +9,61 @@ import wepy from 'wepy'
 import echarts from './ec-canvas/echarts.js'
 
 export default class PieChart extends wepy.component {
-  data = {
-    ec: {
-    }
-  }
-
-  methods = {
-    echartInit (e) {
-      this.initChart(e.detail.canvas, e.detail.width, e.detail.height)
-    }
-  }
-
-  initChart(canvas, width, height) {
-    const chart = echarts.init(canvas, null, {
-      width: width,
-      height: height
-    })
-    canvas.setChart(chart)
-
-    const option = {
-      series: [
-        {
-          name:'访问来源',
-          type:'pie',
-          radius: ['60%', '70%'],
-          avoidLabelOverlap: false,
-          label: {
-            normal: {
-              show: false,
-              position: 'center'
-            },
-            emphasis: {
-              show: true,
-              textStyle: {
-                fontSize: '30',
-                fontWeight: 'bold'
-              }
-            }
-          },
-          labelLine: {
-            normal: {
-              show: false
-            }
-          },
-          data:[
-            {value: 100, name:'Japan', itemStyle: { color: '#e4e7ec' }},
-            {value: 270, name:'China', itemStyle: { color: '#a2aab9' }},
-            {value: 210, name:'America', itemStyle: { color: '#20222b' }},
-            {value: 120, name:'England', itemStyle: { color: '#4582fa' }}
-          ]
+    data = {
+        ec: {
         }
-      ]
     }
-    chart.setOption(option)
-    return chart
-  }
+
+    methods = {
+        echartInit (e) {
+            this.initChart(e.detail.canvas, e.detail.width, e.detail.height)
+        }
+    }
+
+    initChart(canvas, width, height) {
+        const chart = echarts.init(canvas, null, {
+            width: width,
+            height: height
+        })
+        canvas.setChart(chart)
+
+        const option = {
+            series: [
+                {
+                    name: '访问来源',
+                    type: 'pie',
+                    radius: ['60%', '70%'],
+                    avoidLabelOverlap: false,
+                    label: {
+                        normal: {
+                            show: false,
+                            position: 'center'
+                        },
+                        emphasis: {
+                            show: true,
+                            textStyle: {
+                                fontSize: '30',
+                                fontWeight: 'bold'
+                            }
+                        }
+                    },
+                    labelLine: {
+                        normal: {
+                            show: false
+                        }
+                    },
+                    data: [
+                        {value: 100, name: 'Japan', itemStyle: { color: '#e4e7ec' }},
+                        {value: 270, name: 'China', itemStyle: { color: '#a2aab9' }},
+                        {value: 210, name: 'America', itemStyle: { color: '#20222b' }},
+                        {value: 120, name: 'England', itemStyle: { color: '#4582fa' }}
+                    ]
+                }
+            ]
+        }
+        chart.setOption(option)
+        return chart
+    }
 }
 </script>
 

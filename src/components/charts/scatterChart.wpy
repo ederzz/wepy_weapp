@@ -9,77 +9,77 @@ import wepy from 'wepy'
 import * as echarts from './ec-canvas/echarts.js'
 
 export default class scatterChart extends wepy.component {
-  data = {
-    ec: {
-    }
-  }
-
-  methods = {
-    onInit(e) {
-      this.initChart(e.detail.canvas, e.detail.width, e.detail.height)
-    }
-  }
-
-  initChart = (canvas, width, height) => {
-    const chart = echarts.init(canvas, null, {
-      width,
-      height
-    })
-
-    canvas.setChart(chart)
-
-    const option = {
-      xAxis: {
-        show: false,
-        boundaryGap: [0, '10%']
-      },
-      yAxis: {
-        show: false
-      },
-      series: [{
-        data: [
-          {
-            value: [150, 120, 100, 'other'],
-            itemStyle: {
-              color: '#e4e7ec'
-            }
-          },
-          {
-            value: [60, 170, 300, 'Direct'],
-            itemStyle: {
-              color: '#a2aab9'
-            }
-          },
-          {
-            value: [90, 320, 200, 'Search'],
-            itemStyle: {
-              color: '#20222b'
-            }
-          },
-          {
-            value: [235, 250, 200, 'Social'],
-            itemStyle: {
-              color: '#4582fa'
-            }
-          }
-        ],
-        type: 'scatter',
-        symbolSize: function (data) {
-          return data[2] / 2
-        },
-        label: {
-          show: true,
-          formatter: function (param) {
-            return param.data.value[3]
-          },
-          position: 'inside'
+    data = {
+        ec: {
         }
-      }]
     }
 
-    chart.setOption(option)
-    return chart
-  }
+    methods = {
+        onInit(e) {
+            this.initChart(e.detail.canvas, e.detail.width, e.detail.height)
+        }
+    }
+
+    initChart = (canvas, width, height) => {
+        const chart = echarts.init(canvas, null, {
+            width,
+            height
+        })
+
+        canvas.setChart(chart)
+
+        const option = {
+            xAxis: {
+                show: false,
+                boundaryGap: [0, '10%']
+            },
+            yAxis: {
+                show: false
+            },
+            series: [{
+                data: [
+                    {
+                        value: [150, 120, 100, 'other'],
+                        itemStyle: {
+                            color: '#e4e7ec'
+                        }
+                    },
+                    {
+                        value: [60, 170, 300, 'Direct'],
+                        itemStyle: {
+                            color: '#a2aab9'
+                        }
+                    },
+                    {
+                        value: [90, 320, 200, 'Search'],
+                        itemStyle: {
+                            color: '#20222b'
+                        }
+                    },
+                    {
+                        value: [235, 250, 200, 'Social'],
+                        itemStyle: {
+                            color: '#4582fa'
+                        }
+                    }
+                ],
+                type: 'scatter',
+                symbolSize: function (data) {
+                    return data[2] / 2
+                },
+                label: {
+                    show: true,
+                    formatter: function (param) {
+                        return param.data.value[3]
+                    },
+                    position: 'inside'
+                }
+            }]
+        }
+
+        chart.setOption(option)
+        return chart
+    }
 }
 </script>
 

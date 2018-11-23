@@ -20,103 +20,103 @@
 import wepy from 'wepy'
 
 export default class MusicBar extends wepy.component {
-  props = {
-    musicInfo: Object
-  }
-
-  data = {
-    innerAudioContext: {},
-    ifPlay: true,
-    dataSource: [
-      'http://m10.music.126.net/20180728125354/557918309f069148a8b3b8e6ca6f997c/ymusic/3640/fc17/637a/8ba13a3a1a81915d7255d5dd7c51cd1c.mp3',
-      'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
-      'http://m10.music.126.net/20180728112635/1024c838a44f1eb1eb44c8a5f7751ef1/ymusic/8007/9813/dcaa/67a760614ffeeaf2cc61896995c6133a.mp3'
-    ],
-    dataIndex: 0,
-    currentTime: 0
-  }
-
-  computed = {
-    formatCurrentTime() {
-      const time = parseInt(this.currentTime)
-      const minutes = time / 60 >= 10 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`
-      const seconds = time % 60 >= 10 ? time % 60 : `0${time % 60}`
-      return `${minutes} : ${seconds}`
+    props = {
+        musicInfo: Object
     }
-  }
 
-  onLoad() {
-    this.innerAudioContext = wepy.createInnerAudioContext()
-    this.innerAudioContext.autoplay = true
-    this.innerAudioContext.volume = 0.7
-    this.innerAudioContext.src = this.dataSource[0]
-    this.innerAudioContext.onEnded(() => {
-      this._end()
-    })
-    this.innerAudioContext.onPlay(() => {
-      console.log('开始播放')
-    })
-    this.innerAudioContext.onError((res) => {
-      console.log(res.errMsg)
-      console.log(res.errCode)
-    })
-    this.innerAudioContext.onTimeUpdate(() => {
-      const { currentTime } = this.innerAudioContext
-      this.currentTime = currentTime
-      this.$apply()
-    })
-  }
-
-  methods = {
-    _toggle() {
-      this._play()
-    },
-    _next() {
-      this._end()
-      // this.ifPlay = true
-    },
-    _pre() {
-      let index
-      if (this.dataIndex === 0) {
-        index = 2
-      } else {
-        index = this.dataIndex - 1
-      }
-      this.innerAudioContext.src = this.dataSource[index]
-      this.dataIndex = index
-      // this.ifPlay = true
+    data = {
+        innerAudioContext: {},
+        ifPlay: true,
+        dataSource: [
+            'http://m10.music.126.net/20180728125354/557918309f069148a8b3b8e6ca6f997c/ymusic/3640/fc17/637a/8ba13a3a1a81915d7255d5dd7c51cd1c.mp3',
+            'http://m10.music.126.net/20180727103118/e111c83a99a9f120b634f66bc0f25d5f/ymusic/5d63/5150/0851/5f226aac018cafc2cb248f7d28fbd5b4.mp3',
+            'http://m10.music.126.net/20180728112635/1024c838a44f1eb1eb44c8a5f7751ef1/ymusic/8007/9813/dcaa/67a760614ffeeaf2cc61896995c6133a.mp3'
+        ],
+        dataIndex: 0,
+        currentTime: 0
     }
-  }
 
-  events = {
-    'hideMusic': () => {
-      this._play()
-    },
-    'showMusic': () => {
-      this._play()
+    computed = {
+        formatCurrentTime() {
+            const time = parseInt(this.currentTime)
+            const minutes = time / 60 >= 10 ? Math.floor(time / 60) : `0${Math.floor(time / 60)}`
+            const seconds = time % 60 >= 10 ? time % 60 : `0${time % 60}`
+            return `${minutes} : ${seconds}`
+        }
     }
-  }
 
-  _play() {
-    if (!this.innerAudioContext.paused) {
-      this.innerAudioContext.pause()
-      // this.ifPlay = false
-    } else {
-      this.innerAudioContext.play()
-      // this.ifPlay = true
+    onLoad() {
+        this.innerAudioContext = wepy.createInnerAudioContext()
+        this.innerAudioContext.autoplay = true
+        this.innerAudioContext.volume = 0.7
+        this.innerAudioContext.src = this.dataSource[0]
+        this.innerAudioContext.onEnded(() => {
+            this._end()
+        })
+        this.innerAudioContext.onPlay(() => {
+            console.log('开始播放')
+        })
+        this.innerAudioContext.onError((res) => {
+            console.log(res.errMsg)
+            console.log(res.errCode)
+        })
+        this.innerAudioContext.onTimeUpdate(() => {
+            const { currentTime } = this.innerAudioContext
+            this.currentTime = currentTime
+            this.$apply()
+        })
     }
-  }
 
-  _end() {
-    let index
-    if (this.dataIndex === 2) {
-      index = 0
-    } else {
-      index = this.dataIndex + 1
+    methods = {
+        _toggle() {
+            this._play()
+        },
+        _next() {
+            this._end()
+            // this.ifPlay = true
+        },
+        _pre() {
+            let index
+            if (this.dataIndex === 0) {
+                index = 2
+            } else {
+                index = this.dataIndex - 1
+            }
+            this.innerAudioContext.src = this.dataSource[index]
+            this.dataIndex = index
+            // this.ifPlay = true
+        }
     }
-    this.innerAudioContext.src = this.dataSource[index]
-    this.dataIndex = index
-  }
+
+    events = {
+        'hideMusic': () => {
+            this._play()
+        },
+        'showMusic': () => {
+            this._play()
+        }
+    }
+
+    _play() {
+        if (!this.innerAudioContext.paused) {
+            this.innerAudioContext.pause()
+            // this.ifPlay = false
+        } else {
+            this.innerAudioContext.play()
+            // this.ifPlay = true
+        }
+    }
+
+    _end() {
+        let index
+        if (this.dataIndex === 2) {
+            index = 0
+        } else {
+            index = this.dataIndex + 1
+        }
+        this.innerAudioContext.src = this.dataSource[index]
+        this.dataIndex = index
+    }
 }
 </script>
 

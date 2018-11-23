@@ -9,26 +9,26 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
+    import wepy from 'wepy'
 
-  export default class Tabs extends wepy.component {
-    props = {
-      tabList: {
-        type: Array,
-        default: []
-      },
-      currentTab: Number
-    }
-
-    methods = {
-      switchTab(index) {
-        if (this.currentTab === index) {
-          return false
+    export default class Tabs extends wepy.component {
+        props = {
+            tabList: {
+                type: Array,
+                default: []
+            },
+            currentTab: Number
         }
-        this.$emit('switch-tab', index)
-      }
+
+        methods = {
+            switchTab(index) {
+                if (this.currentTab === index) {
+                    return false
+                }
+                this.$emit('switch-tab', index)
+            }
+        }
     }
-  }
 </script>
 
 <style lang='less'>

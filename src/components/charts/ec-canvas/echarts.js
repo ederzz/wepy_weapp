@@ -5245,25 +5245,6 @@ BoundingRect.create = function (rect) {
 };
 
 /**
- * Group是一个容器，可以插入子节点，Group的变换也会被应用到子节点上
- * @module zrender/graphic/Group
- * @example
- *     var Group = require('zrender/container/Group');
- *     var Circle = require('zrender/graphic/shape/Circle');
- *     var g = new Group();
- *     g.position[0] = 100;
- *     g.position[1] = 100;
- *     g.add(new Circle({
- *         style: {
- *             x: 100,
- *             y: 100,
- *             r: 20,
- *         }
- *     }));
- *     zr.add(g);
- */
-
-/**
  * @alias module:zrender/graphic/Group
  * @constructor
  * @extends module:zrender/mixin/Transformable
@@ -28707,14 +28688,6 @@ function extendChartView(opts/*, superClass*/) {
  *
  * Be careful of using it in the browser.
  *
- * @param {Function} creator
- * @example
- *     var Canvas = require('canvas');
- *     var echarts = require('echarts');
- *     echarts.setCanvasCreator(function () {
- *         // Small size is enough.
- *         return new Canvas(32, 32);
- *     });
  */
 function setCanvasCreator(creator) {
     $override('createCanvas', creator);
@@ -44841,7 +44814,6 @@ var fixGeoCoord = function (mapType, region) {
 
 // Fix for 钓鱼岛
 
-// var Region = require('../Region');
 // var zrUtil = require('zrender/src/core/util');
 
 // var geoCoord = [126, 25];

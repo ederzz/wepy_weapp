@@ -5,14 +5,14 @@
 </template>
 
 <script>
-  import wepy from 'wepy'
+    import wepy from 'wepy'
 
-  export default class PlaceHolder extends wepy.component {
-    props = {
-      message: String,
-      show: Boolean
+    export default class PlaceHolder extends wepy.component {
+        props = {
+            message: String,
+            show: Boolean
+        }
     }
-  }
 </script>
 
 <style lang='less'>

@@ -35,39 +35,39 @@
 import wepy from 'wepy'
 
 export default class Form extends wepy.page {
-  config = {
-    navigationBarTitleText: '表单提交',
-    navigationBarBackgroundColor: '#376ee6',
-    navigationBarTextStyle: 'white'
-  }
-
-  data = {
-    inputFocus: null
-  }
-
-  methods = {
-    _submit(event) {
-      console.log(event)
-      // TODO: 处理表单提交
-    },
-    handleFocus(index) {
-      this.inputFocus = index
-    },
-    choose() {
-      wx.chooseAddress({
-        success: function (res) {
-          console.log(res.userName)
-          console.log(res.postalCode)
-          console.log(res.provinceName)
-          console.log(res.cityName)
-          console.log(res.countyName)
-          console.log(res.detailInfo)
-          console.log(res.nationalCode)
-          console.log(res.telNumber)
-        }
-      })
+    config = {
+        navigationBarTitleText: '表单提交',
+        navigationBarBackgroundColor: '#376ee6',
+        navigationBarTextStyle: 'white'
     }
-  }
+
+    data = {
+        inputFocus: null
+    }
+
+    methods = {
+        _submit(event) {
+            console.log(event)
+          // TODO: 处理表单提交
+        },
+        handleFocus(index) {
+            this.inputFocus = index
+        },
+        choose() {
+            wepy.chooseAddress({
+                success: function (res) {
+                    console.log(res.userName)
+                    console.log(res.postalCode)
+                    console.log(res.provinceName)
+                    console.log(res.cityName)
+                    console.log(res.countyName)
+                    console.log(res.detailInfo)
+                    console.log(res.nationalCode)
+                    console.log(res.telNumber)
+                }
+            })
+        }
+    }
 }
 </script>
 
