@@ -1,0 +1,77 @@
+<template>
+<view class="content_list">
+    <view class="list ">
+        <repeat for="{{ leftImgs }}" key="index" index="index" item="item">
+            <view class="item" style="width: 375rpx;height: {{ item.h }}rpx;background-color: {{ item.bgColor }};"></view>
+        </repeat>
+    </view>
+     <view class="list ">
+         <repeat for="{{ rightImgs }}" key="index" index="index" item="item">
+            <view class="item" style="width: 375rpx;height: {{ item.h }}rpx;background-color: {{ item.bgColor }};"></view>
+        </repeat>
+    </view>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy'
+/**
+ * 瀑布流详解：
+ * 1、使用绝对定位，计算每张图片的top/left，需要计算较低列的高度：
+ *  1.1 知道具有图片高度，相加比价处最低列
+ *  1.2 堆积添加到某一列，不算是瀑布流
+ * 2、固定每列盒子：不断往高度较低的盒子添加元素：
+ *  2.1、通过js计算多列总的高度，循环添加每个渲染目标都高度最低的列，微信没有dom，无法获取dom高度：
+ *      2.1.1 明确每个item的height，比如说图片的高度
+ *      2.1.2 通过微信api获取图片高度，image图片可以
+ */
+
+export default class WaterFall extends wepy.page {
+    config = {
+        navigationBarTitleText: 'water fall'
+    }
+
+    data = {
+        leftImgs: [],
+        rightImgs: [],
+    }
+
+    onLoad() {
+        const arr = new Array(100).fill(1)
+        arr.forEach(current => {
+            this[this.getImgsKey()].push({
+                h: this.getRandomH(),
+                bgColor: `hsl(${360 * Math.random()}, ${25 + 65 * Math.random()}%, ${65 + 25 * Math.random()}%)`
+            })
+        })
+    }
+
+    getRandomH() {
+        return Math.floor(Math.random() * 200 + 100)
+    }
+
+    getImgsKey() {
+        return this.getLeftHeight() > this.getRightH() ? 'rightImgs' : 'leftImgs'
+    }
+
+    getLeftHeight() {
+        return this.leftImgs.reduce((h, current) => {
+            h += current.h
+            return h
+        }, 0)
+    }
+
+    getRightH() {
+        return this.rightImgs.reduce((h, current) => {
+            h += current.h
+            return h
+        }, 0)
+    }
+}
+</script>
+
+<style lang='less'>
+    .content_list{position: relative;display: flex;}
+    .list{width: 375rpx;min-height: 200rpx;}
+    .img_item{width: 100%;}
+</style>

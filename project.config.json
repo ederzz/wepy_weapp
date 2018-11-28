@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"appid": "wx343c3971a687bd57",
-	"projectname": "kaola_weapp",
+	"projectname": "wepy_weapp",
 	"miniprogramRoot": "dist/",
 	"condition": {}
 }

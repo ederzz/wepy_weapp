@@ -27,21 +27,21 @@ export default class LazyLoad extends wepy.page {
             bottom: -200 // 可自定义
         },
         imgs: [
-            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
-            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
-            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
-            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
-            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151509_9415.jpg',
-            'http://www.tuouo.com/uploadfile/2018/0619/20180619113235983.jpg',
-            'http://www.hanhande.com/upload/160712/1283568_151503_6731.jpg'
+            'http://101.132.180.254:3002/imgs/1283568_151503_673.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151509_9415.jpg',
+            'http://101.132.180.254:3002/imgs/20180619113235983.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151503_673.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151509_9415.jpg',
+            'http://101.132.180.254:3002/imgs/20180619113235983.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151503_673.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151509_9415.jpg',
+            'http://101.132.180.254:3002/imgs/20180619113235983.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151503_673.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151509_9415.jpg',
+            'http://101.132.180.254:3002/imgs/20180619113235983.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151503_673.jpg',
+            'http://101.132.180.254:3002/imgs/1283568_151509_9415.jpg',
+            'http://101.132.180.254:3002/imgs/20180619113235983.jpg'
         ]
     }
 }
