@@ -1,24 +1,27 @@
 <template>
-  <view>
-      <view class="visitor__wrapper">
-          <view class="title">visitors</view>
-          <view class="tabs__wrapper">
-              <view class="tabs">
-                  <repeat for="{{ tabs }}" key="index" index="index" item="item">
-                      <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
-                  </repeat>
-              </view>
-              <view class="content">
-                  <line_chart wx:if="{{ tabIndex === 0 ? true : false }}"></line_chart>
-                  <pie_chart wx:if="{{ tabIndex === 1 ? true : false }}"></pie_chart>
-                  <scatter_chart wx:if="{{ tabIndex === 2 ? true : false }}"></scatter_chart>
-              </view>
-          </view>
-      </view>
-      <view style="width: 750rpx;height: 750rpx;">
-          <map_chart />
-      </view>
-  </view>
+    <view>
+        <view class="visitor__wrapper">
+            <view class="title">visitors</view>
+            <view class="tabs__wrapper">
+                <view class="tabs">
+                    <repeat for="{{ tabs }}" key="index" index="index" item="item">
+                        <view @tap="switchTab({{ index }})" class="tab__item {{ index === tabIndex ? 'active' : '' }}">{{ item }}</view>
+                    </repeat>
+                </view>
+                <view class="content">
+                    <line_chart wx:if="{{ tabIndex === 0 ? true : false }}"></line_chart>
+                    <pie_chart wx:if="{{ tabIndex === 1 ? true : false }}"></pie_chart>
+                    <scatter_chart wx:if="{{ tabIndex === 2 ? true : false }}"></scatter_chart>
+                </view>
+            </view>
+        </view>
+        <view style="width: 750rpx;height: 750rpx;">
+            <sun_burst_chart />
+        </view>
+        <view style="width: 750rpx;height: 750rpx;">
+            <map_chart />
+        </view>
+    </view>
 </template>
 
 <script>
@@ -32,7 +35,8 @@ export default class Charts extends wepy.page {
         navigationBarTitleText: 'Charts',
         usingComponents: {
             ec_canvas: '../components/charts/ec-canvas/ec-canvas',
-            map_chart: '../components/nativeComponents/HeNanMapChart/index'
+            map_chart: '../components/nativeComponents/HeNanMapChart/index',
+            sun_burst_chart: '../components/nativeComponents/SunburstChart/index'
         }
     }
 

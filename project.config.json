@@ -11,5 +11,38 @@
 	"appid": "wx343c3971a687bd57",
 	"projectname": "wepy_weapp",
 	"miniprogramRoot": "dist/",
-	"condition": {}
+	"libVersion": "2.4.1",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 1,
+			"list": [
+				{
+					"id": -1,
+					"name": "hh",
+					"pathName": "pages/about/index",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "2",
+					"pathName": "pages/form/index"
+				}
+			]
+		}
+	}
 }
