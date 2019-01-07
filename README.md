@@ -2,7 +2,7 @@
 `wepy`微信小程序，存放一些小demo
 
 #### 已有demo
- - LOADING加载动画
+ - LOADING加载动画
  - price组件
  - echarts使用demo
  - [多行省略组件](./src/components/nativeComponents/EllipsisText/README.md)
@@ -11,7 +11,7 @@
 
 #### echarts使用介绍
 一、原生小程序使用方式  
-1.将`echarts`图表的定义逻辑放置到微信小程序原生组件中，可以参考项目里的`/components/nativeComponents/HeNanMapChart`和`/components/nativeComponents/SunburstChart`组件 
+1.将`echarts`图表的定义逻辑放置到微信小程序原生组件中，可以参考项目里的`/components/nativeComponents/HeNanMapChart`和`/components/nativeComponents/SunburstChart`组件 
 
 2.在wepy页面文件中引入组件后直接使用
 ```Javascript
@@ -31,7 +31,7 @@ export default class Charts extends wepy.page {
 </view>
 ```
 
-二、wepy组件或页面中定义图表逻辑  
+二、wepy组件或页面中定义图表逻辑  
 1.`wepy`页面文件首先引入`ec-canvas`组件 
 ```Javascript
 usingComponents: {
@@ -39,7 +39,7 @@ usingComponents: {
 }
 ```
 
-2.直接在页面中使用`ec-canvas`组件
+2.直接在页面中使用`ec-canvas`组件
 ```Html
  <view class="line__chart">
     <ec_canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" bind:init="echartInit"></ec_canvas>
