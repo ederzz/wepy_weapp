@@ -11,16 +11,15 @@
 
 #### echarts使用介绍
 一、原生小程序使用方式  
-1.将`echarts`图表的定义放置到微信小程序原生组件中，可以参考项目`/components/nativeComponents/HeNanMapChart`和`/components/nativeComponents/SunburstChart`组件 
+1.将`echarts`图表的定义逻辑放置到微信小程序原生组件中，可以参考项目里的`/components/nativeComponents/HeNanMapChart`和`/components/nativeComponents/SunburstChart`组件 
 
-2.在wepy页面文件中引入后直接使用
+2.在wepy页面文件中引入组件后直接使用
 ```Javascript
 export default class Charts extends wepy.page {
     config = {
         navigationBarTitleText: 'Charts',
         usingComponents: {
-            map_chart: '../components/nativeComponents/HeNanMapChart/index',
-            sun_burst_chart: '../components/nativeComponents/SunburstChart/index'
+            map_chart: '../components/nativeComponents/HeNanMapChart/index'
         }
     }
 }
@@ -36,7 +35,7 @@ export default class Charts extends wepy.page {
 1.`wepy`页面文件首先引入`ec-canvas`组件 
 ```Javascript
 usingComponents: {
-            ec_canvas: '../components/charts/ec-canvas/ec-canvas'
+    ec_canvas: '../components/charts/ec-canvas/ec-canvas'
 }
 ```
 
@@ -46,9 +45,9 @@ usingComponents: {
     <ec_canvas id="mychart-dom-bar" canvas-id="mychart-bar" ec="{{ ec }}" bind:init="echartInit"></ec_canvas>
 </view>
 ```
-再定义`ec`，`echartInit`用于图表渲染，`ec`放置个空对象就好，`echartInit`才是实际渲染图表的组件
+再定义`ec`，`echartInit`用于图表渲染，`ec`放置个空对象就好，`echartInit`才是实际渲染图表的函数
 ```Javascript
-export default class LineChart extends wepy.component {
+export default class LineChart extends wepy.page {
     data = {
         ec: {}
     }
