@@ -9,6 +9,9 @@
  - [懒加载图片组件](./src/components/nativeComponents/LazyLoadImage/README.md)
  - [带热区跳转的图片组件](./src/components/nativeComponents/HotAreaImage/README.md)
 
+#### wepy小程序案例
+[仓库地址](https://github.com/shenyiling/weapp_github)
+
 #### echarts使用介绍
 一、原生小程序使用方式  
 1.将`echarts`图表的定义逻辑放置到微信小程序原生组件中，可以参考项目里的`/components/nativeComponents/HeNanMapChart`和`/components/nativeComponents/SunburstChart`组件 
