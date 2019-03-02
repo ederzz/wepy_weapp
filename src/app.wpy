@@ -41,7 +41,8 @@ export default class extends wepy.app {
             'pages/musicList',
             'pages/charts',
             'pages/form/index',
-            'pages/order/index'
+            'pages/order/index',
+            'pages/location'
         ],
         window: {
             backgroundTextStyle: 'light',
@@ -71,6 +72,11 @@ export default class extends wepy.app {
                     'iconPath': './images/profile_tab.png'
                 }
             ]
+        },
+        permission: {
+            "scope.userLocation": {
+                desc: '你的位置信息将用于小程序位置接口的效果展示'
+            }
         },
         plugins: {
             calendar: {

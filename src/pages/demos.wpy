@@ -53,6 +53,11 @@ export default class Demos extends wepy.page {
                 title: '仿写豆瓣音乐小程序音乐列表',
                 content: '仿写豆瓣音乐小程序音乐列表~',
                 navUrl: '/pages/musicList'
+            },
+            {
+                title: '获取地理位置',
+                content: '通过腾讯位置服务解析坐标位置',
+                navUrl: '/pages/location'
             }
         ]
     }

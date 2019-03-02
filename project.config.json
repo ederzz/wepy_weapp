@@ -1,11 +1,12 @@
 {
 	"description": "A WePY project",
 	"setting": {
-		"urlCheck": true,
+		"urlCheck": false,
 		"es6": false,
 		"postcss": false,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"compileType": "miniprogram",
 	"appid": "wx343c3971a687bd57",
@@ -38,9 +39,11 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 1,
 					"name": "2",
-					"pathName": "pages/form/index"
+					"pathName": "pages/location",
+					"query": "",
+					"scene": null
 				}
 			]
 		}

@@ -1,0 +1,76 @@
+<template>
+    <view class='location-container'>
+        <view 
+            @tap="getLocation"
+            class="fetch-btn">点击获取地理位置</view>
+        <view class="location">{{ city }}</view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy'
+import QQMapWx from '../qqmap-wx-jssdk.min.js'
+
+export default class Example extends wepy.page {
+    config = {
+        navigationBarTitleText: '定位'
+    }
+
+    data = {
+        city: ''
+    }
+
+    methods = {
+        getLocation() {
+            wx.getLocation({
+                type: 'gcj02',
+                success: ({
+                    latitude,
+                    longitude
+                }) => {
+                    this.resolveLocation({
+                        latitude,
+                        longitude
+                    })
+                }
+            })
+        }
+    }
+
+    onLoad() {
+        this.qqmapsdk = new QQMapWx({
+            key: 'TKRBZ-2M63Q-PJ45K-G6XKI-7S42O-TSFGD'
+        })
+    }
+
+    resolveLocation({
+        latitude,
+        longitude
+    }) {
+        this.qqmapsdk.reverseGeocoder({
+            location: `${latitude},${longitude}`,
+            success: ({
+                result: {
+                    ad_info: {
+                        city
+                    }
+                }
+            }) => {
+                this.city = city
+                this.$apply()
+            }
+        })
+    }
+}
+</script>
+
+<style lang='less'>
+    .location-container {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        width: 100vw;
+        height: 100vh;
+        margin-top: 200rpx;
+    }
+</style>
