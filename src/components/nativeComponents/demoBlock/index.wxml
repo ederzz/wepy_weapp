@@ -1,5 +1,5 @@
-<view class="demo-block block-class">
-    <view bindtap="navigateDemo" class="img" style="background-color: {{ bgColor }};"></view>
+<view bindtap="navigateDemo" class="demo-block block-class">
+    <view class="img" style="background-color: {{ bgColor }};"></view>
     <view class="info">
         <view class="title">{{ title }}</view>
         <view class="content">{{ content }}</view>

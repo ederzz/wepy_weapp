@@ -58,6 +58,11 @@ export default class Demos extends wepy.page {
                 title: '获取地理位置',
                 content: '通过腾讯位置服务解析坐标位置',
                 navUrl: '/pages/location'
+            },
+            {
+                title: '可移动区域',
+                content: 'movable控件',
+                navUrl: '/pages/movable'
             }
         ]
     }

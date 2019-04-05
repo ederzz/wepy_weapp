@@ -42,7 +42,8 @@ export default class extends wepy.app {
             'pages/charts',
             'pages/form/index',
             'pages/order/index',
-            'pages/location'
+            'pages/location',
+            'pages/movable'
         ],
         window: {
             backgroundTextStyle: 'light',

@@ -41,7 +41,7 @@
 				{
 					"id": 1,
 					"name": "2",
-					"pathName": "pages/location",
+					"pathName": "pages/movable",
 					"query": "",
 					"scene": null
 				}
