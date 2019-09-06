@@ -10,7 +10,7 @@
  - [懒加载图片组件](./src/components/nativeComponents/LazyLoadImage/README.md)
  - [带热区跳转的图片组件](./src/components/nativeComponents/HotAreaImage/README.md)
 
-#### wepy小程序案例
+#### wepy github小程序案例
 [仓库地址](https://github.com/shenyiling/weapp_github)
 
 #### echarts使用介绍
